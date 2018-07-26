@@ -5162,6 +5162,12 @@ $breakpoint-lg: '(min-width: 64em)' !default;
 
 
 
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 input.sem-input {
   width: calc(100%);
   outline: none;
@@ -7047,6 +7053,31 @@ $breakpoint-lg: '(min-width: 64em)' !default;
   }
 }
 
+
+@mixin sem-color-switch-theme($theme) {
+  .sem-color-switch {
+    &--colors {
+      padding-right: 1px;
+    }
+    &--control {
+      &--link {
+        transform: rotate(90deg);
+        &:after {
+          color: map_get($theme, primary);
+          font-size: 11px;
+          content: '\232A';
+          margin: 0px 1px;
+        }
+        &:before {
+          color: map_get($theme, primary);
+          font-size: 11px;
+          content: '\2329';
+          margin: 0px 1px;
+        }
+      }
+    }
+  }
+}
 
 
 
@@ -9174,6 +9205,7 @@ $breakpoint-lg: '(min-width: 64em)' !default;
 
 
 
+
 @mixin sem-link-theme($theme) {
   $foreground: map-get($theme, foreground);
   .sem--link {
@@ -9214,4 +9246,5 @@ $breakpoint-lg: '(min-width: 64em)' !default;
   @include sem-colorlist-theme($theme);
   @include sem-browser-theme($theme);
   @include sem-link-theme($theme);
+  @include sem-color-switch-theme($theme);
 }

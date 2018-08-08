@@ -1,0 +1,62 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ */
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { SemUiComponent } from './sem-ui.component';
+import { SemUiButtonDndModule } from './modules/button-dnd/button-dnd.module';
+import { SemUiButtonModule } from './modules/button/button.module';
+import { SemUiCardModule } from './modules/card/card.module';
+import { SemUiListModule } from './modules/list/list.module';
+import { SemUiLabelModule } from './modules/label/label.module';
+import { SemUiFormSelectModule } from './modules/form-select/form-select.module';
+import { SemUiThumbnailLargeModule } from './modules/thumbnail-large/thumbnail-large.module';
+import { SemUiIconsListModule } from './modules/icons-list/icons-list.module';
+import { SemUiRainDropModule } from './modules/rain-drop/rain-drop.module';
+import { SemUiSectionHeaderModule } from './modules/section-header/section-header.module';
+import { SemUiSectionFooterModule } from './modules/section-footer/section-footer.module';
+import { SemUiInputModule } from './modules/input/input.module';
+import { SemUiOverlayDialogModule } from './modules/overlay-dialog/overlay-dialog.module';
+import { SemUiTabsModule } from './modules/tabs/tabs.module';
+import { SemUiFormFieldModule } from './modules/form-field/form-field.module';
+import { SemUiButtonFabModule } from './modules/button-fab/button-fab.module';
+import { SemUiOverlayVerticalModule } from './modules/overlay-vertical/overlay-vertical.module';
+import { SemUiFontSizesModule } from './modules/font-sizes/font-sizes.module';
+import { MaterialManifestModule } from './modules/material-manifest/material-manifest.module';
+/** @type {?} */
+const UIMODULES = [
+    MaterialManifestModule,
+    SemUiButtonModule,
+    SemUiButtonFabModule,
+    SemUiRainDropModule,
+    SemUiListModule,
+    SemUiLabelModule,
+    SemUiFormSelectModule,
+    SemUiThumbnailLargeModule,
+    SemUiIconsListModule,
+    SemUiSectionHeaderModule,
+    SemUiSectionFooterModule,
+    SemUiCardModule,
+    SemUiInputModule,
+    SemUiOverlayDialogModule,
+    SemUiOverlayVerticalModule,
+    SemUiTabsModule,
+    SemUiFormFieldModule,
+    SemUiFontSizesModule,
+    SemUiButtonDndModule,
+];
+export class SemUiModule {
+}
+SemUiModule.decorators = [
+    { type: NgModule, args: [{
+                imports: [
+                    UIMODULES,
+                    FormsModule
+                ],
+                declarations: [SemUiComponent],
+                exports: [SemUiComponent, UIMODULES]
+            },] },
+];
+
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic2VtLXVpLm1vZHVsZS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL3NlbS11aS8iLCJzb3VyY2VzIjpbImxpYi9zZW0tdWkubW9kdWxlLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7QUFBQSxPQUFPLEVBQUUsUUFBUSxFQUFFLE1BQU0sZUFBZSxDQUFDO0FBQ3pDLE9BQU8sRUFBRSxXQUFXLEVBQUUsTUFBTSxnQkFBZ0IsQ0FBQztBQUU3QyxPQUFPLEVBQUUsY0FBYyxFQUFFLE1BQU0sb0JBQW9CLENBQUM7QUFDcEQsT0FBTyxFQUFFLG9CQUFvQixFQUFFLE1BQU0sd0NBQXdDLENBQUM7QUFDOUUsT0FBTyxFQUFFLGlCQUFpQixFQUFFLE1BQU0sZ0NBQWdDLENBQUM7QUFDbkUsT0FBTyxFQUFFLGVBQWUsRUFBRSxNQUFNLDRCQUE0QixDQUFDO0FBQzdELE9BQU8sRUFBRSxlQUFlLEVBQUUsTUFBTSw0QkFBNEIsQ0FBQztBQUM3RCxPQUFPLEVBQUUsZ0JBQWdCLEVBQUUsTUFBTSw4QkFBOEIsQ0FBQztBQUNoRSxPQUFPLEVBQUUscUJBQXFCLEVBQUUsTUFBTSwwQ0FBMEMsQ0FBQztBQUNqRixPQUFPLEVBQUUseUJBQXlCLEVBQUUsTUFBTSxrREFBa0QsQ0FBQztBQUM3RixPQUFPLEVBQUUsb0JBQW9CLEVBQUUsTUFBTSx3Q0FBd0MsQ0FBQztBQUM5RSxPQUFPLEVBQUUsbUJBQW1CLEVBQUUsTUFBTSxzQ0FBc0MsQ0FBQztBQUMzRSxPQUFPLEVBQUUsd0JBQXdCLEVBQUUsTUFBTSxnREFBZ0QsQ0FBQztBQUMxRixPQUFPLEVBQUUsd0JBQXdCLEVBQUUsTUFBTSxnREFBZ0QsQ0FBQztBQUMxRixPQUFPLEVBQUUsZ0JBQWdCLEVBQUUsTUFBTSw4QkFBOEIsQ0FBQztBQUNoRSxPQUFPLEVBQUUsd0JBQXdCLEVBQUUsTUFBTSxnREFBZ0QsQ0FBQztBQUMxRixPQUFPLEVBQUUsZUFBZSxFQUFFLE1BQU0sNEJBQTRCLENBQUM7QUFDN0QsT0FBTyxFQUFFLG9CQUFvQixFQUFFLE1BQU0sd0NBQXdDLENBQUM7QUFDOUUsT0FBTyxFQUFFLG9CQUFvQixFQUFFLE1BQU0sd0NBQXdDLENBQUM7QUFDOUUsT0FBTyxFQUFFLDBCQUEwQixFQUFFLE1BQU0sb0RBQW9ELENBQUM7QUFDaEcsT0FBTyxFQUFFLG9CQUFvQixFQUFFLE1BQU0sd0NBQXdDLENBQUM7QUFDOUUsT0FBTyxFQUFFLHNCQUFzQixFQUFFLE1BQU0sc0RBQXNELENBQUM7O0FBRTlGLE1BQU0sU0FBUyxHQUFHO0lBQ2hCLHNCQUFzQjtJQUN0QixpQkFBaUI7SUFDakIsb0JBQW9CO0lBQ3BCLG1CQUFtQjtJQUNuQixlQUFlO0lBQ2YsZ0JBQWdCO0lBQ2hCLHFCQUFxQjtJQUNyQix5QkFBeUI7SUFDekIsb0JBQW9CO0lBQ3BCLHdCQUF3QjtJQUN4Qix3QkFBd0I7SUFDeEIsZUFBZTtJQUNmLGdCQUFnQjtJQUNoQix3QkFBd0I7SUFDeEIsMEJBQTBCO0lBQzFCLGVBQWU7SUFDZixvQkFBb0I7SUFDcEIsb0JBQW9CO0lBQ3BCLG9CQUFvQjtDQUNyQixDQUFDO0FBVUYsTUFBTTs7O1lBUkwsUUFBUSxTQUFDO2dCQUNSLE9BQU8sRUFBRTtvQkFDUCxTQUFTO29CQUNULFdBQVc7aUJBQ1o7Z0JBQ0QsWUFBWSxFQUFFLENBQUMsY0FBYyxDQUFDO2dCQUM5QixPQUFPLEVBQUUsQ0FBQyxjQUFjLEVBQUUsU0FBUyxDQUFDO2FBQ3JDIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgTmdNb2R1bGUgfSBmcm9tICdAYW5ndWxhci9jb3JlJztcbmltcG9ydCB7IEZvcm1zTW9kdWxlIH0gZnJvbSAnQGFuZ3VsYXIvZm9ybXMnO1xuXG5pbXBvcnQgeyBTZW1VaUNvbXBvbmVudCB9IGZyb20gJy4vc2VtLXVpLmNvbXBvbmVudCc7XG5pbXBvcnQgeyBTZW1VaUJ1dHRvbkRuZE1vZHVsZSB9IGZyb20gJy4vbW9kdWxlcy9idXR0b24tZG5kL2J1dHRvbi1kbmQubW9kdWxlJztcbmltcG9ydCB7IFNlbVVpQnV0dG9uTW9kdWxlIH0gZnJvbSAnLi9tb2R1bGVzL2J1dHRvbi9idXR0b24ubW9kdWxlJztcbmltcG9ydCB7IFNlbVVpQ2FyZE1vZHVsZSB9IGZyb20gJy4vbW9kdWxlcy9jYXJkL2NhcmQubW9kdWxlJztcbmltcG9ydCB7IFNlbVVpTGlzdE1vZHVsZSB9IGZyb20gJy4vbW9kdWxlcy9saXN0L2xpc3QubW9kdWxlJztcbmltcG9ydCB7IFNlbVVpTGFiZWxNb2R1bGUgfSBmcm9tICcuL21vZHVsZXMvbGFiZWwvbGFiZWwubW9kdWxlJztcbmltcG9ydCB7IFNlbVVpRm9ybVNlbGVjdE1vZHVsZSB9IGZyb20gJy4vbW9kdWxlcy9mb3JtLXNlbGVjdC9mb3JtLXNlbGVjdC5tb2R1bGUnO1xuaW1wb3J0IHsgU2VtVWlUaHVtYm5haWxMYXJnZU1vZHVsZSB9IGZyb20gJy4vbW9kdWxlcy90aHVtYm5haWwtbGFyZ2UvdGh1bWJuYWlsLWxhcmdlLm1vZHVsZSc7XG5pbXBvcnQgeyBTZW1VaUljb25zTGlzdE1vZHVsZSB9IGZyb20gJy4vbW9kdWxlcy9pY29ucy1saXN0L2ljb25zLWxpc3QubW9kdWxlJztcbmltcG9ydCB7IFNlbVVpUmFpbkRyb3BNb2R1bGUgfSBmcm9tICcuL21vZHVsZXMvcmFpbi1kcm9wL3JhaW4tZHJvcC5tb2R1bGUnO1xuaW1wb3J0IHsgU2VtVWlTZWN0aW9uSGVhZGVyTW9kdWxlIH0gZnJvbSAnLi9tb2R1bGVzL3NlY3Rpb24taGVhZGVyL3NlY3Rpb24taGVhZGVyLm1vZHVsZSc7XG5pbXBvcnQgeyBTZW1VaVNlY3Rpb25Gb290ZXJNb2R1bGUgfSBmcm9tICcuL21vZHVsZXMvc2VjdGlvbi1mb290ZXIvc2VjdGlvbi1mb290ZXIubW9kdWxlJztcbmltcG9ydCB7IFNlbVVpSW5wdXRNb2R1bGUgfSBmcm9tICcuL21vZHVsZXMvaW5wdXQvaW5wdXQubW9kdWxlJztcbmltcG9ydCB7IFNlbVVpT3ZlcmxheURpYWxvZ01vZHVsZSB9IGZyb20gJy4vbW9kdWxlcy9vdmVybGF5LWRpYWxvZy9vdmVybGF5LWRpYWxvZy5tb2R1bGUnO1xuaW1wb3J0IHsgU2VtVWlUYWJzTW9kdWxlIH0gZnJvbSAnLi9tb2R1bGVzL3RhYnMvdGFicy5tb2R1bGUnO1xuaW1wb3J0IHsgU2VtVWlGb3JtRmllbGRNb2R1bGUgfSBmcm9tICcuL21vZHVsZXMvZm9ybS1maWVsZC9mb3JtLWZpZWxkLm1vZHVsZSc7XG5pbXBvcnQgeyBTZW1VaUJ1dHRvbkZhYk1vZHVsZSB9IGZyb20gJy4vbW9kdWxlcy9idXR0b24tZmFiL2J1dHRvbi1mYWIubW9kdWxlJztcbmltcG9ydCB7IFNlbVVpT3ZlcmxheVZlcnRpY2FsTW9kdWxlIH0gZnJvbSAnLi9tb2R1bGVzL292ZXJsYXktdmVydGljYWwvb3ZlcmxheS12ZXJ0aWNhbC5tb2R1bGUnO1xuaW1wb3J0IHsgU2VtVWlGb250U2l6ZXNNb2R1bGUgfSBmcm9tICcuL21vZHVsZXMvZm9udC1zaXplcy9mb250LXNpemVzLm1vZHVsZSc7XG5pbXBvcnQgeyBNYXRlcmlhbE1hbmlmZXN0TW9kdWxlIH0gZnJvbSAnLi9tb2R1bGVzL21hdGVyaWFsLW1hbmlmZXN0L21hdGVyaWFsLW1hbmlmZXN0Lm1vZHVsZSc7XG5cbmNvbnN0IFVJTU9EVUxFUyA9IFtcbiAgTWF0ZXJpYWxNYW5pZmVzdE1vZHVsZSxcbiAgU2VtVWlCdXR0b25Nb2R1bGUsXG4gIFNlbVVpQnV0dG9uRmFiTW9kdWxlLFxuICBTZW1VaVJhaW5Ecm9wTW9kdWxlLFxuICBTZW1VaUxpc3RNb2R1bGUsXG4gIFNlbVVpTGFiZWxNb2R1bGUsXG4gIFNlbVVpRm9ybVNlbGVjdE1vZHVsZSxcbiAgU2VtVWlUaHVtYm5haWxMYXJnZU1vZHVsZSxcbiAgU2VtVWlJY29uc0xpc3RNb2R1bGUsXG4gIFNlbVVpU2VjdGlvbkhlYWRlck1vZHVsZSxcbiAgU2VtVWlTZWN0aW9uRm9vdGVyTW9kdWxlLFxuICBTZW1VaUNhcmRNb2R1bGUsXG4gIFNlbVVpSW5wdXRNb2R1bGUsXG4gIFNlbVVpT3ZlcmxheURpYWxvZ01vZHVsZSxcbiAgU2VtVWlPdmVybGF5VmVydGljYWxNb2R1bGUsXG4gIFNlbVVpVGFic01vZHVsZSxcbiAgU2VtVWlGb3JtRmllbGRNb2R1bGUsXG4gIFNlbVVpRm9udFNpemVzTW9kdWxlLFxuICBTZW1VaUJ1dHRvbkRuZE1vZHVsZSxcbl07XG5cbkBOZ01vZHVsZSh7XG4gIGltcG9ydHM6IFtcbiAgICBVSU1PRFVMRVMsXG4gICAgRm9ybXNNb2R1bGVcbiAgXSxcbiAgZGVjbGFyYXRpb25zOiBbU2VtVWlDb21wb25lbnRdLFxuICBleHBvcnRzOiBbU2VtVWlDb21wb25lbnQsIFVJTU9EVUxFU11cbn0pXG5leHBvcnQgY2xhc3MgU2VtVWlNb2R1bGUgeyB9XG4iXX0=

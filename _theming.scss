@@ -8995,11 +8995,13 @@ $breakpoint-lg: '(min-width: 64em)' !default;
   &_preselected {
     margin-top: 13px;
     margin-left: -10px;
-    margin-bottom: -10px;
+    margin-bottom: 0px;
     flex-grow: 1;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    overflow: hidden;
+    height: 67px;
     &_item {}
   }
 }

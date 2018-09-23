@@ -2795,6 +2795,88 @@ $breakpoint-lg: '(min-width: 64em)' !default;
 .display-none { display: none !important }
 
 
+@mixin sem-heading-typography($config) {
+
+  .sem-heading {
+    font-weight: 700;
+
+    &--h1 {
+      margin: 0 0 8px;
+      @include sem-typography-level-to-styles($config, heading_one);
+      &--lead{
+        @include sem-typography-level-to-styles($config, lead);
+      }
+    }
+
+    &--h2 {
+      @include sem-typography-level-to-styles($config, heading_two);
+    }
+
+    &--h3 {
+      @include sem-typography-level-to-styles($config, heading_three);
+    }
+
+    &--h4 {
+      @extend .m0;
+      @include sem-typography-level-to-styles($config, heading_four);
+    }
+    &--h5 {
+      @extend .m0;
+      @include sem-typography-level-to-styles($config, heading_five);
+    }
+    &--center {
+      @extend .center;
+    }
+  }
+  .sem-typo{
+    &--lead{
+      @include sem-typography-level-to-styles($config, lead);
+    }
+    &--caption {
+      @include sem-typography-level-to-styles($config, caption);
+    }
+    &--primary-caption {
+      @include sem-typography-level-to-styles($config, primary-caption);
+    }
+    &--sub-caption {
+      @include sem-typography-level-to-styles($config, sub-caption);
+    }
+    &--figcaption {
+      @include sem-typography-level-to-styles($config, figcaption);
+    }
+    &--label {
+      @include sem-typography-level-to-styles($config, label);
+    }
+    &--body-base {
+      @include sem-typography-level-to-styles($config, body-base);
+    }
+    &--uppercase {
+      text-transform: uppercase;
+    }
+    hr {
+      @extend %sem-hr;
+    }
+    i, em {
+      @extend %sem-i;
+    }
+    b, strong {
+      @extend %sem-b;
+    }
+  }
+
+}
+
+@mixin sem-heading-theme($theme) {
+  $foreground: map-get($theme, foreground);
+  .sem-font {
+    color:  map-get($foreground, typography-base);
+    &--inverted {
+      color:  map-get($foreground, typography-base-inverted);
+    }
+
+  }
+}
+
 
 
 
@@ -2849,22 +2931,7 @@ $breakpoint-lg: '(min-width: 64em)' !default;
   }
 }
 
-.sem-ul-list{
-  &_item{
-    text-overflow: ellipsis;
-    -webkit-line-clamp: 1;
-    overflow: hidden;
-    white-space: nowrap;
-    cursor: pointer;
 
-    @extend .sem-typo--body-base, .py1;
-
-    border-bottom: 1px solid #cccccc;
-    &:hover {
-      background: #fafafa;
-    }
-  }
-}
 
 // generic li
 .sem-ul{
@@ -2937,8 +3004,25 @@ $breakpoint-lg: '(min-width: 64em)' !default;
     }
   }
 }
-
 @mixin sem-list-typography($config) {
+
+  .sem-ul-list{
+    &_item{
+      text-overflow: ellipsis;
+      -webkit-line-clamp: 1;
+      overflow: hidden;
+      white-space: nowrap;
+      cursor: pointer;
+
+      @extend .py1;
+      @include sem-typography-level-to-styles($config, body-base);
+      border-bottom: 1px solid #cccccc;
+      &:hover {
+        background: #fafafa;
+      }
+    }
+  }
+
   .sem-list{
     @extend .pt1;
     li{
@@ -5173,87 +5257,6 @@ ul.semui-tabs-list.tabs-vertical{
 
 
 
-@mixin sem-heading-typography($config) {
-
-  .sem-heading {
-    font-weight: 700;
-
-    &--h1 {
-      margin: 0 0 8px;
-      @include sem-typography-level-to-styles($config, heading_one);
-      &--lead{
-        @include sem-typography-level-to-styles($config, lead);
-      }
-    }
-
-    &--h2 {
-      @include sem-typography-level-to-styles($config, heading_two);
-    }
-
-    &--h3 {
-      @include sem-typography-level-to-styles($config, heading_three);
-    }
-
-    &--h4 {
-      @extend .m0;
-      @include sem-typography-level-to-styles($config, heading_four);
-    }
-    &--h5 {
-      @extend .m0;
-      @include sem-typography-level-to-styles($config, heading_five);
-    }
-    &--center {
-      @extend .center;
-    }
-  }
-  .sem-typo{
-    &--lead{
-      @include sem-typography-level-to-styles($config, lead);
-    }
-    &--caption {
-      @include sem-typography-level-to-styles($config, caption);
-    }
-    &--primary-caption {
-      @include sem-typography-level-to-styles($config, primary-caption);
-    }
-    &--sub-caption {
-      @include sem-typography-level-to-styles($config, sub-caption);
-    }
-    &--figcaption {
-      @include sem-typography-level-to-styles($config, figcaption);
-    }
-    &--label {
-      @include sem-typography-level-to-styles($config, label);
-    }
-    &--body-base {
-      @include sem-typography-level-to-styles($config, body-base);
-    }
-    &--uppercase {
-      text-transform: uppercase;
-    }
-    hr {
-      @extend %sem-hr;
-    }
-    i, em {
-      @extend %sem-i;
-    }
-    b, strong {
-      @extend %sem-b;
-    }
-  }
-
-}
-
-@mixin sem-heading-theme($theme) {
-  $foreground: map-get($theme, foreground);
-  .sem-font {
-    color:  map-get($foreground, typography-base);
-    &--inverted {
-      color:  map-get($foreground, typography-base-inverted);
-    }
-
-  }
-}
 
 
 

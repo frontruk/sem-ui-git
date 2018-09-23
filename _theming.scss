@@ -3022,7 +3022,6 @@ $breakpoint-lg: '(min-width: 64em)' !default;
       }
     }
   }
-
   .sem-list{
     @extend .pt1;
     li{
@@ -6259,14 +6258,14 @@ $breakpoint-lg: '(min-width: 64em)' !default;
   width: 26px;
   height: 26px;
   margin: 4px 6px 8px;
-  @extend .sem-button-rain-drop;
+  @extend .sem-rain-drop;
   .sem-button-delete{
     font-size: 6px;
     top: 6px;
     right: -9px;
   }
 }
-.sem-button-rain-drop{
+.sem-rain-drop{
   border-bottom-right-radius: 50%;
   border-bottom-left-radius: 50%;
   border-top-left-radius: 50%;
@@ -8947,6 +8946,7 @@ $breakpoint-lg: '(min-width: 64em)' !default;
   .sem-color-switch {
     &--colors {
       padding-right: 1px;
+      margin: 0px;
     }
     &--control {
       &--link {

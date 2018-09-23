@@ -13,6 +13,7 @@ export declare class SemUiButtonDndComponent implements OnInit {
     full: string | undefined;
     block: string | undefined;
     disabled: string | undefined;
+    medium: string | undefined;
     /**
      * Button importance level in terms of primary/secondary/etc.
      */

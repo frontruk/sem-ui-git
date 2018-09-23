@@ -344,48 +344,269 @@ Italics - Don't use directly, instead use <i></i> wrapped by .sem-typography
 
 
 //Objects
-@mixin sem-base-typography($config, $selector: '.sem-font') {
-  .sem-input {
-    @include sem-typography-level-to-styles($config, input);
-  }
-  #{$selector} .caption {
-    @include sem-typography-level-to-styles($config, caption);
-    margin: 0 0 16px;
+
+// Converted Variables
+
+
+// Custom Media Query Variables
+$breakpoint-sm: '(min-width: 40em)' !default;
+$breakpoint-md: '(min-width: 52em)' !default;
+$breakpoint-lg: '(min-width: 64em)' !default;
+
+/* Basscss Grid */
+
+.col {
+  float: left;
+  box-sizing: border-box;
+}
+
+.col-right {
+  float: right;
+  box-sizing: border-box;
+}
+
+.col-1 {
+  width: (1/12 * 100%);
+}
+
+.col-2 {
+  width: (2/12 * 100%);
+}
+
+.col-3 {
+  width: (3/12 * 100%);
+}
+
+.col-4 {
+  width: (4/12 * 100%);
+}
+
+.col-5 {
+  width: (5/12 * 100%);
+}
+
+.col-6 {
+  width: (6/12 * 100%);
+}
+
+.col-7 {
+  width: (7/12 * 100%);
+}
+
+.col-8 {
+  width: (8/12 * 100%);
+}
+
+.col-9 {
+  width: (9/12 * 100%);
+}
+
+.col-10 {
+  width: (10/12 * 100%);
+}
+
+.col-11 {
+  width: (11/12 * 100%);
+}
+
+.col-12 {
+  width: 100%;
+}
+
+@media #{$breakpoint-sm} {
+
+  .sm-col {
+    float: left;
+    box-sizing: border-box;
   }
 
-  #{$selector} h1 {
-    @extend .sem-heading--h1;
-    margin: 0 0 8px;
+  .sm-col-right {
+    float: right;
+    box-sizing: border-box;
   }
 
-  #{$selector} h1.sem-typo--lead{
-    @extend .sem-typo--lead;
-    margin: 0 0 8px;
-  }
-  #{$selector} h2 {
-    @extend .sem-heading--h2;
+  .sm-col-1 {
+    width: (1/12 * 100%);
   }
 
-  #{$selector} h3 {
-    @extend .sem-heading--h3;
+  .sm-col-2 {
+    width: (2/12 * 100%);
   }
 
-  #{$selector} h4 {
-    @extend .m0;
-    @extend .sem-heading--h4;
+  .sm-col-3 {
+    width: (3/12 * 100%);
   }
 
-  #{$selector} h5 {
-    @extend .m0;
-    @extend .sem-heading--h5;
+  .sm-col-4 {
+    width: (4/12 * 100%);
   }
 
-  // Base paragraph style.
-  p {
-    margin: 0 0 1em;
-    @include sem-typography-level-to-styles($config, body-base);
+  .sm-col-5 {
+    width: (5/12 * 100%);
+  }
+
+  .sm-col-6 {
+    width: (6/12 * 100%);
+  }
+
+  .sm-col-7 {
+    width: (7/12 * 100%);
+  }
+
+  .sm-col-8 {
+    width: (8/12 * 100%);
+  }
+
+  .sm-col-9 {
+    width: (9/12 * 100%);
+  }
+
+  .sm-col-10 {
+    width: (10/12 * 100%);
+  }
+
+  .sm-col-11 {
+    width: (11/12 * 100%);
+  }
+
+  .sm-col-12 {
+    width: 100%;
+  }
+
+}
+
+@media #{$breakpoint-md} {
+
+  .md-col {
+    float: left;
+    box-sizing: border-box;
+  }
+
+  .md-col-right {
+    float: right;
+    box-sizing: border-box;
+  }
+
+  .md-col-1 {
+    width: (1/12 * 100%);
+  }
+
+  .md-col-2 {
+    width: (2/12 * 100%);
+  }
+
+  .md-col-3 {
+    width: (3/12 * 100%);
+  }
+
+  .md-col-4 {
+    width: (4/12 * 100%);
+  }
+
+  .md-col-5 {
+    width: (5/12 * 100%);
+  }
+
+  .md-col-6 {
+    width: (6/12 * 100%);
+  }
+
+  .md-col-7 {
+    width: (7/12 * 100%);
+  }
+
+  .md-col-8 {
+    width: (8/12 * 100%);
+  }
+
+  .md-col-9 {
+    width: (9/12 * 100%);
+  }
+
+  .md-col-10 {
+    width: (10/12 * 100%);
+  }
+
+  .md-col-11 {
+    width: (11/12 * 100%);
+  }
+
+  .md-col-12 {
+    width: 100%;
+  }
+
+}
+
+@media #{$breakpoint-lg} {
+
+  .lg-col {
+    float: left;
+    box-sizing: border-box;
+  }
+
+  .lg-col-right {
+    float: right;
+    box-sizing: border-box;
+  }
+
+  .lg-col-1 {
+    width: (1/12 * 100%);
+  }
+
+  .lg-col-2 {
+    width: (2/12 * 100%);
+  }
+
+  .lg-col-3 {
+    width: (3/12 * 100%);
+  }
+
+  .lg-col-4 {
+    width: (4/12 * 100%);
+  }
+
+  .lg-col-5 {
+    width: (5/12 * 100%);
+  }
+
+  .lg-col-6 {
+    width: (6/12 * 100%);
+  }
+
+  .lg-col-7 {
+    width: (7/12 * 100%);
+  }
+
+  .lg-col-8 {
+    width: (8/12 * 100%);
+  }
+
+  .lg-col-9 {
+    width: (9/12 * 100%);
+  }
+
+  .lg-col-10 {
+    width: (10/12 * 100%);
+  }
+
+  .lg-col-11 {
+    width: (11/12 * 100%);
+  }
+
+  .lg-col-12 {
+    width: 100%;
+  }
+
+}
+
+@mixin sem-hr-theme($theme) {
+  $foreground: map-get($theme, foreground);
+  %sem-hr {
+    border: 0;
+    border-top: 1px solid map-get($foreground, tertiary);
   }
 }
+
 
 
 [class^="sem-icon-"], [class*=" sem-icon-"] {
@@ -659,12 +880,28 @@ Italics - Don't use directly, instead use <i></i> wrapped by .sem-typography
   content: "\e944";
 }
 
-@mixin sem-hr-theme($theme) {
+//.input-wrapper{
+//  display: inline-flex;
+//  align-items: baseline;
+//  width: 100%;
+//  .icon{
+//    padding: 7px 4px 7px 8px;
+//    position: absolute;
+//  }
+//}
+//
+
+@mixin sem-link-theme($theme) {
   $foreground: map-get($theme, foreground);
-  %sem-hr {
-    border: 0;
-    border-top: 1px solid map-get($foreground, tertiary);
+  .sem--link {
+    color: map-get($foreground, link);
+    text-decoration: none;
+    :hover{
+      color:    darken( map-get($foreground, link), 7%);
+      text-decoration: underline;
+    }
   }
+
 }
 
 
@@ -672,260 +909,50 @@ Italics - Don't use directly, instead use <i></i> wrapped by .sem-typography
   position: relative;
 }
 
+@mixin sem-base-typography($config, $selector: '.sem-font') {
+  .sem-input {
+    @include sem-typography-level-to-styles($config, input);
+  }
+  #{$selector} .caption {
+    @include sem-typography-level-to-styles($config, caption);
+    margin: 0 0 16px;
+  }
 
-// Converted Variables
+  #{$selector} h1 {
+    @extend .sem-heading--h1;
+    margin: 0 0 8px;
+  }
 
+  #{$selector} h1.sem-typo--lead{
+    @extend .sem-typo--lead;
+    margin: 0 0 8px;
+  }
+  #{$selector} h2 {
+    @extend .sem-heading--h2;
+  }
 
-// Custom Media Query Variables
-$breakpoint-sm: '(min-width: 40em)' !default;
-$breakpoint-md: '(min-width: 52em)' !default;
-$breakpoint-lg: '(min-width: 64em)' !default;
+  #{$selector} h3 {
+    @extend .sem-heading--h3;
+  }
 
-/* Basscss Grid */
+  #{$selector} h4 {
+    @extend .m0;
+    @extend .sem-heading--h4;
+  }
 
-.col {
-  float: left;
-  box-sizing: border-box;
+  #{$selector} h5 {
+    @extend .m0;
+    @extend .sem-heading--h5;
+  }
+
+  // Base paragraph style.
+  p {
+    margin: 0 0 1em;
+    @include sem-typography-level-to-styles($config, body-base);
+  }
 }
 
-.col-right {
-  float: right;
-  box-sizing: border-box;
-}
 
-.col-1 {
-  width: (1/12 * 100%);
-}
-
-.col-2 {
-  width: (2/12 * 100%);
-}
-
-.col-3 {
-  width: (3/12 * 100%);
-}
-
-.col-4 {
-  width: (4/12 * 100%);
-}
-
-.col-5 {
-  width: (5/12 * 100%);
-}
-
-.col-6 {
-  width: (6/12 * 100%);
-}
-
-.col-7 {
-  width: (7/12 * 100%);
-}
-
-.col-8 {
-  width: (8/12 * 100%);
-}
-
-.col-9 {
-  width: (9/12 * 100%);
-}
-
-.col-10 {
-  width: (10/12 * 100%);
-}
-
-.col-11 {
-  width: (11/12 * 100%);
-}
-
-.col-12 {
-  width: 100%;
-}
-
-@media #{$breakpoint-sm} {
-
-  .sm-col {
-    float: left;
-    box-sizing: border-box;
-  }
-
-  .sm-col-right {
-    float: right;
-    box-sizing: border-box;
-  }
-
-  .sm-col-1 {
-    width: (1/12 * 100%);
-  }
-
-  .sm-col-2 {
-    width: (2/12 * 100%);
-  }
-
-  .sm-col-3 {
-    width: (3/12 * 100%);
-  }
-
-  .sm-col-4 {
-    width: (4/12 * 100%);
-  }
-
-  .sm-col-5 {
-    width: (5/12 * 100%);
-  }
-
-  .sm-col-6 {
-    width: (6/12 * 100%);
-  }
-
-  .sm-col-7 {
-    width: (7/12 * 100%);
-  }
-
-  .sm-col-8 {
-    width: (8/12 * 100%);
-  }
-
-  .sm-col-9 {
-    width: (9/12 * 100%);
-  }
-
-  .sm-col-10 {
-    width: (10/12 * 100%);
-  }
-
-  .sm-col-11 {
-    width: (11/12 * 100%);
-  }
-
-  .sm-col-12 {
-    width: 100%;
-  }
-
-}
-
-@media #{$breakpoint-md} {
-
-  .md-col {
-    float: left;
-    box-sizing: border-box;
-  }
-
-  .md-col-right {
-    float: right;
-    box-sizing: border-box;
-  }
-
-  .md-col-1 {
-    width: (1/12 * 100%);
-  }
-
-  .md-col-2 {
-    width: (2/12 * 100%);
-  }
-
-  .md-col-3 {
-    width: (3/12 * 100%);
-  }
-
-  .md-col-4 {
-    width: (4/12 * 100%);
-  }
-
-  .md-col-5 {
-    width: (5/12 * 100%);
-  }
-
-  .md-col-6 {
-    width: (6/12 * 100%);
-  }
-
-  .md-col-7 {
-    width: (7/12 * 100%);
-  }
-
-  .md-col-8 {
-    width: (8/12 * 100%);
-  }
-
-  .md-col-9 {
-    width: (9/12 * 100%);
-  }
-
-  .md-col-10 {
-    width: (10/12 * 100%);
-  }
-
-  .md-col-11 {
-    width: (11/12 * 100%);
-  }
-
-  .md-col-12 {
-    width: 100%;
-  }
-
-}
-
-@media #{$breakpoint-lg} {
-
-  .lg-col {
-    float: left;
-    box-sizing: border-box;
-  }
-
-  .lg-col-right {
-    float: right;
-    box-sizing: border-box;
-  }
-
-  .lg-col-1 {
-    width: (1/12 * 100%);
-  }
-
-  .lg-col-2 {
-    width: (2/12 * 100%);
-  }
-
-  .lg-col-3 {
-    width: (3/12 * 100%);
-  }
-
-  .lg-col-4 {
-    width: (4/12 * 100%);
-  }
-
-  .lg-col-5 {
-    width: (5/12 * 100%);
-  }
-
-  .lg-col-6 {
-    width: (6/12 * 100%);
-  }
-
-  .lg-col-7 {
-    width: (7/12 * 100%);
-  }
-
-  .lg-col-8 {
-    width: (8/12 * 100%);
-  }
-
-  .lg-col-9 {
-    width: (9/12 * 100%);
-  }
-
-  .lg-col-10 {
-    width: (10/12 * 100%);
-  }
-
-  .lg-col-11 {
-    width: (11/12 * 100%);
-  }
-
-  .lg-col-12 {
-    width: 100%;
-  }
-
-}
 
 //Components
 /**
@@ -2822,6 +2849,23 @@ $breakpoint-lg: '(min-width: 64em)' !default;
   }
 }
 
+.sem-ul-list{
+  &_item{
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+    white-space: nowrap;
+    cursor: pointer;
+
+    @extend .sem-typo--body-base, .py1;
+
+    border-bottom: 1px solid #cccccc;
+    &:hover {
+      background: #fafafa;
+    }
+  }
+}
+
 // generic li
 .sem-ul{
   list-style: none;
@@ -4657,6 +4701,11 @@ figure{
 }
 
 
+.sem-typo-grouped{
+  &--title{}
+  &--subtext{}
+}
+
 @mixin sem-button-typography($config) {
   .sem-button--default {
     @include sem-typography-level-to-styles($config, button);
@@ -5305,6 +5354,28 @@ ul.semui-tabs-list.tabs-vertical{
 
 }
 
+
+.sem-button-circle{
+  @include sem-rounded( 50%);
+  @extend .absolute, .block;
+  cursor: pointer;
+  text-align: center;
+  background: #fff;
+  font-weight: bold;
+  &:before{
+    padding: 0px 0px 0px 1px;
+  }
+}
+.sem-button-delete{
+  color: #ffffff;
+  font-size: 6px;
+  padding: 0.3rem;
+  background-color: #d0021b;
+  -ms-transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+
+}
 
 .sem-dnd-container{
   @extend %sem-relative;
@@ -6178,7 +6249,21 @@ $breakpoint-lg: '(min-width: 64em)' !default;
 .display-none { display: none !important }
 
 
-.rain-drop{
+
+.sem-button-rain-drop{
+  position: relative;
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+  margin: 4px 6px 8px;
+  @extend .sem-button-rain-drop;
+  .sem-button-delete{
+    font-size: 6px;
+    top: 6px;
+    right: -9px;
+  }
+}
+.sem-button-rain-drop{
   border-bottom-right-radius: 50%;
   border-bottom-left-radius: 50%;
   border-top-left-radius: 50%;
@@ -6186,26 +6271,8 @@ $breakpoint-lg: '(min-width: 64em)' !default;
   -ms-transform: rotate(-45deg);
   -webkit-transform: rotate(-45deg);
   transform: rotate(-45deg);
+}
 
-  &_button{
-    @include sem-rounded( 50%);
-    @extend .absolute, .block;
-    cursor: pointer;
-    text-align: center;
-    background: #fff;
-    -ms-transform: rotate(45deg);
-    -webkit-transform: rotate(45deg);
-    transform: rotate(45deg);
-    font-weight: bold;
-    &:before{
-      padding: 0px 0px 0px 1px;
-    }
-  }
-}
-.button-delete{
-  color: #ffffff;
-  background-color: #d0021b;
-}
 
 
 // Converted Variables
@@ -8898,6 +8965,26 @@ $breakpoint-lg: '(min-width: 64em)' !default;
   }
 }
 
+.sem-color-swatches{
+  @extend .flex;
+  flex-wrap: nowrap;
+  &_current{
+      flex-grow: 1;
+    button{
+      margin-top: 10px;
+    }
+  }
+  &_preselected {
+    @extend .mt1;
+    margin-bottom: -10px;
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    &_item {}
+  }
+}
+
 
 
 // Import all the theming functionality.
@@ -9067,19 +9154,6 @@ figure.semui-thumbnail{
 
 
 
-
-@mixin sem-link-theme($theme) {
-  $foreground: map-get($theme, foreground);
-  .sem--link {
-    color: map-get($foreground, link);
-    text-decoration: none;
-    :hover{
-      color:    darken( map-get($foreground, link), 7%);
-      text-decoration: underline;
-    }
-  }
-
-}
 
 
 // Create a theme.

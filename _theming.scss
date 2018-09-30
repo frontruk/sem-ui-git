@@ -9043,6 +9043,12 @@ $breakpoint-lg: '(min-width: 64em)' !default;
       cursor: pointer;
     }
     color: map_get($foreground, typography-base );
+    font-weight: bold;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 1px #585858;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    backface-visibility: hidden;
     background-color: transparent;
     @include sem-outline(darkgrey);
     @include sem-rounded( 12px 12px 0px);

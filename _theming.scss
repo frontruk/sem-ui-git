@@ -896,7 +896,7 @@ $breakpoint-lg: '(min-width: 64em)' !default;
   .sem--link {
     color: map-get($foreground, link);
     text-decoration: none;
-    :hover{
+    &:hover{
       color:    darken( map-get($foreground, link), 7%);
       text-decoration: underline;
     }
@@ -2952,6 +2952,7 @@ $breakpoint-lg: '(min-width: 64em)' !default;
     @extend .px2;
     cursor: pointer;
     border: none;
+    border-bottom: 1px solid #cccccc;
     &:not([disabled]) {
       cursor: pointer;
     }
@@ -5397,6 +5398,7 @@ ul.semui-tabs-list.tabs-vertical{
 }
 
 .sem-dnd-container{
+  height: 100%;
   @extend %sem-relative;
   &--dnd-nav{
     height: 70px;

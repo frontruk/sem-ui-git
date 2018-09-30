@@ -2952,12 +2952,16 @@ $breakpoint-lg: '(min-width: 64em)' !default;
     @extend .px2;
     cursor: pointer;
     border: none;
-    border-bottom: 1px solid #cccccc;
+
+
     &:not([disabled]) {
       cursor: pointer;
     }
     &.active{
       @include sem-rounded( 7px 0px 0px 7px);
+    }
+    &--line-seperator{
+      border-bottom: 1px solid #cccccc;
     }
   }
 }

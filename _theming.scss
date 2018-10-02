@@ -9047,7 +9047,7 @@ $breakpoint-lg: '(min-width: 64em)' !default;
     li{
       color: map_get($background, text-sidebar);
       &.active{
-        color: sem-color($foreground, base);
+        color: sem-color($foreground, link);
       }
     }
   }
@@ -9319,8 +9319,8 @@ figure.semui-thumbnail{
   $foreground: map-get($theme, foreground);
 
   .sem-sidebar {
-    background-color: map_get($background, button);
-    color: map_get($foreground, button);
+    background-color: map_get($theme, tertiary);
+    color: map_get($theme, quaternary);
 
     &:hover:not([disabled]) {
       background-color: map_get($background, button-hover);

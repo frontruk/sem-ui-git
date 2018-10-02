@@ -5283,41 +5283,6 @@ ul.semui-tabs-list.tabs-vertical{
 
 
 
-@mixin sem-sidebar-theme($theme) {
-  $background: map-get($theme, background);
-  $foreground: map-get($theme, foreground);
-
-  .sem-sidebar {
-    background-color: map_get($background, button);
-    color: map_get($foreground, button);
-
-    &:hover:not([disabled]) {
-      background-color: map_get($background, button-hover);
-    }
-
-    &[disabled] {
-      opacity: 0.5;
-    }
-  }
-}
-
-@mixin sem-sidebar-typography($config) {
-  .semui-button {
-    &.primary {
-      font-family: sem-font-family($config, button-2);
-      font-size: sem-font-size($config, button-2);
-      font-weight: sem-font-weight($config, button-2);
-    }
-
-    &.secondary {
-      font-family: sem-font-family($config, button-1);
-      font-size: sem-font-size($config, button-1);
-      font-weight: sem-font-weight($config, button-1);
-    }
-  }
-}
-
-
 // Includes all of the typographic styles.
 @mixin sem-typography($config: null) {
   @if $config == null {
@@ -5338,7 +5303,6 @@ ul.semui-tabs-list.tabs-vertical{
   @include sem-pagination-typography($config);
   @include sem-heading-typography($config);
   @include sem-button-dnd-typography($config);
-  @include sem-sidebar-typography($config);
 
 }
 
@@ -9350,10 +9314,30 @@ figure.semui-thumbnail{
 
 
 
+@mixin sem-temp-sidebar-theme($theme) {
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+
+  .sem-sidebar {
+    background-color: map_get($background, button);
+    color: map_get($foreground, button);
+
+    &:hover:not([disabled]) {
+      background-color: map_get($background, button-hover);
+    }
+
+    &[disabled] {
+      opacity: 0.5;
+    }
+  }
+}
+
+
+
 
 // Create a theme.
 @mixin sem-theme($theme) {
-  @include sem-sidebar-theme($theme);
+  @include sem-temp-sidebar-theme($theme);
   @include sem-nav_sections-theme($theme);
   @include sem-core-theme($theme);
   @include sem-button-theme($theme);

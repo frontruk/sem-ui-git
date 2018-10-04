@@ -8021,7 +8021,8 @@ $breakpoint-lg: '(min-width: 64em)' !default;
       @include sem-rounded( 12px 0px 0px 12px);
     }
     .dialog-container--body{
-      @extend .pl1;
+      //@extend .pl1;
+      padding-left: 26px;
       @include sem-rounded( 0px 0px 12px 12px);
     }
   }

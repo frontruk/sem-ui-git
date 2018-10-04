@@ -2886,16 +2886,21 @@ $breakpoint-lg: '(min-width: 64em)' !default;
 
 
 
-.no-padding-list{
-  .sem-ul-icon-list{
-    >div{
-      .sem-li{
-        border-bottom: 1px solid #cccccc;
-      }
-      &:last-child{
+.sem-ul-icon-list {
+  > div {
+    .sem-li {
+      border-bottom: 1px solid #cccccc;
+    }
+    &:last-child {
+      .sem-li {
         border-bottom: 0px solid #cccccc;
       }
     }
+  }
+}
+
+.no-padding-list{
+  .sem-ul-icon-list{
     .sem-li {
       padding-top: 0rem;
       padding-bottom: 0rem;

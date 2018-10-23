@@ -1836,9 +1836,11 @@ $breakpoint-lg: '(min-width: 64em)' !default;
 
 // Creates a container object for a light theme to be given to
 // every individual component theme mixins.
-@function sem-light-theme($brand-color, $primary, $secondary, $tertiary, $quaternary,  $accent) {
+@function sem-light-theme($brand-color, $default, $inverted,  $primary, $secondary, $tertiary, $quaternary,  $accent) {
   @return (
     brand-color: $brand-color,
+    default:  $default,
+    inverted: $inverted,
     primary:  $primary,
     secondary: $secondary,
     tertiary: $tertiary,
@@ -9100,6 +9102,85 @@ $breakpoint-lg: '(min-width: 64em)' !default;
 
 
 
+
+
+
+
+/**
+ * Theming
+*/
+
+@mixin sem-theming-theme($theme) {
+  $foreground: map-get($theme, foreground);
+
+  // Colors
+  .default, %default{
+    color:  map-get($theme, default);
+  }
+  .inverted, %inverted{
+    color:  map-get($theme, inverted);
+  }
+  .primary, %primary{
+    color:  map-get($theme, primary);
+  }
+  .secondary, %secondary{
+    color:  map-get($theme, secondary);
+  }
+  .tertiary, %tertiary{
+    color:  map-get($theme, tertiary);
+  }
+  .quaternary, %quaternary{
+    color:  map-get($theme, quaternary);
+  }
+  .accent, %accent{
+    color:  map-get($theme, accent);
+  }
+  .warn, %warn{
+    color:  map-get($theme, warn);
+  }
+  .success, %success{
+    color:  map-get($theme, success);
+  }
+  .danger, %danger{
+    color:  map-get($theme, danger);
+  }
+  // BgColors
+  .bg-default, %bg-default{
+    background-color:  map-get($theme, inverted);
+  }
+  .bg-inverted, %bg-inverted{
+    background-color:  map-get($theme, default);
+  }
+  .bg-primary, %primary{
+    background-color:  map-get($theme, primary);
+  }
+  .bg-secondary, %bg-secondary{
+    background-color:  map-get($theme, secondary);
+  }
+  .bg-tertiary, %bg-tertiary{
+    background-color:  map-get($theme, tertiary);
+  }
+  .bg-quaternary, %bg-quaternary{
+    background-color:  map-get($theme, quaternary);
+  }
+  .bg-accent, %bg-accent{
+    background-color:  map-get($theme, accent);
+  }
+  .bg-warn, %bg-warn{
+    background-color:  map-get($theme, warn);
+  }
+  .bg-success, %bg-success{
+    background-color:  map-get($theme, success);
+  }
+  .bg-danger, %bg-danger{
+    background-color:  map-get($theme, danger);
+  }
+}
+
+
+
+
+
 /**
  * Theming
 */
@@ -9240,6 +9321,7 @@ $breakpoint-lg: '(min-width: 64em)' !default;
 figure.semui-thumbnail{
   @extend .relative, .block;
   width: 100%;
+  min-height: 45px;
   img{
     display: block;
     width: 100%;
@@ -9331,6 +9413,7 @@ figure.semui-thumbnail{
 
 
 
+
 @mixin sem-temp-sidebar-theme($theme) {
   $background: map-get($theme, background);
   $foreground: map-get($theme, foreground);
@@ -9354,6 +9437,7 @@ figure.semui-thumbnail{
 
 // Create a theme.
 @mixin sem-theme($theme) {
+  @include sem-theming-theme($theme);
   @include sem-temp-sidebar-theme($theme);
   @include sem-nav_sections-theme($theme);
   @include sem-core-theme($theme);

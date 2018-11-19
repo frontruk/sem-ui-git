@@ -4855,6 +4855,7 @@ figure{
   &--medium{
     height: 50px;
     width: 50px;
+
   }
   &--small{
     height: 30px;
@@ -4866,8 +4867,30 @@ figure{
   $foreground: map-get($theme, foreground);
 
   .sem-button-dnd--primary {
+
     //background-color: map_get($sem-grey, 900);
     @include interactive-bg(map_get($sem-grey, 900));
+    >span:before {
+      @include interactive-bg(map_get($sem-grey, 900));
+    }
+    &--active{
+      color: #3b3b3b;
+      background-color: #fff;
+      transition: all 0s cubic-bezier(0.25, 0.8, 0.25, 1);
+      >span:before {
+        color: #3b3b3b;
+        background-color: #fff;
+      }
+      &:hover{
+        transition: all 0s cubic-bezier(0.25, 0.8, 0.25, 1);
+        color: #fff;
+        background-color: #3b3b3b;
+        >span:before {
+          color:  #fff;
+          background-color:#3b3b3b;
+        }
+      }
+    }
     &[disabled] {
       opacity: 0.5;
     }
@@ -4880,6 +4903,23 @@ figure{
   }
   .sem-button-dnd--secondary {
     @include interactive-bg(map_get($theme, quaternary));
+    >span:before {
+
+    }
+    &--active{
+      @include interactive-bg(map_get($sem-grey, 900));
+      transition: all 0s cubic-bezier(0.25, 0.8, 0.25, 1);
+      >span:before {
+
+      }
+      &:hover{
+        transition: all 0s cubic-bezier(0.25, 0.8, 0.25, 1);
+        @include interactive-bg(map_get($theme, quaternary));
+        >span:before {
+          @include interactive-bg(map_get($theme, quaternary));
+        }
+      }
+    }
     &[disabled] {
       opacity: 0.5;
     }

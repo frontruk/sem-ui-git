@@ -9,6 +9,7 @@ export declare class SemUiButtonDndComponent implements OnInit {
      */
     styleAsActive: boolean;
     large: string | undefined;
+    xsmall: string | undefined;
     small: string | undefined;
     full: string | undefined;
     block: string | undefined;

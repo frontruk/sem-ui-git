@@ -8,6 +8,7 @@ export declare class ButtonFabComponent implements OnInit {
      */
     large: string;
     small: string;
+    medium: string;
     corner: string;
     semuiTheme: ThemeImportanceLevel;
     semuiimportance: string;

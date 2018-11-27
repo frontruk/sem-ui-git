@@ -5005,6 +5005,21 @@ figure{
       opacity: 0.5;
     }
   }
+
+  .sem-btn-fab--inverted{
+
+    box-shadow: 0 1px 2px rgba(0,0,0,0.7), 0 1px 2px rgba(0,0,0,0.24);
+    &:hover{
+      box-shadow: 0 2px 3px rgba(0, 0, 0, 0.9), 0 10px 10px rgba(0, 0, 0, 0.19);
+    }
+
+    @include interactive-bg(map_get($theme, inverted));
+    &[disabled] {
+      opacity: 0.5;
+    }
+  }
+
+
   .sem-btn-fab--primary{
     @include interactive-bg(map_get($theme, primary));
     &[disabled] {
@@ -5019,14 +5034,19 @@ figure{
   }
 }
 @mixin sem-btn-fab-typography($config) {
+
+
+  // Sizes
+  .sem-btn-fab--small{
+    @include sem-typography-level-to-styles($config, button-fab_small);
+  }
   .sem-btn-fab--default{
     @include sem-typography-level-to-styles($config, button-fab);
   }
+
+
   .sem-btn-fab--default_small{
     @include sem-typography-level-to-styles($config, button-fab_small);
-  }
-  .sem-btn-fab--primary{
-    @include sem-typography-level-to-styles($config, button-fab);
   }
   .sem-btn-fab--secondary{
     @include sem-typography-level-to-styles($config, button-fab);
@@ -5058,24 +5078,37 @@ figure{
   }
 }
 /** Importance */
-.sem-btn-fab--default{
-  @extend .p1;
-  > span{
-    display: block;
-    width: map-get($sem-ui-dimensons, fab);
-    height: map-get($sem-ui-dimensons, fab);
+.sem-btn-fab {
+  &--medium {
+    @extend .p1;
+    > span {
+      display: block;
+      width: map-get($sem-ui-dimensons, fab);
+      height: map-get($sem-ui-dimensons, fab);
+    }
+  }
+  &--small{
+    padding: 0.2rem;
+    > span {
+      display: block;
+       margin: 1px;
+    }
   }
 }
+
+
+
 .sem-btn-fab--default_small{
-  padding: 0.4rem;
+
   > span{
     display: block;
     width: map-get($sem-ui-dimensons, fab_small);
     height: map-get($sem-ui-dimensons, fab_small);
   }
 }
+
 .sem-btn-fab--primary{
-  @extend .p1;
+
   > span{
     display: block;
     width: map-get($sem-ui-dimensons, fab);
@@ -5083,7 +5116,7 @@ figure{
   }
 }
 .sem-btn-fab--secondary{
-  @extend .p1;
+
   > span{
     display: block;
     width: map-get($sem-ui-dimensons, fab);

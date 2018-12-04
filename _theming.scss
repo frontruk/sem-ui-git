@@ -4892,12 +4892,13 @@ figure{
 @mixin sem-button-dnd-theme($theme) {
   $foreground: map-get($theme, foreground);
 
+
   .sem-button-dnd--primary {
 
     //background-color: map_get($sem-grey, 900);
-    @include interactive-bg(map_get($sem-grey, 900));
+    @include interactive-bg(map_get($theme, primary));
     >span:before {
-      @include interactive-bg(map_get($sem-grey, 900));
+      @include interactive-bg(map_get($theme, primary));
     }
     &--active{
       color: #3b3b3b;
@@ -4910,10 +4911,10 @@ figure{
       &:hover{
         transition: all 0s cubic-bezier(0.25, 0.8, 0.25, 1);
         color: #fff;
-        background-color: #3b3b3b;
+        background-color: map_get($theme, primary);
         >span:before {
           color:  #fff;
-          background-color:#3b3b3b;
+          background-color: map_get($theme, primary);
         }
       }
     }
@@ -4927,6 +4928,7 @@ figure{
       }
     }
   }
+
   .sem-button-dnd--secondary {
     @include interactive-bg(map_get($theme, quaternary));
     >span:before {

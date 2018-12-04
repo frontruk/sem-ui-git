@@ -3906,6 +3906,26 @@ $breakpoint-lg: '(min-width: 64em)' !default;
 
 
 
+.sem-label-button{
+  text-align: center;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 1px #585858;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+  @include sem-rounded( 12px 12px 0px);
+  cursor: pointer;
+  border: none;
+  &:not([disabled]) {
+    cursor: pointer;
+  }
+  &_square{
+    height: 40px;
+    width: 40px;
+  }
+}
+
 @mixin sem-label-theme($theme) {
   $foreground: map-get($theme, foreground);
   .semui-label.dark{
@@ -3913,6 +3933,14 @@ $breakpoint-lg: '(min-width: 64em)' !default;
   }
   .semui-label.light{
     color: map_get($foreground, sidebar-labels );
+  }
+
+
+  .sem-label-button--primary{
+    @include interactive-bg(map_get($theme, primary));
+  }
+  .sem-label-button--secondary{
+    @include interactive-bg(map_get($theme, secondary));
   }
 }
 

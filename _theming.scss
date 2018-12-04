@@ -1928,6 +1928,10 @@ input.sem-input {
   @include sem-rounded(10px 10px 0px);
   @include sem-outline($sem-light-grey);
 }
+input.block{
+ display: inline-block;
+ width: auto;
+}
 
 @mixin sem-input-theme($theme){
   $foreground: map-get($theme, foreground);
@@ -1938,6 +1942,14 @@ input.sem-input {
   .sem-input--secondary{
     background-color: darken( map_get($background, input ), 7%);
   }
+  .sem-input-button--primary{
+    width: calc(100%);
+    outline: none;
+    @extend .py1, .px3;
+    @include sem-rounded(10px 10px 0px);
+    @include interactive-bg($primary);
+  }
+
 }
 @mixin sem-input-typography($config) {
   .sem-input {
@@ -1954,9 +1966,6 @@ input.sem-input {
       @include sem-typography-level-to-styles($config, input_small);
     }
   }
-
-
-
   .input-prefix {
     width: 100%;
     @extend .block, .relative;
@@ -1970,7 +1979,6 @@ input.sem-input {
       padding-left: 1.2rem;
     }
   }
-
   .input-sufix {
     @extend .relative;
     .sufix {
@@ -1983,7 +1991,6 @@ input.sem-input {
       padding-right: 1.2rem;
     }
   }
-
   .input-grp{
     width: 100%;
     display: block;
@@ -1997,6 +2004,9 @@ input.sem-input {
     }
   }
 
+  .sem-input-button--primary{
+    @include sem-typography-level-to-styles($config, button);
+  }
 }
 
 

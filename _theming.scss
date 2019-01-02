@@ -1,70 +1,11 @@
 // Base kit based on IT SCSS
 //Settings
-$corporate-color: #0bd7ad;
-$corporate-dark-color: #444D63;
-$sem-warning: #cc0a20;
-
-// Colors
-$sem-light-grey: #9498a3;
-$sem-grey: #9498a3;
-$sem-black: #2a2a2a;
-$light-focused: #fff;
-
-$sem-color-text: (
-  primary: red,
-  inverted: #fff
-);
-$sem-color-brand: (
-  primary: #d50000,
-);
-
-
-// Color palettes from the Material Design spec.
-// See https://www.google.com/design/spec/style/color.html
-// Contrast colors are hard-coded because it is too difficult (probably impossible) to
-// calculate them. These contrast colors are pulled from the public Material Design spec swatches.
-// While the contrast colors in the spec are not prescriptive, we use them for convenience.
-
-
 $black-87-opacity: rgba(black, 0.87);
 $white-87-opacity: rgba(white, 0.87);
 $black-12-opacity: rgba(black, 0.12);
 $white-12-opacity: rgba(white, 0.12);
 $black-6-opacity: rgba(black, 0.06);
 $white-6-opacity: rgba(white, 0.06);
-
-$sem-red: (
-  50: #ffebee,
-  100: #ffcdd2,
-  200: #ef9a9a,
-  300: #e57373,
-  400: #ef5350,
-  500: #f44336,
-  600: #e53935,
-  700: #d32f2f,
-  800: #c62828,
-  900: #b71c1c,
-  A100: #ff8a80,
-  A200: #ff5252,
-  A400: #ff1744,
-  A700: #d50000,
-  contrast: (
-    50: $black-87-opacity,
-    100: $black-87-opacity,
-    200: $black-87-opacity,
-    300: $black-87-opacity,
-    400: $black-87-opacity,
-    500: white,
-    600: white,
-    700: white,
-    800: $white-87-opacity,
-    900: $white-87-opacity,
-    A100: $black-87-opacity,
-    A200: white,
-    A400: white,
-    A700: white,
-  )
-);
 
 $sem-indigo: (
   100: #788a9b,
@@ -120,8 +61,8 @@ $sem-grey: (
     A700: $white-87-opacity,
   )
 );
-
-// Background palette for light themes.
+//
+//// Background palette for light themes.
 $sem-light-theme-background: (
   background:           #fff,
   sidebar-background:   #444D63,
@@ -175,7 +116,7 @@ $sem-light-theme-foreground: (
   $lead:                sem-typography-level(41px, 48px, 100),
   $primary-caption:     sem-typography-level(17px, 22px, 300),
   $sub-caption:         sem-typography-level(11px, 13px, 300),
-  $pagination:          sem-typography-level(11px, 25px, 300),
+  $pagination:          sem-typography-level(11px, 16px, 300),
   $pagination-active:   sem-typography-level(13px, 25px, 300),
   $pagination-arrows:   sem-typography-level(11px, 25px, 300),
   $figcaption:          sem-typography-level(13px, 14px, 300),
@@ -294,14 +235,16 @@ h1,h2,h3,h4,h5{
 }
 
 @mixin interactive-bg($brandcolor: primary) {
-  $foreground: map-get($sembler-theme, foreground);
+  //$foreground: map-get($sembler-theme, default-typography);
 
   @if(lightness($brandcolor) < 50) {
-    color: map_get($foreground, typography-base-inverted );
+    color: map-get($sembler-theme, default-typography_inverted);
+    //color: map_get($foreground, typography-base-inverted );
     //color: map-get($sem-color-text, inverted);
   }
   @else {
-    color: map_get($foreground, typography-base );
+    color: map-get($sembler-theme, default-typography);
+    //color: map_get($foreground, typography-base );
     //color: map-get($sem-color-text, primary);
   }
 
@@ -313,6 +256,7 @@ h1,h2,h3,h4,h5{
     background-color: darken($brandcolor, 20%);
   }
 }
+
 
 
 
@@ -894,19 +838,6 @@ $breakpoint-lg: '(min-width: 64em)' !default;
 //}
 //
 
-@mixin sem-link-theme($theme) {
-  $foreground: map-get($theme, foreground);
-  .sem--link {
-    color: map-get($foreground, link);
-    text-decoration: none;
-    &:hover{
-      color:    darken( map-get($foreground, link), 7%);
-      text-decoration: underline;
-    }
-  }
-
-}
-
 
 .sem-list-reset{
   list-style: none;
@@ -919,54 +850,86 @@ $breakpoint-lg: '(min-width: 64em)' !default;
 }
 
 @mixin sem-base-typography($config, $selector: '.sem-font') {
-  .sem-input {
-    @include sem-typography-level-to-styles($config, input);
-  }
-  #{$selector} .caption {
-    @include sem-typography-level-to-styles($config, caption);
-    margin: 0 0 16px;
-  }
 
-  #{$selector} h1 {
-    @extend .sem-heading--h1;
-    margin: 0 0 8px;
-  }
-
-  #{$selector} h1.sem-typo--lead{
-    @extend .sem-typo--lead;
-    margin: 0 0 8px;
-  }
-  #{$selector} h2 {
-    @extend .sem-heading--h2;
-  }
-
-  #{$selector} h3 {
-    @extend .sem-heading--h3;
-  }
-
-  #{$selector} h4 {
-    @extend .m0;
-    @extend .sem-heading--h4;
-  }
-
-  #{$selector} h5 {
-    @extend .m0;
-    @extend .sem-heading--h5;
-  }
-
-  // Base paragraph style.
-  p {
-    margin: 0 0 1em;
-    @include sem-typography-level-to-styles($config, body-base);
-  }
 }
 
 
 
+// Converted Variables
+
+$border-width: 1px !default;
+$border-radius: 3px !default;
+
+// Custom Media Query Variables
+
+
+/* Basscss Border */
+
+.sem-border {
+  border-style: solid;
+  border-width: $border-width;
+}
+
+.sem-border-top {
+  border-top: solid 1px #cccccc;
+}
+
+.sem-border-right {
+  border-right: solid 1px #cccccc;
+}
+
+.sem-border-bottom {
+  border-bottom: solid 1px #cccccc;
+}
+
+.sem-border-left {
+  border-left: solid 1px #cccccc;
+}
+
+.sem-border-none { border: 0 }
+
+.sem-rounded { border-radius: $border-radius }
+
+.sem-circle  { border-radius: 50% }
+
+.sem-rounded-top    { border-radius: $border-radius $border-radius 0 0 }
+
+.sem-rounded-right  { border-radius: 0 $border-radius $border-radius 0 }
+
+.sem-rounded-bottom { border-radius: 0 0 $border-radius $border-radius }
+
+.sem-rounded-left   { border-radius: $border-radius 0 0 $border-radius }
+
+.sem-not-rounded { border-radius: 0 }
+
+
 //Components
-/**
- * Component
-*/
+.sem-button-circle{
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  background-clip: padding-box;
+  position: absolute;
+  display: block;
+  cursor: pointer;
+  text-align: center;
+  background: #fff;
+  font-weight: bold;
+  &:before{
+    padding: 0px 0px 0px 1px;
+  }
+}
+.sem-button-delete{
+  color: #ffffff;
+  font-size: 6px;
+  padding: 0.3rem;
+  background-color: #d0021b;
+  -ms-transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+
+}
+
 
 // Converted Variables
 
@@ -1772,76 +1735,17 @@ $breakpoint-lg: '(min-width: 64em)' !default;
 }
 
 .display-none { display: none !important }
-@mixin sem-outline($grey-default) {
-  border: 1px solid $grey-default;
-}
 
 
-@mixin sem-circle($size, $color, $display){
-  display: $display;
-  background: $color;
-  -webkit-border-radius: $size;
-  -moz-border-radius: $size;
-  border-radius: $size;
-}
-@mixin sem-rounded($radius) {
-  -webkit-border-radius: $radius;
-  -moz-border-radius: $radius;
-  border-radius: $radius;
-  background-clip: padding-box;
-}
-
-.sem--corner{
-  ._top{
-    @include sem-rounded( 50% 0% 50% 50%);
-  }
-}
-
-
-
-@function sem-contrast($palette, $hue) {
-  @return map-get(map-get($palette, contrast), $hue);
-}
-
-
-@function sem-palette($base-palette, $default: 500, $lighter: 100, $darker: 700) {
-  $result: map_merge($base-palette, (
-    default: map-get($base-palette, $default),
-    lighter: map-get($base-palette, $lighter),
-    darker: map-get($base-palette, $darker),
-
-    default-contrast: sem-contrast($base-palette, $default),
-    lighter-contrast: sem-contrast($base-palette, $lighter),
-    darker-contrast: sem-contrast($base-palette, $darker)
-  ));
-
-  // For each hue in the palette, add a "-contrast" color to the map.
-  @each $hue, $color in $base-palette {
-    $result: map-merge($result, (
-      '#{$hue}-contrast': sem-contrast($base-palette, $hue)
-    ));
-  }
-
-  @return $result;
-}
-@function sem-color($palette, $hue: default, $opacity: null) {
-  // If hueKey is a number between zero and one, then it actually contains an
-  // opacity value, so recall this function with the default hue and that given opacity.
-  @if type-of($hue) == number and $hue >= 0 and $hue <= 1 {
-    @return sem-color($palette, default, $hue);
-  }
-
-  $color: map-get($palette, $hue);
-  $opacity: if($opacity == null, opacity($color), $opacity);
-
-  @return rgba($color, $opacity);
-}
 
 // Creates a container object for a light theme to be given to
 // every individual component theme mixins.
-@function sem-light-theme($brand-color, $default, $inverted,  $primary, $secondary, $tertiary, $quaternary,  $accent) {
+@function sem-light-theme($default-typography, $default-typography_inverted, $brand-color, $outline-default, $default, $inverted,  $primary, $secondary, $tertiary, $quaternary,  $accent) {
   @return (
+    default-typography: $default-typography,
+    default-typography_inverted: $default-typography_inverted,
     brand-color: $brand-color,
+    outline-default: $outline-default,
     default:  $default,
     inverted: $inverted,
     primary:  $primary,
@@ -1851,7 +1755,7 @@ $breakpoint-lg: '(min-width: 64em)' !default;
     accent:   $accent,
     warn:     #e6c692,
     success:  #b6d891,
-    danger:   map_get($sem-red, A700),
+    danger: #d8092c,
     is-dark: false,
     foreground: $sem-light-theme-foreground,
     background: $sem-light-theme-background,
@@ -1904,2874 +1808,6 @@ $breakpoint-lg: '(min-width: 64em)' !default;
 }
 
 
-// Select
-.semui-form-select select{
-  display: inline-block;
-  margin-left: 10%;
-  width: 80%;
-  margin-right: 10%;
-  border: solid 1px rgb(216, 207, 207);
-  border-radius: 10px;
-  font-size: 1.8em;
-  color: rgb(216, 207, 207);
-  cursor: pointer;
-}
-
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-input.sem-input {
-  width: calc(100%);
-  outline: none;
-  @include sem-rounded(10px 10px 0px);
-  @include sem-outline($sem-light-grey);
-}
-input.block{
- display: inline-block;
- width: auto;
-}
-
-@mixin sem-input-theme($theme){
-  $foreground: map-get($theme, foreground);
-  $background: map-get($theme, background);
-  .sem-input--primary{
-    background-color: map_get($foreground, input );
-  }
-  .sem-input--secondary{
-    background-color: darken( map_get($background, input ), 7%);
-  }
-  .sem-input-button--primary{
-    width: calc(100%);
-    outline: none;
-    @extend .py1, .px3;
-    @include sem-rounded(10px 10px 0px);
-    @include interactive-bg($primary);
-  }
-
-}
-@mixin sem-input-typography($config) {
-  .sem-input {
-    padding: 0.3rem .5rem;
-    @extend .px1;
-    @include sem-typography-level-to-styles($config, input);
-    &--large{
-      @include sem-typography-level-to-styles($config, input_large);
-    }
-    &--medium{
-      @include sem-typography-level-to-styles($config, input_medium);
-    }
-    &--small{
-      @include sem-typography-level-to-styles($config, input_small);
-    }
-  }
-  .input-prefix {
-    width: 100%;
-    @extend .block, .relative;
-    .prefix {
-      height: 11px;
-      padding: 0.1rem 0.2rem;
-      @extend .absolute, .top-0, .left-0;
-      @include sem-typography-level-to-styles($config, input-fix);
-    }
-    input.sem-input {
-      padding-left: 1.2rem;
-    }
-  }
-  .input-sufix {
-    @extend .relative;
-    .sufix {
-      height: 11px;
-      padding: 0.1rem 0.2rem;
-      @extend .absolute, .top-0, .right-0;
-      @include sem-typography-level-to-styles($config, input-fix);
-    }
-    input.sem-input {
-      padding-right: 1.2rem;
-    }
-  }
-  .input-grp{
-    width: 100%;
-    display: block;
-    @extend .relative;
-    input.sem-input{
-      width: calc(100% - 2.2rem);
-      @extend .mr2;
-    }
-    .sem-btn-fab{
-      @extend .absolute, .top-0, .right-0;
-    }
-  }
-
-  .sem-input-button--primary{
-    @include sem-typography-level-to-styles($config, button);
-  }
-}
-
-
-// Converted Variables
-
-$h1: 2rem !default;
-$h2: 1.5rem !default;
-$h3: 1.25rem !default;
-$h4: 1rem !default;
-$h5: .875rem !default;
-$h6: .75rem !default;
-
-// Custom Media Query Variables
-
-
-/* Basscss Type Scale */
-
-.h1 { font-size: $h1 }
-
-.h2 { font-size: $h2 }
-
-.h3 { font-size: $h3 }
-
-.h4 { font-size: $h4 }
-
-.h5 { font-size: $h5 }
-
-.h6 { font-size: $h6 }
-
-// Converted Variables
-
-$line-height-1: 1 !default;
-$line-height-2: 1.125 !default;
-$line-height-3: 1.25 !default;
-$line-height-4: 1.5 !default;
-$letter-spacing: 1 !default;
-$caps-letter-spacing: .2em !default;
-$bold-font-weight: bold !default;
-
-// Custom Media Query Variables
-
-
-/* Basscss Typography */
-
-.font-family-inherit { font-family: inherit }
-
-.font-size-inherit { font-size: inherit }
-
-.text-decoration-none { text-decoration: none }
-
-.bold    { font-weight: $bold-font-weight /* Fallback value:  bold */ }
-
-.regular { font-weight: normal }
-
-.italic  { font-style: italic }
-
-.caps    { text-transform: uppercase; letter-spacing: $caps-letter-spacing; }
-
-.left-align   { text-align: left }
-
-.center       { text-align: center }
-
-.right-align  { text-align: right }
-
-.justify      { text-align: justify }
-
-.nowrap { white-space: nowrap }
-
-.break-word { word-wrap: break-word }
-
-.line-height-1 { line-height: $line-height-1 }
-
-.line-height-2 { line-height: $line-height-2 }
-
-.line-height-3 { line-height: $line-height-3 }
-
-.line-height-4 { line-height: $line-height-4 }
-
-.list-style-none { list-style: none }
-
-.underline { text-decoration: underline }
-
-.truncate {
-  max-width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.list-reset {
-  list-style: none;
-  padding-left: 0;
-}
-
-// Converted Variables
-
-$width-1: 24rem !default;
-$width-2: 32rem !default;
-$width-3: 48rem !default;
-$width-4: 64rem !default;
-
-// Custom Media Query Variables
-
-
-/* Basscss Layout */
-
-.inline       { display: inline }
-
-.block        { display: block }
-
-.inline-block { display: inline-block }
-
-.table        { display: table }
-
-.table-cell   { display: table-cell }
-
-.overflow-hidden { overflow: hidden }
-
-.overflow-scroll { overflow: scroll }
-
-.overflow-auto   { overflow: auto }
-
-.clearfix:before,
-.clearfix:after {
-  content: " ";
-  display: table
-}
-
-.clearfix:after { clear: both }
-
-.left  { float: left }
-
-.right { float: right }
-
-.fit { max-width: 100% }
-
-.max-width-1 { max-width: $width-1 }
-
-.max-width-2 { max-width: $width-2 }
-
-.max-width-3 { max-width: $width-3 }
-
-.max-width-4 { max-width: $width-4 }
-
-.border-box { box-sizing: border-box }
-
-// Converted Variables
-
-
-// Custom Media Query Variables
-
-
-/* Basscss Align */
-
-.align-baseline { vertical-align: baseline }
-
-.align-top      { vertical-align: top }
-
-.align-middle   { vertical-align: middle }
-
-.align-bottom   { vertical-align: bottom }
-
-// Converted Variables
-
-$space-1: .5rem !default;
-$space-2: 1rem !default;
-$space-3: 2rem !default;
-$space-4: 4rem !default;
-
-// Custom Media Query Variables
-
-
-/* Basscss Margin */
-
-.m0  { margin:        0 }
-
-.mt0 { margin-top:    0 }
-
-.mr0 { margin-right:  0 }
-
-.mb0 { margin-bottom: 0 }
-
-.ml0 { margin-left:   0 }
-
-.mx0 { margin-left:   0; margin-right:  0 }
-
-.my0 { margin-top:    0; margin-bottom: 0 }
-
-.m1  { margin:        $space-1 }
-
-.mt1 { margin-top:    $space-1 }
-
-.mr1 { margin-right:  $space-1 }
-
-.mb1 { margin-bottom: $space-1 }
-
-.ml1 { margin-left:   $space-1 }
-
-.mx1 { margin-left:   $space-1; margin-right:  $space-1 }
-
-.my1 { margin-top:    $space-1; margin-bottom: $space-1 }
-
-.m2  { margin:        $space-2 }
-
-.mt2 { margin-top:    $space-2 }
-
-.mr2 { margin-right:  $space-2 }
-
-.mb2 { margin-bottom: $space-2 }
-
-.ml2 { margin-left:   $space-2 }
-
-.mx2 { margin-left:   $space-2; margin-right:  $space-2 }
-
-.my2 { margin-top:    $space-2; margin-bottom: $space-2 }
-
-.m3  { margin:        $space-3 }
-
-.mt3 { margin-top:    $space-3 }
-
-.mr3 { margin-right:  $space-3 }
-
-.mb3 { margin-bottom: $space-3 }
-
-.ml3 { margin-left:   $space-3 }
-
-.mx3 { margin-left:   $space-3; margin-right:  $space-3 }
-
-.my3 { margin-top:    $space-3; margin-bottom: $space-3 }
-
-.m4  { margin:        $space-4 }
-
-.mt4 { margin-top:    $space-4 }
-
-.mr4 { margin-right:  $space-4 }
-
-.mb4 { margin-bottom: $space-4 }
-
-.ml4 { margin-left:   $space-4 }
-
-.mx4 { margin-left:   $space-4; margin-right:  $space-4 }
-
-.my4 { margin-top:    $space-4; margin-bottom: $space-4 }
-
-.mxn1 { margin-left: -$space-1; margin-right: -$space-1; }
-
-.mxn2 { margin-left: -$space-2; margin-right: -$space-2; }
-
-.mxn3 { margin-left: -$space-3; margin-right: -$space-3; }
-
-.mxn4 { margin-left: -$space-4; margin-right: -$space-4; }
-
-.ml-auto { margin-left: auto }
-
-.mr-auto { margin-right: auto }
-
-.mx-auto { margin-left: auto; margin-right: auto; }
-
-// Converted Variables
-
-$space-1: .5rem !default;
-$space-2: 1rem !default;
-$space-3: 2rem !default;
-$space-4: 4rem !default;
-
-// Custom Media Query Variables
-
-
-/* Basscss Padding */
-
-.p0  { padding: 0 }
-
-.pt0 { padding-top: 0 }
-
-.pr0 { padding-right: 0 }
-
-.pb0 { padding-bottom: 0 }
-
-.pl0 { padding-left: 0 }
-
-.px0 { padding-left: 0; padding-right:  0 }
-
-.py0 { padding-top: 0;  padding-bottom: 0 }
-
-.p1  { padding:        $space-1 }
-
-.pt1 { padding-top:    $space-1 }
-
-.pr1 { padding-right:  $space-1 }
-
-.pb1 { padding-bottom: $space-1 }
-
-.pl1 { padding-left:   $space-1 }
-
-.py1 { padding-top:    $space-1; padding-bottom: $space-1 }
-
-.px1 { padding-left:   $space-1; padding-right:  $space-1 }
-
-.p2  { padding:        $space-2 }
-
-.pt2 { padding-top:    $space-2 }
-
-.pr2 { padding-right:  $space-2 }
-
-.pb2 { padding-bottom: $space-2 }
-
-.pl2 { padding-left:   $space-2 }
-
-.py2 { padding-top:    $space-2; padding-bottom: $space-2 }
-
-.px2 { padding-left:   $space-2; padding-right:  $space-2 }
-
-.p3  { padding:        $space-3 }
-
-.pt3 { padding-top:    $space-3 }
-
-.pr3 { padding-right:  $space-3 }
-
-.pb3 { padding-bottom: $space-3 }
-
-.pl3 { padding-left:   $space-3 }
-
-.py3 { padding-top:    $space-3; padding-bottom: $space-3 }
-
-.px3 { padding-left:   $space-3; padding-right:  $space-3 }
-
-.p4  { padding:        $space-4 }
-
-.pt4 { padding-top:    $space-4 }
-
-.pr4 { padding-right:  $space-4 }
-
-.pb4 { padding-bottom: $space-4 }
-
-.pl4 { padding-left:   $space-4 }
-
-.py4 { padding-top:    $space-4; padding-bottom: $space-4 }
-
-.px4 { padding-left:   $space-4; padding-right:  $space-4 }
-
-// Converted Variables
-
-
-// Custom Media Query Variables
-
-$breakpoint-sm: '(min-width: 40em)' !default;
-$breakpoint-md: '(min-width: 52em)' !default;
-$breakpoint-lg: '(min-width: 64em)' !default;
-
-/* Basscss Grid */
-
-.col {
-  float: left;
-  box-sizing: border-box;
-}
-
-.col-right {
-  float: right;
-  box-sizing: border-box;
-}
-
-.col-1 {
-  width: (1/12 * 100%);
-}
-
-.col-2 {
-  width: (2/12 * 100%);
-}
-
-.col-3 {
-  width: (3/12 * 100%);
-}
-
-.col-4 {
-  width: (4/12 * 100%);
-}
-
-.col-5 {
-  width: (5/12 * 100%);
-}
-
-.col-6 {
-  width: (6/12 * 100%);
-}
-
-.col-7 {
-  width: (7/12 * 100%);
-}
-
-.col-8 {
-  width: (8/12 * 100%);
-}
-
-.col-9 {
-  width: (9/12 * 100%);
-}
-
-.col-10 {
-  width: (10/12 * 100%);
-}
-
-.col-11 {
-  width: (11/12 * 100%);
-}
-
-.col-12 {
-  width: 100%;
-}
-
-@media #{$breakpoint-sm} {
-
-  .sm-col {
-    float: left;
-    box-sizing: border-box;
-  }
-
-  .sm-col-right {
-    float: right;
-    box-sizing: border-box;
-  }
-
-  .sm-col-1 {
-    width: (1/12 * 100%);
-  }
-
-  .sm-col-2 {
-    width: (2/12 * 100%);
-  }
-
-  .sm-col-3 {
-    width: (3/12 * 100%);
-  }
-
-  .sm-col-4 {
-    width: (4/12 * 100%);
-  }
-
-  .sm-col-5 {
-    width: (5/12 * 100%);
-  }
-
-  .sm-col-6 {
-    width: (6/12 * 100%);
-  }
-
-  .sm-col-7 {
-    width: (7/12 * 100%);
-  }
-
-  .sm-col-8 {
-    width: (8/12 * 100%);
-  }
-
-  .sm-col-9 {
-    width: (9/12 * 100%);
-  }
-
-  .sm-col-10 {
-    width: (10/12 * 100%);
-  }
-
-  .sm-col-11 {
-    width: (11/12 * 100%);
-  }
-
-  .sm-col-12 {
-    width: 100%;
-  }
-
-}
-
-@media #{$breakpoint-md} {
-
-  .md-col {
-    float: left;
-    box-sizing: border-box;
-  }
-
-  .md-col-right {
-    float: right;
-    box-sizing: border-box;
-  }
-
-  .md-col-1 {
-    width: (1/12 * 100%);
-  }
-
-  .md-col-2 {
-    width: (2/12 * 100%);
-  }
-
-  .md-col-3 {
-    width: (3/12 * 100%);
-  }
-
-  .md-col-4 {
-    width: (4/12 * 100%);
-  }
-
-  .md-col-5 {
-    width: (5/12 * 100%);
-  }
-
-  .md-col-6 {
-    width: (6/12 * 100%);
-  }
-
-  .md-col-7 {
-    width: (7/12 * 100%);
-  }
-
-  .md-col-8 {
-    width: (8/12 * 100%);
-  }
-
-  .md-col-9 {
-    width: (9/12 * 100%);
-  }
-
-  .md-col-10 {
-    width: (10/12 * 100%);
-  }
-
-  .md-col-11 {
-    width: (11/12 * 100%);
-  }
-
-  .md-col-12 {
-    width: 100%;
-  }
-
-}
-
-@media #{$breakpoint-lg} {
-
-  .lg-col {
-    float: left;
-    box-sizing: border-box;
-  }
-
-  .lg-col-right {
-    float: right;
-    box-sizing: border-box;
-  }
-
-  .lg-col-1 {
-    width: (1/12 * 100%);
-  }
-
-  .lg-col-2 {
-    width: (2/12 * 100%);
-  }
-
-  .lg-col-3 {
-    width: (3/12 * 100%);
-  }
-
-  .lg-col-4 {
-    width: (4/12 * 100%);
-  }
-
-  .lg-col-5 {
-    width: (5/12 * 100%);
-  }
-
-  .lg-col-6 {
-    width: (6/12 * 100%);
-  }
-
-  .lg-col-7 {
-    width: (7/12 * 100%);
-  }
-
-  .lg-col-8 {
-    width: (8/12 * 100%);
-  }
-
-  .lg-col-9 {
-    width: (9/12 * 100%);
-  }
-
-  .lg-col-10 {
-    width: (10/12 * 100%);
-  }
-
-  .lg-col-11 {
-    width: (11/12 * 100%);
-  }
-
-  .lg-col-12 {
-    width: 100%;
-  }
-
-}
-
-// Converted Variables
-
-
-// Custom Media Query Variables
-
-$breakpoint-sm: '(min-width: 40em)' !default;
-$breakpoint-md: '(min-width: 52em)' !default;
-$breakpoint-lg: '(min-width: 64em)' !default;
-
-
-.flex { display: flex }
-
-@media #{$breakpoint-sm} {
-  .sm-flex { display: flex }
-}
-
-@media #{$breakpoint-md} {
-  .md-flex { display: flex }
-}
-
-@media #{$breakpoint-lg} {
-  .lg-flex { display: flex }
-}
-
-.flex-column  { flex-direction: column }
-
-.flex-wrap    { flex-wrap: wrap }
-
-.items-start    { align-items: flex-start }
-
-.items-end      { align-items: flex-end }
-
-.items-center   { align-items: center }
-
-.items-baseline { align-items: baseline }
-
-.items-stretch  { align-items: stretch }
-
-.self-start    { align-self: flex-start }
-
-.self-end      { align-self: flex-end }
-
-.self-center   { align-self: center }
-
-.self-baseline { align-self: baseline }
-
-.self-stretch  { align-self: stretch }
-
-.justify-start   { justify-content: flex-start }
-
-.justify-end     { justify-content: flex-end }
-
-.justify-center  { justify-content: center }
-
-.justify-between { justify-content: space-between }
-
-.justify-around  { justify-content: space-around }
-
-.content-start   { align-content: flex-start }
-
-.content-end     { align-content: flex-end }
-
-.content-center  { align-content: center }
-
-.content-between { align-content: space-between }
-
-.content-around  { align-content: space-around }
-
-.content-stretch { align-content: stretch }
-
-/* 1. Fix for Chrome 44 bug. https://code.google.com/p/chromium/issues/detail?id=506893 */
-
-.flex-auto {
-  flex: 1 1 auto;
-  min-width: 0; /* 1 */
-  min-height: 0; /* 1 */
-}
-
-.flex-none { flex: none }
-
-.order-0 { order: 0 }
-
-.order-1 { order: 1 }
-
-.order-2 { order: 2 }
-
-.order-3 { order: 3 }
-
-.order-last { order: 99999 }
-
-// Converted Variables
-
-$z1: 1 !default;
-$z2: 2 !default;
-$z3: 3 !default;
-$z4: 4 !default;
-
-// Custom Media Query Variables
-
-
-/* Basscss Position */
-
-.relative { position: relative }
-
-.absolute { position: absolute }
-
-.fixed    { position: fixed }
-
-.top-0    { top: 0 }
-
-.right-0  { right: 0 }
-
-.bottom-0 { bottom: 0 }
-
-.left-0   { left: 0 }
-
-.z1 { z-index: $z1 }
-
-.z2 { z-index: $z2 }
-
-.z3 { z-index: $z3 }
-
-.z4 { z-index: $z4 }
-
-// Converted Variables
-
-$border-width: 1px !default;
-$border-radius: 3px !default;
-
-// Custom Media Query Variables
-
-
-/* Basscss Border */
-
-.border {
-  border-style: solid;
-  border-width: $border-width;
-}
-
-.border-top {
-  border-top-style: solid;
-  border-top-width: $border-width;
-}
-
-.border-right {
-  border-right-style: solid;
-  border-right-width: $border-width;
-}
-
-.border-bottom {
-  border-bottom-style: solid;
-  border-bottom-width: $border-width;
-}
-
-.border-left {
-  border-left-style: solid;
-  border-left-width: $border-width;
-}
-
-.border-none { border: 0 }
-
-.rounded { border-radius: $border-radius }
-
-.circle  { border-radius: 50% }
-
-.rounded-top    { border-radius: $border-radius $border-radius 0 0 }
-
-.rounded-right  { border-radius: 0 $border-radius $border-radius 0 }
-
-.rounded-bottom { border-radius: 0 0 $border-radius $border-radius }
-
-.rounded-left   { border-radius: $border-radius 0 0 $border-radius }
-
-.not-rounded { border-radius: 0 }
-
-// Converted Variables
-
-
-// Custom Media Query Variables
-
-$breakpoint-xs: '(max-width: 40em)' !default;
-$breakpoint-sm-md: '(min-width: 40em) and (max-width: 52em)' !default;
-$breakpoint-md-lg: '(min-width: 52em) and (max-width: 64em)' !default;
-$breakpoint-lg: '(min-width: 64em)' !default;
-
-/* Basscss Hide */
-
-.hide {
-  position: absolute !important;
-  height: 1px;
-  width: 1px;
-  overflow: hidden;
-  clip: rect(1px, 1px, 1px, 1px);
-}
-
-@media #{$breakpoint-xs} {
-  .xs-hide { display: none !important }
-}
-
-@media #{$breakpoint-sm-md} {
-  .sm-hide { display: none !important }
-}
-
-@media #{$breakpoint-md-lg} {
-  .md-hide { display: none !important }
-}
-
-@media #{$breakpoint-lg} {
-  .lg-hide { display: none !important }
-}
-
-.display-none { display: none !important }
-
-
-@mixin sem-heading-typography($config) {
-
-  .sem-heading {
-    font-weight: 700;
-
-    &--h1 {
-      margin: 0 0 8px;
-      @include sem-typography-level-to-styles($config, heading_one);
-      &--lead{
-        @include sem-typography-level-to-styles($config, lead);
-      }
-    }
-
-    &--h2 {
-      @include sem-typography-level-to-styles($config, heading_two);
-    }
-
-    &--h3 {
-      @include sem-typography-level-to-styles($config, heading_three);
-    }
-
-    &--h4 {
-      @extend .m0;
-      @include sem-typography-level-to-styles($config, heading_four);
-    }
-    &--h5 {
-      @extend .m0;
-      @include sem-typography-level-to-styles($config, heading_five);
-    }
-    &--center {
-      @extend .center;
-    }
-  }
-  .sem-typo{
-    &--lead{
-      @include sem-typography-level-to-styles($config, lead);
-    }
-    &--caption {
-      @include sem-typography-level-to-styles($config, caption);
-    }
-    &--primary-caption {
-      @include sem-typography-level-to-styles($config, primary-caption);
-    }
-    &--sub-caption {
-      @include sem-typography-level-to-styles($config, sub-caption);
-    }
-    &--figcaption {
-      @include sem-typography-level-to-styles($config, figcaption);
-    }
-    &--label {
-      @include sem-typography-level-to-styles($config, label);
-    }
-    &--body-base {
-      @include sem-typography-level-to-styles($config, body-base);
-    }
-    &--uppercase {
-      text-transform: uppercase;
-    }
-    hr {
-      @extend %sem-hr;
-    }
-    i, em {
-      @extend %sem-i;
-    }
-    b, strong {
-      @extend %sem-b;
-    }
-  }
-
-}
-
-@mixin sem-heading-theme($theme) {
-  $foreground: map-get($theme, foreground);
-  .sem-font {
-    color:  map-get($foreground, typography-base);
-    &--inverted {
-      color:  map-get($foreground, typography-base-inverted);
-    }
-
-  }
-}
-
-
-
-
-.sem-ul-icon-list {
-  > div {
-    .sem-li {
-      border-bottom: 1px solid #cccccc;
-    }
-    &:last-child {
-      .sem-li {
-        border-bottom: 0px solid #cccccc;
-      }
-    }
-  }
-}
-
-.no-padding-list{
-  .sem-ul-icon-list{
-    .sem-li {
-      padding-top: 0rem;
-      padding-bottom: 0rem;
-    }
-  }
-  .sem-ul{
-    .sem-li {
-      padding-top: 0rem;
-      padding-bottom: 0rem;
-    }
-  }
-}
-.sem-ul-icon-list{
-  .sem-li {
-    white-space: nowrap;
-    -webkit-font-smoothing: antialiased;
-    padding-top: .45rem;
-    padding-bottom: .45rem;
-    @extend .px2;
-    cursor: pointer;
-    border: none;
-    &:not([disabled]) {
-      cursor: pointer;
-    }
-    &.no-padding{
-      @extend .py0;
-    }
-
-    &.active {
-      img.icon-default {
-        display: none;
-      }
-      img.icon-hover {
-        display: inline-block;
-      }
-    }
-
-    span {}
-    img {
-      display: inline-block;
-      vertical-align: middle;
-      margin-bottom: 4px;
-      &.icon-hover {
-        display: none;
-      }
-    }
-  }
-}
-
-
-
-// generic li
-.sem-ul{
-  list-style: none;
-  width: 100%;
-  margin: 0px auto;
-  padding: 0px;
-
-  .sem-li{
-    padding-top: .45rem;
-    padding-bottom: .45rem;
-    @extend .px2;
-    cursor: pointer;
-    border: none;
-
-
-    &:not([disabled]) {
-      cursor: pointer;
-    }
-    &.active{
-      @include sem-rounded( 7px 0px 0px 7px);
-    }
-    &--line-seperator{
-      border-bottom: 1px solid #cccccc;
-    }
-  }
-}
-
-
-@mixin sem-list-theme($theme){
-  .sem-list--caption {
-    color: map_get($theme, secondary);
-  }
-  .sem-li--default{
-  }
-  .sem-li--primary{
-  }
-  .sem-li--secondary{
-  }
-  .sem-li--tertiary{
-  }
-
-  // li dark
-  .sem-ul-light{
-    .sem-li{
-      color:  map_get($theme, tertiary);
-      &:hover{
-        @include interactive-bg(map_get($theme, quaternary));
-        &.active{
-          color:  map_get($theme, quaternary);
-          background-color: map_get($theme, tertiary);
-        }
-      }
-      &.active{
-        color:  map_get($theme, quaternary);
-        background-color: map_get($theme, tertiary);
-      }
-    }
-  }
-  //li light
-  .sem-ul-dark{
-    .sem-li{
-      color:  map_get($theme, quaternary);
-      &:hover{
-        @include interactive-bg(map_get($theme, tertiary));
-        &.active{
-          color:  map_get($theme, tertiary);
-          background-color: map_get($theme, quaternary);
-        }
-      }
-      &.active{
-        color:  map_get($theme, tertiary);
-        background-color: map_get($theme, quaternary);
-      }
-    }
-  }
-}
-@mixin sem-list-typography($config) {
-
-  .sem-ul-list{
-    &_item{
-      text-overflow: ellipsis;
-      -webkit-line-clamp: 1;
-      overflow: hidden;
-      white-space: nowrap;
-      cursor: pointer;
-
-      @extend .py1;
-      @include sem-typography-level-to-styles($config, body-base);
-      border-bottom: 1px solid #cccccc;
-      &:hover {
-        background: #fafafa;
-      }
-    }
-  }
-  .sem-list{
-    @extend .pt1;
-    li{
-      @extend .px2;
-    }
-  }
-  .sem-list--caption{
-    @extend .py1, .px2;
-    @include sem-typography-level-to-styles($config, caption);
-  }
-  .sem-list--button{
-    @extend .py1, .px2;
-    @include sem-typography-level-to-styles($config, caption);
-  }
-}
-
-// UL set
-@mixin sem-ul-theme($theme) {
-  .sem-ul-light{
-    background-color: map_get($theme, quaternary);
-  }
-  .sem-ul-dark{
-    background-color: map_get($theme, tertiary);
-  }
-}
-
-ul{
-  &.corner_all{
-    li:first-child{
-      @include sem-rounded( 6px 6px 0px 0px );
-    }
-    li:last-child{
-      @include sem-rounded( 0px 0px 11px 11px );
-    }
-  }
-}
-
-
-// Converted Variables
-
-$h1: 2rem !default;
-$h2: 1.5rem !default;
-$h3: 1.25rem !default;
-$h4: 1rem !default;
-$h5: .875rem !default;
-$h6: .75rem !default;
-
-// Custom Media Query Variables
-
-
-/* Basscss Type Scale */
-
-.h1 { font-size: $h1 }
-
-.h2 { font-size: $h2 }
-
-.h3 { font-size: $h3 }
-
-.h4 { font-size: $h4 }
-
-.h5 { font-size: $h5 }
-
-.h6 { font-size: $h6 }
-
-// Converted Variables
-
-$line-height-1: 1 !default;
-$line-height-2: 1.125 !default;
-$line-height-3: 1.25 !default;
-$line-height-4: 1.5 !default;
-$letter-spacing: 1 !default;
-$caps-letter-spacing: .2em !default;
-$bold-font-weight: bold !default;
-
-// Custom Media Query Variables
-
-
-/* Basscss Typography */
-
-.font-family-inherit { font-family: inherit }
-
-.font-size-inherit { font-size: inherit }
-
-.text-decoration-none { text-decoration: none }
-
-.bold    { font-weight: $bold-font-weight /* Fallback value:  bold */ }
-
-.regular { font-weight: normal }
-
-.italic  { font-style: italic }
-
-.caps    { text-transform: uppercase; letter-spacing: $caps-letter-spacing; }
-
-.left-align   { text-align: left }
-
-.center       { text-align: center }
-
-.right-align  { text-align: right }
-
-.justify      { text-align: justify }
-
-.nowrap { white-space: nowrap }
-
-.break-word { word-wrap: break-word }
-
-.line-height-1 { line-height: $line-height-1 }
-
-.line-height-2 { line-height: $line-height-2 }
-
-.line-height-3 { line-height: $line-height-3 }
-
-.line-height-4 { line-height: $line-height-4 }
-
-.list-style-none { list-style: none }
-
-.underline { text-decoration: underline }
-
-.truncate {
-  max-width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.list-reset {
-  list-style: none;
-  padding-left: 0;
-}
-
-// Converted Variables
-
-$width-1: 24rem !default;
-$width-2: 32rem !default;
-$width-3: 48rem !default;
-$width-4: 64rem !default;
-
-// Custom Media Query Variables
-
-
-/* Basscss Layout */
-
-.inline       { display: inline }
-
-.block        { display: block }
-
-.inline-block { display: inline-block }
-
-.table        { display: table }
-
-.table-cell   { display: table-cell }
-
-.overflow-hidden { overflow: hidden }
-
-.overflow-scroll { overflow: scroll }
-
-.overflow-auto   { overflow: auto }
-
-.clearfix:before,
-.clearfix:after {
-  content: " ";
-  display: table
-}
-
-.clearfix:after { clear: both }
-
-.left  { float: left }
-
-.right { float: right }
-
-.fit { max-width: 100% }
-
-.max-width-1 { max-width: $width-1 }
-
-.max-width-2 { max-width: $width-2 }
-
-.max-width-3 { max-width: $width-3 }
-
-.max-width-4 { max-width: $width-4 }
-
-.border-box { box-sizing: border-box }
-
-// Converted Variables
-
-
-// Custom Media Query Variables
-
-
-/* Basscss Align */
-
-.align-baseline { vertical-align: baseline }
-
-.align-top      { vertical-align: top }
-
-.align-middle   { vertical-align: middle }
-
-.align-bottom   { vertical-align: bottom }
-
-// Converted Variables
-
-$space-1: .5rem !default;
-$space-2: 1rem !default;
-$space-3: 2rem !default;
-$space-4: 4rem !default;
-
-// Custom Media Query Variables
-
-
-/* Basscss Margin */
-
-.m0  { margin:        0 }
-
-.mt0 { margin-top:    0 }
-
-.mr0 { margin-right:  0 }
-
-.mb0 { margin-bottom: 0 }
-
-.ml0 { margin-left:   0 }
-
-.mx0 { margin-left:   0; margin-right:  0 }
-
-.my0 { margin-top:    0; margin-bottom: 0 }
-
-.m1  { margin:        $space-1 }
-
-.mt1 { margin-top:    $space-1 }
-
-.mr1 { margin-right:  $space-1 }
-
-.mb1 { margin-bottom: $space-1 }
-
-.ml1 { margin-left:   $space-1 }
-
-.mx1 { margin-left:   $space-1; margin-right:  $space-1 }
-
-.my1 { margin-top:    $space-1; margin-bottom: $space-1 }
-
-.m2  { margin:        $space-2 }
-
-.mt2 { margin-top:    $space-2 }
-
-.mr2 { margin-right:  $space-2 }
-
-.mb2 { margin-bottom: $space-2 }
-
-.ml2 { margin-left:   $space-2 }
-
-.mx2 { margin-left:   $space-2; margin-right:  $space-2 }
-
-.my2 { margin-top:    $space-2; margin-bottom: $space-2 }
-
-.m3  { margin:        $space-3 }
-
-.mt3 { margin-top:    $space-3 }
-
-.mr3 { margin-right:  $space-3 }
-
-.mb3 { margin-bottom: $space-3 }
-
-.ml3 { margin-left:   $space-3 }
-
-.mx3 { margin-left:   $space-3; margin-right:  $space-3 }
-
-.my3 { margin-top:    $space-3; margin-bottom: $space-3 }
-
-.m4  { margin:        $space-4 }
-
-.mt4 { margin-top:    $space-4 }
-
-.mr4 { margin-right:  $space-4 }
-
-.mb4 { margin-bottom: $space-4 }
-
-.ml4 { margin-left:   $space-4 }
-
-.mx4 { margin-left:   $space-4; margin-right:  $space-4 }
-
-.my4 { margin-top:    $space-4; margin-bottom: $space-4 }
-
-.mxn1 { margin-left: -$space-1; margin-right: -$space-1; }
-
-.mxn2 { margin-left: -$space-2; margin-right: -$space-2; }
-
-.mxn3 { margin-left: -$space-3; margin-right: -$space-3; }
-
-.mxn4 { margin-left: -$space-4; margin-right: -$space-4; }
-
-.ml-auto { margin-left: auto }
-
-.mr-auto { margin-right: auto }
-
-.mx-auto { margin-left: auto; margin-right: auto; }
-
-// Converted Variables
-
-$space-1: .5rem !default;
-$space-2: 1rem !default;
-$space-3: 2rem !default;
-$space-4: 4rem !default;
-
-// Custom Media Query Variables
-
-
-/* Basscss Padding */
-
-.p0  { padding: 0 }
-
-.pt0 { padding-top: 0 }
-
-.pr0 { padding-right: 0 }
-
-.pb0 { padding-bottom: 0 }
-
-.pl0 { padding-left: 0 }
-
-.px0 { padding-left: 0; padding-right:  0 }
-
-.py0 { padding-top: 0;  padding-bottom: 0 }
-
-.p1  { padding:        $space-1 }
-
-.pt1 { padding-top:    $space-1 }
-
-.pr1 { padding-right:  $space-1 }
-
-.pb1 { padding-bottom: $space-1 }
-
-.pl1 { padding-left:   $space-1 }
-
-.py1 { padding-top:    $space-1; padding-bottom: $space-1 }
-
-.px1 { padding-left:   $space-1; padding-right:  $space-1 }
-
-.p2  { padding:        $space-2 }
-
-.pt2 { padding-top:    $space-2 }
-
-.pr2 { padding-right:  $space-2 }
-
-.pb2 { padding-bottom: $space-2 }
-
-.pl2 { padding-left:   $space-2 }
-
-.py2 { padding-top:    $space-2; padding-bottom: $space-2 }
-
-.px2 { padding-left:   $space-2; padding-right:  $space-2 }
-
-.p3  { padding:        $space-3 }
-
-.pt3 { padding-top:    $space-3 }
-
-.pr3 { padding-right:  $space-3 }
-
-.pb3 { padding-bottom: $space-3 }
-
-.pl3 { padding-left:   $space-3 }
-
-.py3 { padding-top:    $space-3; padding-bottom: $space-3 }
-
-.px3 { padding-left:   $space-3; padding-right:  $space-3 }
-
-.p4  { padding:        $space-4 }
-
-.pt4 { padding-top:    $space-4 }
-
-.pr4 { padding-right:  $space-4 }
-
-.pb4 { padding-bottom: $space-4 }
-
-.pl4 { padding-left:   $space-4 }
-
-.py4 { padding-top:    $space-4; padding-bottom: $space-4 }
-
-.px4 { padding-left:   $space-4; padding-right:  $space-4 }
-
-// Converted Variables
-
-
-// Custom Media Query Variables
-
-$breakpoint-sm: '(min-width: 40em)' !default;
-$breakpoint-md: '(min-width: 52em)' !default;
-$breakpoint-lg: '(min-width: 64em)' !default;
-
-/* Basscss Grid */
-
-.col {
-  float: left;
-  box-sizing: border-box;
-}
-
-.col-right {
-  float: right;
-  box-sizing: border-box;
-}
-
-.col-1 {
-  width: (1/12 * 100%);
-}
-
-.col-2 {
-  width: (2/12 * 100%);
-}
-
-.col-3 {
-  width: (3/12 * 100%);
-}
-
-.col-4 {
-  width: (4/12 * 100%);
-}
-
-.col-5 {
-  width: (5/12 * 100%);
-}
-
-.col-6 {
-  width: (6/12 * 100%);
-}
-
-.col-7 {
-  width: (7/12 * 100%);
-}
-
-.col-8 {
-  width: (8/12 * 100%);
-}
-
-.col-9 {
-  width: (9/12 * 100%);
-}
-
-.col-10 {
-  width: (10/12 * 100%);
-}
-
-.col-11 {
-  width: (11/12 * 100%);
-}
-
-.col-12 {
-  width: 100%;
-}
-
-@media #{$breakpoint-sm} {
-
-  .sm-col {
-    float: left;
-    box-sizing: border-box;
-  }
-
-  .sm-col-right {
-    float: right;
-    box-sizing: border-box;
-  }
-
-  .sm-col-1 {
-    width: (1/12 * 100%);
-  }
-
-  .sm-col-2 {
-    width: (2/12 * 100%);
-  }
-
-  .sm-col-3 {
-    width: (3/12 * 100%);
-  }
-
-  .sm-col-4 {
-    width: (4/12 * 100%);
-  }
-
-  .sm-col-5 {
-    width: (5/12 * 100%);
-  }
-
-  .sm-col-6 {
-    width: (6/12 * 100%);
-  }
-
-  .sm-col-7 {
-    width: (7/12 * 100%);
-  }
-
-  .sm-col-8 {
-    width: (8/12 * 100%);
-  }
-
-  .sm-col-9 {
-    width: (9/12 * 100%);
-  }
-
-  .sm-col-10 {
-    width: (10/12 * 100%);
-  }
-
-  .sm-col-11 {
-    width: (11/12 * 100%);
-  }
-
-  .sm-col-12 {
-    width: 100%;
-  }
-
-}
-
-@media #{$breakpoint-md} {
-
-  .md-col {
-    float: left;
-    box-sizing: border-box;
-  }
-
-  .md-col-right {
-    float: right;
-    box-sizing: border-box;
-  }
-
-  .md-col-1 {
-    width: (1/12 * 100%);
-  }
-
-  .md-col-2 {
-    width: (2/12 * 100%);
-  }
-
-  .md-col-3 {
-    width: (3/12 * 100%);
-  }
-
-  .md-col-4 {
-    width: (4/12 * 100%);
-  }
-
-  .md-col-5 {
-    width: (5/12 * 100%);
-  }
-
-  .md-col-6 {
-    width: (6/12 * 100%);
-  }
-
-  .md-col-7 {
-    width: (7/12 * 100%);
-  }
-
-  .md-col-8 {
-    width: (8/12 * 100%);
-  }
-
-  .md-col-9 {
-    width: (9/12 * 100%);
-  }
-
-  .md-col-10 {
-    width: (10/12 * 100%);
-  }
-
-  .md-col-11 {
-    width: (11/12 * 100%);
-  }
-
-  .md-col-12 {
-    width: 100%;
-  }
-
-}
-
-@media #{$breakpoint-lg} {
-
-  .lg-col {
-    float: left;
-    box-sizing: border-box;
-  }
-
-  .lg-col-right {
-    float: right;
-    box-sizing: border-box;
-  }
-
-  .lg-col-1 {
-    width: (1/12 * 100%);
-  }
-
-  .lg-col-2 {
-    width: (2/12 * 100%);
-  }
-
-  .lg-col-3 {
-    width: (3/12 * 100%);
-  }
-
-  .lg-col-4 {
-    width: (4/12 * 100%);
-  }
-
-  .lg-col-5 {
-    width: (5/12 * 100%);
-  }
-
-  .lg-col-6 {
-    width: (6/12 * 100%);
-  }
-
-  .lg-col-7 {
-    width: (7/12 * 100%);
-  }
-
-  .lg-col-8 {
-    width: (8/12 * 100%);
-  }
-
-  .lg-col-9 {
-    width: (9/12 * 100%);
-  }
-
-  .lg-col-10 {
-    width: (10/12 * 100%);
-  }
-
-  .lg-col-11 {
-    width: (11/12 * 100%);
-  }
-
-  .lg-col-12 {
-    width: 100%;
-  }
-
-}
-
-// Converted Variables
-
-
-// Custom Media Query Variables
-
-$breakpoint-sm: '(min-width: 40em)' !default;
-$breakpoint-md: '(min-width: 52em)' !default;
-$breakpoint-lg: '(min-width: 64em)' !default;
-
-
-.flex { display: flex }
-
-@media #{$breakpoint-sm} {
-  .sm-flex { display: flex }
-}
-
-@media #{$breakpoint-md} {
-  .md-flex { display: flex }
-}
-
-@media #{$breakpoint-lg} {
-  .lg-flex { display: flex }
-}
-
-.flex-column  { flex-direction: column }
-
-.flex-wrap    { flex-wrap: wrap }
-
-.items-start    { align-items: flex-start }
-
-.items-end      { align-items: flex-end }
-
-.items-center   { align-items: center }
-
-.items-baseline { align-items: baseline }
-
-.items-stretch  { align-items: stretch }
-
-.self-start    { align-self: flex-start }
-
-.self-end      { align-self: flex-end }
-
-.self-center   { align-self: center }
-
-.self-baseline { align-self: baseline }
-
-.self-stretch  { align-self: stretch }
-
-.justify-start   { justify-content: flex-start }
-
-.justify-end     { justify-content: flex-end }
-
-.justify-center  { justify-content: center }
-
-.justify-between { justify-content: space-between }
-
-.justify-around  { justify-content: space-around }
-
-.content-start   { align-content: flex-start }
-
-.content-end     { align-content: flex-end }
-
-.content-center  { align-content: center }
-
-.content-between { align-content: space-between }
-
-.content-around  { align-content: space-around }
-
-.content-stretch { align-content: stretch }
-
-/* 1. Fix for Chrome 44 bug. https://code.google.com/p/chromium/issues/detail?id=506893 */
-
-.flex-auto {
-  flex: 1 1 auto;
-  min-width: 0; /* 1 */
-  min-height: 0; /* 1 */
-}
-
-.flex-none { flex: none }
-
-.order-0 { order: 0 }
-
-.order-1 { order: 1 }
-
-.order-2 { order: 2 }
-
-.order-3 { order: 3 }
-
-.order-last { order: 99999 }
-
-// Converted Variables
-
-$z1: 1 !default;
-$z2: 2 !default;
-$z3: 3 !default;
-$z4: 4 !default;
-
-// Custom Media Query Variables
-
-
-/* Basscss Position */
-
-.relative { position: relative }
-
-.absolute { position: absolute }
-
-.fixed    { position: fixed }
-
-.top-0    { top: 0 }
-
-.right-0  { right: 0 }
-
-.bottom-0 { bottom: 0 }
-
-.left-0   { left: 0 }
-
-.z1 { z-index: $z1 }
-
-.z2 { z-index: $z2 }
-
-.z3 { z-index: $z3 }
-
-.z4 { z-index: $z4 }
-
-// Converted Variables
-
-$border-width: 1px !default;
-$border-radius: 3px !default;
-
-// Custom Media Query Variables
-
-
-/* Basscss Border */
-
-.border {
-  border-style: solid;
-  border-width: $border-width;
-}
-
-.border-top {
-  border-top-style: solid;
-  border-top-width: $border-width;
-}
-
-.border-right {
-  border-right-style: solid;
-  border-right-width: $border-width;
-}
-
-.border-bottom {
-  border-bottom-style: solid;
-  border-bottom-width: $border-width;
-}
-
-.border-left {
-  border-left-style: solid;
-  border-left-width: $border-width;
-}
-
-.border-none { border: 0 }
-
-.rounded { border-radius: $border-radius }
-
-.circle  { border-radius: 50% }
-
-.rounded-top    { border-radius: $border-radius $border-radius 0 0 }
-
-.rounded-right  { border-radius: 0 $border-radius $border-radius 0 }
-
-.rounded-bottom { border-radius: 0 0 $border-radius $border-radius }
-
-.rounded-left   { border-radius: $border-radius 0 0 $border-radius }
-
-.not-rounded { border-radius: 0 }
-
-// Converted Variables
-
-
-// Custom Media Query Variables
-
-$breakpoint-xs: '(max-width: 40em)' !default;
-$breakpoint-sm-md: '(min-width: 40em) and (max-width: 52em)' !default;
-$breakpoint-md-lg: '(min-width: 52em) and (max-width: 64em)' !default;
-$breakpoint-lg: '(min-width: 64em)' !default;
-
-/* Basscss Hide */
-
-.hide {
-  position: absolute !important;
-  height: 1px;
-  width: 1px;
-  overflow: hidden;
-  clip: rect(1px, 1px, 1px, 1px);
-}
-
-@media #{$breakpoint-xs} {
-  .xs-hide { display: none !important }
-}
-
-@media #{$breakpoint-sm-md} {
-  .sm-hide { display: none !important }
-}
-
-@media #{$breakpoint-md-lg} {
-  .md-hide { display: none !important }
-}
-
-@media #{$breakpoint-lg} {
-  .lg-hide { display: none !important }
-}
-
-.display-none { display: none !important }
-
-
-
-.sem-label-button{
-  text-align: center;
-  font-weight: bold;
-  text-transform: uppercase;
-  text-shadow: 1px 1px 1px #585858;
-  -webkit-backface-visibility: hidden;
-  -moz-backface-visibility: hidden;
-  backface-visibility: hidden;
-  @include sem-rounded( 12px 12px 0px);
-  cursor: pointer;
-  border: none;
-  &:not([disabled]) {
-    cursor: pointer;
-  }
-  &_square{
-    height: 40px;
-    width: 40px;
-  }
-}
-
-@mixin sem-label-theme($theme) {
-  $foreground: map-get($theme, foreground);
-  .semui-label.dark{
-    color: map_get($foreground, sidebar-labels-inverted );
-  }
-  .semui-label.light{
-    color: map_get($foreground, sidebar-labels );
-  }
-
-
-  .sem-label-button--primary{
-    @include interactive-bg(map_get($theme, primary));
-  }
-  .sem-label-button--secondary{
-    @include interactive-bg(map_get($theme, secondary));
-  }
-}
-
-@mixin sem-label-typography($config) {
-  label {
-    @extend .fit, .block;
-    @include sem-typography-level-to-styles($config, label_medium);
-  }
-  .semui-label.large{
-    @include sem-typography-level-to-styles($config, label_large);
-  }
-  .semui-label.medium{
-    @include sem-typography-level-to-styles($config, label_medium);
-  }
-  .semui-label.small{
-    @include sem-typography-level-to-styles($config, label_small);
-  }
-  .semui-label.form-label{
-    @include sem-typography-level-to-styles($config, label_medium);
-  }
-
-}
-
-
-// Converted Variables
-
-$h1: 2rem !default;
-$h2: 1.5rem !default;
-$h3: 1.25rem !default;
-$h4: 1rem !default;
-$h5: .875rem !default;
-$h6: .75rem !default;
-
-// Custom Media Query Variables
-
-
-/* Basscss Type Scale */
-
-.h1 { font-size: $h1 }
-
-.h2 { font-size: $h2 }
-
-.h3 { font-size: $h3 }
-
-.h4 { font-size: $h4 }
-
-.h5 { font-size: $h5 }
-
-.h6 { font-size: $h6 }
-
-// Converted Variables
-
-$line-height-1: 1 !default;
-$line-height-2: 1.125 !default;
-$line-height-3: 1.25 !default;
-$line-height-4: 1.5 !default;
-$letter-spacing: 1 !default;
-$caps-letter-spacing: .2em !default;
-$bold-font-weight: bold !default;
-
-// Custom Media Query Variables
-
-
-/* Basscss Typography */
-
-.font-family-inherit { font-family: inherit }
-
-.font-size-inherit { font-size: inherit }
-
-.text-decoration-none { text-decoration: none }
-
-.bold    { font-weight: $bold-font-weight /* Fallback value:  bold */ }
-
-.regular { font-weight: normal }
-
-.italic  { font-style: italic }
-
-.caps    { text-transform: uppercase; letter-spacing: $caps-letter-spacing; }
-
-.left-align   { text-align: left }
-
-.center       { text-align: center }
-
-.right-align  { text-align: right }
-
-.justify      { text-align: justify }
-
-.nowrap { white-space: nowrap }
-
-.break-word { word-wrap: break-word }
-
-.line-height-1 { line-height: $line-height-1 }
-
-.line-height-2 { line-height: $line-height-2 }
-
-.line-height-3 { line-height: $line-height-3 }
-
-.line-height-4 { line-height: $line-height-4 }
-
-.list-style-none { list-style: none }
-
-.underline { text-decoration: underline }
-
-.truncate {
-  max-width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.list-reset {
-  list-style: none;
-  padding-left: 0;
-}
-
-// Converted Variables
-
-$width-1: 24rem !default;
-$width-2: 32rem !default;
-$width-3: 48rem !default;
-$width-4: 64rem !default;
-
-// Custom Media Query Variables
-
-
-/* Basscss Layout */
-
-.inline       { display: inline }
-
-.block        { display: block }
-
-.inline-block { display: inline-block }
-
-.table        { display: table }
-
-.table-cell   { display: table-cell }
-
-.overflow-hidden { overflow: hidden }
-
-.overflow-scroll { overflow: scroll }
-
-.overflow-auto   { overflow: auto }
-
-.clearfix:before,
-.clearfix:after {
-  content: " ";
-  display: table
-}
-
-.clearfix:after { clear: both }
-
-.left  { float: left }
-
-.right { float: right }
-
-.fit { max-width: 100% }
-
-.max-width-1 { max-width: $width-1 }
-
-.max-width-2 { max-width: $width-2 }
-
-.max-width-3 { max-width: $width-3 }
-
-.max-width-4 { max-width: $width-4 }
-
-.border-box { box-sizing: border-box }
-
-// Converted Variables
-
-
-// Custom Media Query Variables
-
-
-/* Basscss Align */
-
-.align-baseline { vertical-align: baseline }
-
-.align-top      { vertical-align: top }
-
-.align-middle   { vertical-align: middle }
-
-.align-bottom   { vertical-align: bottom }
-
-// Converted Variables
-
-$space-1: .5rem !default;
-$space-2: 1rem !default;
-$space-3: 2rem !default;
-$space-4: 4rem !default;
-
-// Custom Media Query Variables
-
-
-/* Basscss Margin */
-
-.m0  { margin:        0 }
-
-.mt0 { margin-top:    0 }
-
-.mr0 { margin-right:  0 }
-
-.mb0 { margin-bottom: 0 }
-
-.ml0 { margin-left:   0 }
-
-.mx0 { margin-left:   0; margin-right:  0 }
-
-.my0 { margin-top:    0; margin-bottom: 0 }
-
-.m1  { margin:        $space-1 }
-
-.mt1 { margin-top:    $space-1 }
-
-.mr1 { margin-right:  $space-1 }
-
-.mb1 { margin-bottom: $space-1 }
-
-.ml1 { margin-left:   $space-1 }
-
-.mx1 { margin-left:   $space-1; margin-right:  $space-1 }
-
-.my1 { margin-top:    $space-1; margin-bottom: $space-1 }
-
-.m2  { margin:        $space-2 }
-
-.mt2 { margin-top:    $space-2 }
-
-.mr2 { margin-right:  $space-2 }
-
-.mb2 { margin-bottom: $space-2 }
-
-.ml2 { margin-left:   $space-2 }
-
-.mx2 { margin-left:   $space-2; margin-right:  $space-2 }
-
-.my2 { margin-top:    $space-2; margin-bottom: $space-2 }
-
-.m3  { margin:        $space-3 }
-
-.mt3 { margin-top:    $space-3 }
-
-.mr3 { margin-right:  $space-3 }
-
-.mb3 { margin-bottom: $space-3 }
-
-.ml3 { margin-left:   $space-3 }
-
-.mx3 { margin-left:   $space-3; margin-right:  $space-3 }
-
-.my3 { margin-top:    $space-3; margin-bottom: $space-3 }
-
-.m4  { margin:        $space-4 }
-
-.mt4 { margin-top:    $space-4 }
-
-.mr4 { margin-right:  $space-4 }
-
-.mb4 { margin-bottom: $space-4 }
-
-.ml4 { margin-left:   $space-4 }
-
-.mx4 { margin-left:   $space-4; margin-right:  $space-4 }
-
-.my4 { margin-top:    $space-4; margin-bottom: $space-4 }
-
-.mxn1 { margin-left: -$space-1; margin-right: -$space-1; }
-
-.mxn2 { margin-left: -$space-2; margin-right: -$space-2; }
-
-.mxn3 { margin-left: -$space-3; margin-right: -$space-3; }
-
-.mxn4 { margin-left: -$space-4; margin-right: -$space-4; }
-
-.ml-auto { margin-left: auto }
-
-.mr-auto { margin-right: auto }
-
-.mx-auto { margin-left: auto; margin-right: auto; }
-
-// Converted Variables
-
-$space-1: .5rem !default;
-$space-2: 1rem !default;
-$space-3: 2rem !default;
-$space-4: 4rem !default;
-
-// Custom Media Query Variables
-
-
-/* Basscss Padding */
-
-.p0  { padding: 0 }
-
-.pt0 { padding-top: 0 }
-
-.pr0 { padding-right: 0 }
-
-.pb0 { padding-bottom: 0 }
-
-.pl0 { padding-left: 0 }
-
-.px0 { padding-left: 0; padding-right:  0 }
-
-.py0 { padding-top: 0;  padding-bottom: 0 }
-
-.p1  { padding:        $space-1 }
-
-.pt1 { padding-top:    $space-1 }
-
-.pr1 { padding-right:  $space-1 }
-
-.pb1 { padding-bottom: $space-1 }
-
-.pl1 { padding-left:   $space-1 }
-
-.py1 { padding-top:    $space-1; padding-bottom: $space-1 }
-
-.px1 { padding-left:   $space-1; padding-right:  $space-1 }
-
-.p2  { padding:        $space-2 }
-
-.pt2 { padding-top:    $space-2 }
-
-.pr2 { padding-right:  $space-2 }
-
-.pb2 { padding-bottom: $space-2 }
-
-.pl2 { padding-left:   $space-2 }
-
-.py2 { padding-top:    $space-2; padding-bottom: $space-2 }
-
-.px2 { padding-left:   $space-2; padding-right:  $space-2 }
-
-.p3  { padding:        $space-3 }
-
-.pt3 { padding-top:    $space-3 }
-
-.pr3 { padding-right:  $space-3 }
-
-.pb3 { padding-bottom: $space-3 }
-
-.pl3 { padding-left:   $space-3 }
-
-.py3 { padding-top:    $space-3; padding-bottom: $space-3 }
-
-.px3 { padding-left:   $space-3; padding-right:  $space-3 }
-
-.p4  { padding:        $space-4 }
-
-.pt4 { padding-top:    $space-4 }
-
-.pr4 { padding-right:  $space-4 }
-
-.pb4 { padding-bottom: $space-4 }
-
-.pl4 { padding-left:   $space-4 }
-
-.py4 { padding-top:    $space-4; padding-bottom: $space-4 }
-
-.px4 { padding-left:   $space-4; padding-right:  $space-4 }
-
-// Converted Variables
-
-
-// Custom Media Query Variables
-
-$breakpoint-sm: '(min-width: 40em)' !default;
-$breakpoint-md: '(min-width: 52em)' !default;
-$breakpoint-lg: '(min-width: 64em)' !default;
-
-/* Basscss Grid */
-
-.col {
-  float: left;
-  box-sizing: border-box;
-}
-
-.col-right {
-  float: right;
-  box-sizing: border-box;
-}
-
-.col-1 {
-  width: (1/12 * 100%);
-}
-
-.col-2 {
-  width: (2/12 * 100%);
-}
-
-.col-3 {
-  width: (3/12 * 100%);
-}
-
-.col-4 {
-  width: (4/12 * 100%);
-}
-
-.col-5 {
-  width: (5/12 * 100%);
-}
-
-.col-6 {
-  width: (6/12 * 100%);
-}
-
-.col-7 {
-  width: (7/12 * 100%);
-}
-
-.col-8 {
-  width: (8/12 * 100%);
-}
-
-.col-9 {
-  width: (9/12 * 100%);
-}
-
-.col-10 {
-  width: (10/12 * 100%);
-}
-
-.col-11 {
-  width: (11/12 * 100%);
-}
-
-.col-12 {
-  width: 100%;
-}
-
-@media #{$breakpoint-sm} {
-
-  .sm-col {
-    float: left;
-    box-sizing: border-box;
-  }
-
-  .sm-col-right {
-    float: right;
-    box-sizing: border-box;
-  }
-
-  .sm-col-1 {
-    width: (1/12 * 100%);
-  }
-
-  .sm-col-2 {
-    width: (2/12 * 100%);
-  }
-
-  .sm-col-3 {
-    width: (3/12 * 100%);
-  }
-
-  .sm-col-4 {
-    width: (4/12 * 100%);
-  }
-
-  .sm-col-5 {
-    width: (5/12 * 100%);
-  }
-
-  .sm-col-6 {
-    width: (6/12 * 100%);
-  }
-
-  .sm-col-7 {
-    width: (7/12 * 100%);
-  }
-
-  .sm-col-8 {
-    width: (8/12 * 100%);
-  }
-
-  .sm-col-9 {
-    width: (9/12 * 100%);
-  }
-
-  .sm-col-10 {
-    width: (10/12 * 100%);
-  }
-
-  .sm-col-11 {
-    width: (11/12 * 100%);
-  }
-
-  .sm-col-12 {
-    width: 100%;
-  }
-
-}
-
-@media #{$breakpoint-md} {
-
-  .md-col {
-    float: left;
-    box-sizing: border-box;
-  }
-
-  .md-col-right {
-    float: right;
-    box-sizing: border-box;
-  }
-
-  .md-col-1 {
-    width: (1/12 * 100%);
-  }
-
-  .md-col-2 {
-    width: (2/12 * 100%);
-  }
-
-  .md-col-3 {
-    width: (3/12 * 100%);
-  }
-
-  .md-col-4 {
-    width: (4/12 * 100%);
-  }
-
-  .md-col-5 {
-    width: (5/12 * 100%);
-  }
-
-  .md-col-6 {
-    width: (6/12 * 100%);
-  }
-
-  .md-col-7 {
-    width: (7/12 * 100%);
-  }
-
-  .md-col-8 {
-    width: (8/12 * 100%);
-  }
-
-  .md-col-9 {
-    width: (9/12 * 100%);
-  }
-
-  .md-col-10 {
-    width: (10/12 * 100%);
-  }
-
-  .md-col-11 {
-    width: (11/12 * 100%);
-  }
-
-  .md-col-12 {
-    width: 100%;
-  }
-
-}
-
-@media #{$breakpoint-lg} {
-
-  .lg-col {
-    float: left;
-    box-sizing: border-box;
-  }
-
-  .lg-col-right {
-    float: right;
-    box-sizing: border-box;
-  }
-
-  .lg-col-1 {
-    width: (1/12 * 100%);
-  }
-
-  .lg-col-2 {
-    width: (2/12 * 100%);
-  }
-
-  .lg-col-3 {
-    width: (3/12 * 100%);
-  }
-
-  .lg-col-4 {
-    width: (4/12 * 100%);
-  }
-
-  .lg-col-5 {
-    width: (5/12 * 100%);
-  }
-
-  .lg-col-6 {
-    width: (6/12 * 100%);
-  }
-
-  .lg-col-7 {
-    width: (7/12 * 100%);
-  }
-
-  .lg-col-8 {
-    width: (8/12 * 100%);
-  }
-
-  .lg-col-9 {
-    width: (9/12 * 100%);
-  }
-
-  .lg-col-10 {
-    width: (10/12 * 100%);
-  }
-
-  .lg-col-11 {
-    width: (11/12 * 100%);
-  }
-
-  .lg-col-12 {
-    width: 100%;
-  }
-
-}
-
-// Converted Variables
-
-
-// Custom Media Query Variables
-
-$breakpoint-sm: '(min-width: 40em)' !default;
-$breakpoint-md: '(min-width: 52em)' !default;
-$breakpoint-lg: '(min-width: 64em)' !default;
-
-
-.flex { display: flex }
-
-@media #{$breakpoint-sm} {
-  .sm-flex { display: flex }
-}
-
-@media #{$breakpoint-md} {
-  .md-flex { display: flex }
-}
-
-@media #{$breakpoint-lg} {
-  .lg-flex { display: flex }
-}
-
-.flex-column  { flex-direction: column }
-
-.flex-wrap    { flex-wrap: wrap }
-
-.items-start    { align-items: flex-start }
-
-.items-end      { align-items: flex-end }
-
-.items-center   { align-items: center }
-
-.items-baseline { align-items: baseline }
-
-.items-stretch  { align-items: stretch }
-
-.self-start    { align-self: flex-start }
-
-.self-end      { align-self: flex-end }
-
-.self-center   { align-self: center }
-
-.self-baseline { align-self: baseline }
-
-.self-stretch  { align-self: stretch }
-
-.justify-start   { justify-content: flex-start }
-
-.justify-end     { justify-content: flex-end }
-
-.justify-center  { justify-content: center }
-
-.justify-between { justify-content: space-between }
-
-.justify-around  { justify-content: space-around }
-
-.content-start   { align-content: flex-start }
-
-.content-end     { align-content: flex-end }
-
-.content-center  { align-content: center }
-
-.content-between { align-content: space-between }
-
-.content-around  { align-content: space-around }
-
-.content-stretch { align-content: stretch }
-
-/* 1. Fix for Chrome 44 bug. https://code.google.com/p/chromium/issues/detail?id=506893 */
-
-.flex-auto {
-  flex: 1 1 auto;
-  min-width: 0; /* 1 */
-  min-height: 0; /* 1 */
-}
-
-.flex-none { flex: none }
-
-.order-0 { order: 0 }
-
-.order-1 { order: 1 }
-
-.order-2 { order: 2 }
-
-.order-3 { order: 3 }
-
-.order-last { order: 99999 }
-
-// Converted Variables
-
-$z1: 1 !default;
-$z2: 2 !default;
-$z3: 3 !default;
-$z4: 4 !default;
-
-// Custom Media Query Variables
-
-
-/* Basscss Position */
-
-.relative { position: relative }
-
-.absolute { position: absolute }
-
-.fixed    { position: fixed }
-
-.top-0    { top: 0 }
-
-.right-0  { right: 0 }
-
-.bottom-0 { bottom: 0 }
-
-.left-0   { left: 0 }
-
-.z1 { z-index: $z1 }
-
-.z2 { z-index: $z2 }
-
-.z3 { z-index: $z3 }
-
-.z4 { z-index: $z4 }
-
-// Converted Variables
-
-$border-width: 1px !default;
-$border-radius: 3px !default;
-
-// Custom Media Query Variables
-
-
-/* Basscss Border */
-
-.border {
-  border-style: solid;
-  border-width: $border-width;
-}
-
-.border-top {
-  border-top-style: solid;
-  border-top-width: $border-width;
-}
-
-.border-right {
-  border-right-style: solid;
-  border-right-width: $border-width;
-}
-
-.border-bottom {
-  border-bottom-style: solid;
-  border-bottom-width: $border-width;
-}
-
-.border-left {
-  border-left-style: solid;
-  border-left-width: $border-width;
-}
-
-.border-none { border: 0 }
-
-.rounded { border-radius: $border-radius }
-
-.circle  { border-radius: 50% }
-
-.rounded-top    { border-radius: $border-radius $border-radius 0 0 }
-
-.rounded-right  { border-radius: 0 $border-radius $border-radius 0 }
-
-.rounded-bottom { border-radius: 0 0 $border-radius $border-radius }
-
-.rounded-left   { border-radius: $border-radius 0 0 $border-radius }
-
-.not-rounded { border-radius: 0 }
-
-// Converted Variables
-
-
-// Custom Media Query Variables
-
-$breakpoint-xs: '(max-width: 40em)' !default;
-$breakpoint-sm-md: '(min-width: 40em) and (max-width: 52em)' !default;
-$breakpoint-md-lg: '(min-width: 52em) and (max-width: 64em)' !default;
-$breakpoint-lg: '(min-width: 64em)' !default;
-
-/* Basscss Hide */
-
-.hide {
-  position: absolute !important;
-  height: 1px;
-  width: 1px;
-  overflow: hidden;
-  clip: rect(1px, 1px, 1px, 1px);
-}
-
-@media #{$breakpoint-xs} {
-  .xs-hide { display: none !important }
-}
-
-@media #{$breakpoint-sm-md} {
-  .sm-hide { display: none !important }
-}
-
-@media #{$breakpoint-md-lg} {
-  .md-hide { display: none !important }
-}
-
-@media #{$breakpoint-lg} {
-  .lg-hide { display: none !important }
-}
-
-.display-none { display: none !important }
-
-
-
 figure{
   @extend .m0, .p0;
 }
@@ -4781,827 +1817,6 @@ figure{
     @include sem-typography-level-to-styles($config, figcaption);
   }
 }
-
-
-
-
-@mixin sem-typoCombo-typography($config) {
-  .primary-caption {
-    @include sem-typography-level-to-styles($config, primary-caption);
-  }
-  .sub-caption {
-    @include sem-typography-level-to-styles($config, sub-caption);
-  }
-}
-
-
-.corner{
-  @extend .p1;
-  &_top{
-    @include sem-rounded( 6px 6px 0px 0px );
-  }
-  &_bottom{
-    @include sem-rounded( 0px 0px  6px 6px);
-  }
-  &_none{
-    @include sem-rounded( 0px );
-  }
-  &_all{
-    @include sem-rounded(  6px  6px  6px  6px);
-  }
-  &_right{
-    @include sem-rounded( 6px 0px 0px 6px );
-  }
-  &_left{
-    @include sem-rounded( 0px 6px 6px 0px);
-  }
-  &_top-left{
-    @include sem-rounded( 0px 6px 6px 6px);
-  }
-  &_top-right{
-    @include sem-rounded( 6px 0px 6px 6px);
-  }
-  &_bottom-right{
-    @include sem-rounded( 6px 6px 0px 6px );
-  }
-  &_bottom-left{
-    @include sem-rounded( 6px 6px 0px 6px);
-  }
-}
-
-@mixin sem-pagination-theme($theme){
-  .sem-pagination.active div {
-    @extend .corner_bottom-right;
-    @include interactive-bg(map_get($theme, primary));
-  }
-}
-
-@mixin sem-pagination-typography($config) {
-  .sem-pagination.active{
-    @include sem-typography-level-to-styles($config, pagination);
-  }
-  .sem-pagination a{
-    @include sem-typography-level-to-styles($config, pagination);
-  }
-  .sem-pagination-previous a, .sem-pagination-next a{
-    @include sem-typography-level-to-styles($config, pagination-arrows);
-    &.disabled{
-    }
-  }
-}
-
-
-.sem-typo-grouped{
-  &--title{}
-  &--subtext{}
-}
-
-@mixin sem-button-typography($config) {
-  .sem-button--default {
-    @include sem-typography-level-to-styles($config, button);
-  }
-  .sem-button--primary {
-    @include sem-typography-level-to-styles($config, button);
-  }
-  .sem-button--secondary {
-    @include sem-typography-level-to-styles($config, button);
-  }
-  .sem-button--small {
-    @include sem-typography-level-to-styles($config, button_small);
-  }
-  .sem-button--large {
-    @include sem-typography-level-to-styles($config, button_large);
-  }
-  .sem-dnd-button{
-    @include sem-typography-level-to-styles($config, button_small);
-  }
-}
-
-
-.sem-shadow{
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-  &:hover{
-    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-  }
-}
-.sem-shadow_small{
-  box-shadow: 0 1px 2px rgba(0,0,0,0.7), 0 1px 2px rgba(0,0,0,0.24);
-  &:hover{
-    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.9), 0 10px 10px rgba(0, 0, 0, 0.19);
-  }
-}
-
-
-
-.sem-button-dnd{
-  height: 70px;
-  width: 70px;
-  margin: 5px;
-  @include sem-rounded( 0px 18px 18px 18px);
-  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
-  &--medium{
-    height: 50px;
-    width: 50px;
-
-  }
-  &--small{
-    height: 30px;
-    width: 30px;
-  }
-  &--xsmall{
-    height: 21px;
-    width: 21px;
-    margin: 0px;
-    padding: 2px;
-    @extend .sem-shadow_small;
-  }
-}
-
-@mixin sem-button-dnd-theme($theme) {
-  $foreground: map-get($theme, foreground);
-
-
-  .sem-button-dnd--primary {
-
-    //background-color: map_get($sem-grey, 900);
-    @include interactive-bg(map_get($theme, primary));
-    >span:before {
-      @include interactive-bg(map_get($theme, primary));
-    }
-    &--active{
-      color: #3b3b3b;
-      background-color: #fff;
-      transition: all 0s cubic-bezier(0.25, 0.8, 0.25, 1);
-      >span:before {
-        color: #3b3b3b;
-        background-color: #fff;
-      }
-      &:hover{
-        transition: all 0s cubic-bezier(0.25, 0.8, 0.25, 1);
-        color: #fff;
-        background-color: map_get($theme, primary);
-        >span:before {
-          color:  #fff;
-          background-color: map_get($theme, primary);
-        }
-      }
-    }
-    &[disabled] {
-      opacity: 0.5;
-    }
-    &.sem-button-dnd--disabled {
-      opacity: 0.5;
-      &:hover {
-        background-color: map_get($theme, primary);
-      }
-    }
-  }
-
-  .sem-button-dnd--secondary {
-    @include interactive-bg(map_get($theme, quaternary));
-    >span:before {
-
-    }
-    &--active{
-      @include interactive-bg(map_get($sem-grey, 900));
-      transition: all 0s cubic-bezier(0.25, 0.8, 0.25, 1);
-      >span:before {
-
-      }
-      &:hover{
-        transition: all 0s cubic-bezier(0.25, 0.8, 0.25, 1);
-        @include interactive-bg(map_get($theme, quaternary));
-        >span:before {
-          @include interactive-bg(map_get($theme, quaternary));
-        }
-      }
-    }
-    &[disabled] {
-      opacity: 0.5;
-    }
-    &.sem-button-dnd--disabled {
-      opacity: 0.5;
-      &:hover {
-        background-color: map_get($theme, primary);
-      }
-    }
-  }
-
-
-  .sem-button-dnd--inverted {
-    @include interactive-bg(map_get($theme, inverted));
-    >span:before {
-
-    }
-    &--active{
-      @include interactive-bg(map_get($sem-grey, 900));
-      transition: all 0s cubic-bezier(0.25, 0.8, 0.25, 1);
-      >span:before {
-
-      }
-      &:hover{
-        transition: all 0s cubic-bezier(0.25, 0.8, 0.25, 1);
-        @include interactive-bg(map_get($theme, quaternary));
-        >span:before {
-          @include interactive-bg(map_get($theme, quaternary));
-        }
-      }
-    }
-    &[disabled] {
-      opacity: 0.5;
-    }
-    &.sem-button-dnd--disabled {
-      opacity: 0.5;
-      &:hover {
-        background-color: map_get($theme, primary);
-      }
-    }
-  }
-
-}
-@mixin sem-button-dnd-typography($config) {
-  .sem-button-dnd--large {
-    @include sem-typography-level-to-styles($config, button-dnd_large);
-  }
-}
-
-
-
-
-
-/**
- * Theming
-*/
-@mixin sem-btn-fab-theme($theme) {
-  .sem-btn-fab--default{
-    @include interactive-bg(#ffffff);
-    &[disabled] {
-      opacity: 0.5;
-    }
-  }
-  .sem-btn-fab--default_small{
-    @include interactive-bg(#ffffff);
-    &[disabled] {
-      opacity: 0.5;
-    }
-  }
-
-  .sem-btn-fab--inverted{
-
-    box-shadow: 0 1px 2px rgba(0,0,0,0.7), 0 1px 2px rgba(0,0,0,0.24);
-    &:hover{
-      box-shadow: 0 2px 3px rgba(0, 0, 0, 0.9), 0 10px 10px rgba(0, 0, 0, 0.19);
-    }
-
-    @include interactive-bg(map_get($theme, inverted));
-    &[disabled] {
-      opacity: 0.5;
-    }
-  }
-
-
-  .sem-btn-fab--primary{
-    @include interactive-bg(map_get($theme, primary));
-    &[disabled] {
-      opacity: 0.5;
-    }
-  }
-  .sem-btn-fab--secondary{
-    @include interactive-bg(map_get($theme, tertiary));
-    &[disabled] {
-      opacity: 0.5;
-    }
-  }
-}
-@mixin sem-btn-fab-typography($config) {
-
-
-  // Sizes
-  .sem-btn-fab--small{
-    @include sem-typography-level-to-styles($config, button-fab_small);
-  }
-  .sem-btn-fab--default{
-    @include sem-typography-level-to-styles($config, button-fab);
-  }
-
-
-  .sem-btn-fab--default_small{
-    @include sem-typography-level-to-styles($config, button-fab_small);
-  }
-  .sem-btn-fab--secondary{
-    @include sem-typography-level-to-styles($config, button-fab);
-  }
-}
-
-
-/**
- * Component
-*/
-
-
-
-
-.sem-btn-fab{
-  outline: none;
-  cursor: pointer;
-  display: inline-block;
-  border: none;
-  &:not([disabled]) {
-    cursor: pointer;
-  }
-
-  img{
-    width: map-get($sem-ui-dimensons, fab);
-    height: map-get($sem-ui-dimensons, fab);
-    display: block;
-    vertical-align: middle;
-  }
-}
-/** Importance */
-.sem-btn-fab {
-  &--medium {
-    @extend .p1;
-    > span {
-      display: block;
-      width: map-get($sem-ui-dimensons, fab);
-      height: map-get($sem-ui-dimensons, fab);
-    }
-  }
-  &--small{
-    padding: 0.2rem;
-    > span {
-      display: block;
-       margin: 1px;
-    }
-  }
-}
-
-
-
-.sem-btn-fab--default_small{
-
-  > span{
-    display: block;
-    width: map-get($sem-ui-dimensons, fab_small);
-    height: map-get($sem-ui-dimensons, fab_small);
-  }
-}
-
-.sem-btn-fab--primary{
-
-  > span{
-    display: block;
-    width: map-get($sem-ui-dimensons, fab);
-    height: map-get($sem-ui-dimensons, fab);
-  }
-}
-.sem-btn-fab--secondary{
-
-  > span{
-    display: block;
-    width: map-get($sem-ui-dimensons, fab);
-    height: map-get($sem-ui-dimensons, fab);
-  }
-}
-/** Type */
-.sem-btn-fab--corner{
-  &_none{
-    @include sem-rounded( 50%);
-  }
-  &_right{
-    @include sem-rounded( 50% 0% 0% 50% );
-  }
-  &_left{
-    @include sem-rounded( 0% 50% 50%  0%);
-  }
-  &_top-left{
-    @include sem-rounded( 0% 50% 50% 50%);
-  }
-  &_top-right{
-    @include sem-rounded( 50% 0% 50% 50%);
-  }
-  &_bottom-right{
-    @include sem-rounded( 50% 50% 0% 50%);
-  }
-  &_bottom-left{
-    @include sem-rounded( 50% 50% 0% 50%);
-  }
-}
-
-
-
-
-
-
-@mixin sem-overlay-theme($theme) {
-  $background: map-get($theme, background);
-  $foreground: map-get($theme, foreground);
-
-  .dialog-container{
-    background: map_get($background, overlay );
-  }
-  .dialog-container--header{
-    color: map_get($foreground, text-inverted);
-    background: map_get($theme, tertiary );
-  }
-  .dialog-container--footer{
-    color: map_get($foreground, text-inverted);
-    background: map_get($theme, tertiary );
-  }
-}
-@mixin sem-dialog-typography($config) {
-  .dialog-container {
-
-    &--header, &--footer{
-      @include sem-typography-level-to-styles($config, body-base);
-    }
-
-  }
-}
-
-
-
-
-@mixin sem-overlay-vertical-theme($theme) {
-  $background: map-get($theme, background);
-  $foreground: map-get($theme, foreground);
-
-  .dialog-container-full{
-    background: map_get($background, overlay );
-  }
-  .dialog-container--header{
-    color: map_get($foreground, text-inverted);
-    background: map_get($theme, tertiary );
-  }
-  .dialog-container--footer{
-    color: map_get($foreground, text-inverted);
-    background: map_get($theme, tertiary );
-  }
-}
-@mixin sem-dialog-vertical-typography($config) {
-  .dialog-container-full {
-
-    &--header, &--footer{
-      @include sem-typography-level-to-styles($config, body-base);
-    }
-
-  }
-}
-
-
-
-
-
-@mixin sem-li-theme($theme) {
-  .sem-li--default, .sem-li--default a{
-    @include interactive-bg(map_get($theme, quaternary));
-  }
-  .sem-li--primary, .sem-li--primary a{
-    @include interactive-bg(map_get($theme, tertiary));
-  }
-  .sem-li--secondary, .sem-li--secondary a{
-    @include interactive-bg(map_get($theme, tertiary));
-  }
-  .sem-li--tertiary, .sem-li--tertiary a{
-    @include interactive-bg(map_get($theme, tertiary));
-  }
-  .sem-li--danger, .sem-li--danger a{
-    color: map_get($theme, danger);
-    background: map_get($theme, quaternary);
-    &:hover{
-      background-color: darken(map_get($theme, quaternary), 20%);
-    }
-  }
-
-  .sem-li--light{
-    @include interactive-bg(map_get($theme, quaternary));
-  }
-  .sem-li--dark{
-    @include interactive-bg(map_get($theme, tertiary));
-  }
-}
-@mixin sem-li-typography($config) {
-  .sem-li {
-    @include sem-typography-level-to-styles($config, body-base);
-  }
-}
-
-
-
-
-/**
- * Theming
-*/
-
-@mixin sem-tabs-theme($theme) {
-  /** Tabs on top */
-  ul.semui-tabs-list.tabs-vertical{
-    border-bottom: solid 1px #dedede;
-  }
-
-  li.active {
-    .tabs--button,
-    .tabs--button:focus,
-    .tabs--button:hover {
-      color: map_get($theme, tertiary);
-      border-width: 0;
-    }
-  }
-
-  .tabs--button {
-    color: map_get($theme, tertiary);
-    border: none;
-    background: transparent;
-    box-shadow: none;
-    &:not([disabled]) {
-      &:hover {
-        color: map_get($theme, tertiary);
-        background: transparent;
-        &::after {
-          background: map_get($theme, tertiary);
-          background: map_get($theme, tertiary) none repeat scroll 0 0;
-          color:  map_get($theme, tertiary);
-        }
-      }
-    }
-
-    &::after {
-      background: map_get($theme, tertiary);
-      background: map_get($theme, tertiary) none repeat scroll 0 0;
-      color:  map_get($theme, tertiary);
-    }
-  }
-}
-
-@mixin sem-tabs-typography($config) {
-  //@include sem-typography-level-to-styles($config, button);
-  .tabs--button{
-    @include sem-typography-level-to-styles($config, button);
-  }
-}
-
-/**
- * Components
-*/
-
-.semui-tabs {
-  @extend .block;
-  .semui-tabs--navlist_horizontal {
-    @extend .my1, .pl1, .pr1;
-    border-bottom: solid 1px grey;
-    padding-bottom: 2px;
-    li {
-      @extend .inline-block;
-      &.active,
-      &:hover {
-        button:not([disabled])::after {
-          transform: scale(1);
-        }
-      }
-
-      .tabs--button {
-        @extend .m0, .inline-block;
-        border: none;
-        outline: none;
-        box-shadow: none;
-        padding: 0.35em 0.75em;
-        position: relative;
-        text-align: center;
-        user-select: none;
-        outline: none;
-        bottom: -1px;
-
-        &:not([disabled]) {
-          &:hover {
-            border: none;
-            opacity: 1;
-          }
-        }
-        &::after {
-          @extend .absolute, .left-0;
-          content: "";
-          height: 3px;
-          width: 100%;
-          bottom: -1px;
-          transition: all 250ms ease 0s;
-          transform: scale(0);
-        }
-      }
-    }
-  }
-
-  //.swipe li.semui-tab.tab-navigation{
-  //  position: relative;
-  //  display: block;
-  //}
-  //.swipe li.semui-tab{
-  //  display: none;
-  //  position: absolute;
-  //  top: 0;
-  //  height: 100%;
-  //  background: white;
-  //  width: 100%;
-  //}
-  //.swipe li.semui-tab.active{
-  //  display: block;
-  //}
-
-}
-
-//
-//section.tabs-horizontal{
-//  display: inline-flex;
-//  align-items: baseline;
-//  width: 100%;
-//  position: relative;
-//
-//  &.swipe{
-//    .semui-tab{
-//      width: 100%;
-//    }
-//    .semui-tab-content{
-//      width: 100%;
-//      height: 100%;
-//      background: white;
-//    }
-//  }
-//
-//  .semui-tabs-list{
-//    width: 100%;
-//    z-index: 1;
-//  }
-//  .semui-tab-content{
-//    position: absolute;
-//  }
-//
-//  .tab-nav{
-//    z-index: 2;
-//    width: 100%;
-//    ul{
-//      width: 100%;
-//    }
-//  }
-//
-//}
-
-section.tabs-horizontal.swipe{}
-/** Tabs on top */
-ul.semui-tabs-list.tabs-vertical{
-  margin: 0px;
-}
-
-
-
-
-
-
-
-
-
-
-// Includes all of the typographic styles.
-@mixin sem-typography($config: null) {
-  @if $config == null {
-    $config: sem-typography-config();
-  }
-  @include sem-label-typography($config);
-  @include sem-figure-typography($config);
-  @include sem-typoCombo-typography($config);
-  @include sem-base-typography($config);
-  @include sem-button-typography($config);
-  @include sem-btn-fab-typography($config);
-  @include sem-input-typography($config);
-  @include sem-li-typography($config);
-  @include sem-dialog-typography($config);
-  @include sem-dialog-vertical-typography($config);
-  @include sem-list-typography($config);
-  @include sem-tabs-typography($config);
-  @include sem-pagination-typography($config);
-  @include sem-heading-typography($config);
-  @include sem-button-dnd-typography($config);
-
-}
-
-
-// Mixin that renders all of the core styles that are not theme-dependent.
-@mixin sem-core-theme($theme) {}
-@mixin sem-core($typography-config: null) {
-  @include sem-typography($typography-config);
-}
-
-// Mixin that renders all of the core styles that depend on the theme.
-
-
-
-@font-face {
-  font-family: 'sembler-ico';
-  src:  url('/assets/fonts/sembler.eot?9ik42l');
-  src:  url('/assets/fonts/sembler.eot?9ik42l#iefix') format('embedded-opentype'),
-  url('/assets/fonts/sembler.ttf?9ik42l') format('truetype'),
-  url('/assets/fonts/sembler.woff?9ik42l') format('woff'),
-  url('/assets/fonts/sembler.svg?9ik42l#icomoon') format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
-
-
-
-.sem-button{
-  cursor: pointer;
-  display: inline-block;
-  border: none;
-  @include sem-rounded( 12px 12px 0px);
-  &:not([disabled]) {
-    cursor: pointer;
-  }
-}
-.sem-button--primary{
-  @extend .py1, .px3;
-}
-.sem-button--secondary {
-  @extend .py1, .px3;
-  @include sem-outline(darkgrey);
-  @include sem-rounded( 12px 12px 0px);
-}
-.sem-button--small{
-  padding-top: 6px;
-  padding-bottom: 11px;
-  padding-left: 0px;
-  padding-right: 0px;
-  @include sem-outline(transparent);
-}
-.sem-button--large{
-  @extend .p1;
-  @include sem-outline(transparent);
-}
-.sem-button--full{
-  width: 100%;
-}
-.sem-button--block{
-  display: block;
-  padding: .4em .4em .4em .4em;
-}
-
-/** Types */
-.sem-button--link{
-  border: solid 0px;
-  text-decoration: underline;
-  border: solid 0px;
-  border-radius: 0px;
-  @extend .m0, .p0;
-}
-.sem-button--link_primary{
-  border: solid 0px;
-  text-decoration: underline;
-  border: solid 0px;
-  border-radius: 0px;
-  @extend .m0, .p0;
-
-}
-
-
-.sem-button-circle{
-  @include sem-rounded( 50%);
-  @extend .absolute, .block;
-  cursor: pointer;
-  text-align: center;
-  background: #fff;
-  font-weight: bold;
-  &:before{
-    padding: 0px 0px 0px 1px;
-  }
-}
-.sem-button-delete{
-  color: #ffffff;
-  font-size: 6px;
-  padding: 0.3rem;
-  background-color: #d0021b;
-  -ms-transform: rotate(45deg);
-  -webkit-transform: rotate(45deg);
-  transform: rotate(45deg);
-
-}
-
-.sem-dnd-container{
-  height: 100%;
-  @extend %sem-relative;
-  &--dnd-nav{
-    height: 70px;
-    width: 70px;
-    margin: 5px;
-    @include sem-rounded( 0px 12px 12px 12px);
-    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
-  }
-  &--nav{
-    z-index: 1;
-    position: absolute;
-    top: 0;
-    right: 0;
-  }
-}
-
-
-
 
 .bullet-inlinelist {
   li{
@@ -6462,6 +2677,25 @@ $breakpoint-lg: '(min-width: 64em)' !default;
 }
 
 .display-none { display: none !important }
+@mixin sem-circle($size, $color, $display){
+  display: $display;
+  background: $color;
+  -webkit-border-radius: $size;
+  -moz-border-radius: $size;
+  border-radius: $size;
+}
+@mixin sem-rounded($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  border-radius: $radius;
+  background-clip: padding-box;
+}
+
+.sem--corner{
+  ._top{
+    @include sem-rounded( 50% 0% 50% 50%);
+  }
+}
 
 
 
@@ -6472,23 +2706,12 @@ $breakpoint-lg: '(min-width: 64em)' !default;
   height: 23px;
   margin: 4px 6px 8px;
   cursor: pointer;
-  @extend .sem-rain-drop;
   .sem-button-delete{
     font-size: 6px;
     top: 6px;
     right: -9px;
   }
 }
-.sem-rain-drop{
-  border-bottom-right-radius: 50%;
-  border-bottom-left-radius: 50%;
-  border-top-left-radius: 50%;
-  box-shadow:  inset 0 0 10px;
-  -ms-transform: rotate(-45deg);
-  -webkit-transform: rotate(-45deg);
-  transform: rotate(-45deg);
-}
-
 
 
 // Converted Variables
@@ -7296,6 +3519,40 @@ $breakpoint-lg: '(min-width: 64em)' !default;
 
 .display-none { display: none !important }
 
+.corner{
+  @extend .p1;
+  &_top{
+    @include sem-rounded( 6px 6px 0px 0px );
+  }
+  &_bottom{
+    @include sem-rounded( 0px 0px  6px 6px);
+  }
+  &_none{
+    @include sem-rounded( 0px );
+  }
+  &_all{
+    @include sem-rounded(  6px  6px  6px  6px);
+  }
+  &_right{
+    @include sem-rounded( 6px 0px 0px 6px );
+  }
+  &_left{
+    @include sem-rounded( 0px 6px 6px 0px);
+  }
+  &_top-left{
+    @include sem-rounded( 0px 6px 6px 6px);
+  }
+  &_top-right{
+    @include sem-rounded( 6px 0px 6px 6px);
+  }
+  &_bottom-right{
+    @include sem-rounded( 6px 6px 0px 6px );
+  }
+  &_bottom-left{
+    @include sem-rounded( 6px 6px 0px 6px);
+  }
+}
+
 .sem-pagination-container{
   display: flex;
   align-items: center;
@@ -7312,39 +3569,38 @@ $breakpoint-lg: '(min-width: 64em)' !default;
   -webkit-user-select: none;
   -ms-user-select: none;
 }
-.sem-pagination-previous a, .sem-pagination-next a{
-  line-height: 25px;
-  display: block;
-  line-height: 25px;
-  vertical-align: middle;
-}
 .sem-pagination-next a{
   text-align: left;
 }
 .sem-pagination-previous a{
   text-align: right;
 }
+.sem-pagination-previous a, .sem-pagination-next a,
 .sem-pagination a{
-  height: 25px;
-  width: 25px;
-  line-height: 25px;
   display: inline-block;
   vertical-align: middle;
 }
 .sem-pagination.active div {
   border: none;
-  height: 25px;
-  width: 25px;
-  line-height: 25px;
   display: inline-block;
   vertical-align: middle;
-  @include sem-rounded( 12px 12px 0px);
   &:not([disabled]) {
     cursor: pointer;
   }
 }
 
 
+
+
+
+@mixin sem-typoCombo-typography($config) {
+  .primary-caption {
+    @include sem-typography-level-to-styles($config, primary-caption);
+  }
+  .sub-caption {
+    @include sem-typography-level-to-styles($config, sub-caption);
+  }
+}
 
 .sem-avatar {
 
@@ -8166,6 +4422,18 @@ $breakpoint-lg: '(min-width: 64em)' !default;
 
 .display-none { display: none !important }
 
+.sem-shadow{
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  &:hover{
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  }
+}
+.sem-shadow_small{
+  box-shadow: 0 1px 2px rgba(0,0,0,0.7), 0 1px 2px rgba(0,0,0,0.24);
+  &:hover{
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.9), 0 10px 10px rgba(0, 0, 0, 0.19);
+  }
+}
 
 
 .dialog-container {
@@ -8219,6 +4487,24 @@ $breakpoint-lg: '(min-width: 64em)' !default;
   $foreground: map-get($theme, foreground);
   .dialog-container--body{
    color: map_get($foreground, typography-base );
+  }
+}
+
+
+
+
+@mixin sem-overlay-vertical-theme($theme) {
+  .dialog-container-full{
+    background-color: #FAFAFA;
+  }
+}
+@mixin sem-dialog-vertical-typography($config) {
+  .dialog-container-full {
+
+    &--header, &--footer{
+      @include sem-typography-level-to-styles($config, body-base);
+    }
+
   }
 }
 
@@ -8300,9 +4586,1993 @@ $breakpoint-lg: '(min-width: 64em)' !default;
 }
 
 
+// Converted Variables
+
+$h1: 2rem !default;
+$h2: 1.5rem !default;
+$h3: 1.25rem !default;
+$h4: 1rem !default;
+$h5: .875rem !default;
+$h6: .75rem !default;
+
+// Custom Media Query Variables
+
+
+/* Basscss Type Scale */
+
+.h1 { font-size: $h1 }
+
+.h2 { font-size: $h2 }
+
+.h3 { font-size: $h3 }
+
+.h4 { font-size: $h4 }
+
+.h5 { font-size: $h5 }
+
+.h6 { font-size: $h6 }
+
+// Converted Variables
+
+$line-height-1: 1 !default;
+$line-height-2: 1.125 !default;
+$line-height-3: 1.25 !default;
+$line-height-4: 1.5 !default;
+$letter-spacing: 1 !default;
+$caps-letter-spacing: .2em !default;
+$bold-font-weight: bold !default;
+
+// Custom Media Query Variables
+
+
+/* Basscss Typography */
+
+.font-family-inherit { font-family: inherit }
+
+.font-size-inherit { font-size: inherit }
+
+.text-decoration-none { text-decoration: none }
+
+.bold    { font-weight: $bold-font-weight /* Fallback value:  bold */ }
+
+.regular { font-weight: normal }
+
+.italic  { font-style: italic }
+
+.caps    { text-transform: uppercase; letter-spacing: $caps-letter-spacing; }
+
+.left-align   { text-align: left }
+
+.center       { text-align: center }
+
+.right-align  { text-align: right }
+
+.justify      { text-align: justify }
+
+.nowrap { white-space: nowrap }
+
+.break-word { word-wrap: break-word }
+
+.line-height-1 { line-height: $line-height-1 }
+
+.line-height-2 { line-height: $line-height-2 }
+
+.line-height-3 { line-height: $line-height-3 }
+
+.line-height-4 { line-height: $line-height-4 }
+
+.list-style-none { list-style: none }
+
+.underline { text-decoration: underline }
+
+.truncate {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.list-reset {
+  list-style: none;
+  padding-left: 0;
+}
+
+// Converted Variables
+
+$width-1: 24rem !default;
+$width-2: 32rem !default;
+$width-3: 48rem !default;
+$width-4: 64rem !default;
+
+// Custom Media Query Variables
+
+
+/* Basscss Layout */
+
+.inline       { display: inline }
+
+.block        { display: block }
+
+.inline-block { display: inline-block }
+
+.table        { display: table }
+
+.table-cell   { display: table-cell }
+
+.overflow-hidden { overflow: hidden }
+
+.overflow-scroll { overflow: scroll }
+
+.overflow-auto   { overflow: auto }
+
+.clearfix:before,
+.clearfix:after {
+  content: " ";
+  display: table
+}
+
+.clearfix:after { clear: both }
+
+.left  { float: left }
+
+.right { float: right }
+
+.fit { max-width: 100% }
+
+.max-width-1 { max-width: $width-1 }
+
+.max-width-2 { max-width: $width-2 }
+
+.max-width-3 { max-width: $width-3 }
+
+.max-width-4 { max-width: $width-4 }
+
+.border-box { box-sizing: border-box }
+
+// Converted Variables
+
+
+// Custom Media Query Variables
+
+
+/* Basscss Align */
+
+.align-baseline { vertical-align: baseline }
+
+.align-top      { vertical-align: top }
+
+.align-middle   { vertical-align: middle }
+
+.align-bottom   { vertical-align: bottom }
+
+// Converted Variables
+
+$space-1: .5rem !default;
+$space-2: 1rem !default;
+$space-3: 2rem !default;
+$space-4: 4rem !default;
+
+// Custom Media Query Variables
+
+
+/* Basscss Margin */
+
+.m0  { margin:        0 }
+
+.mt0 { margin-top:    0 }
+
+.mr0 { margin-right:  0 }
+
+.mb0 { margin-bottom: 0 }
+
+.ml0 { margin-left:   0 }
+
+.mx0 { margin-left:   0; margin-right:  0 }
+
+.my0 { margin-top:    0; margin-bottom: 0 }
+
+.m1  { margin:        $space-1 }
+
+.mt1 { margin-top:    $space-1 }
+
+.mr1 { margin-right:  $space-1 }
+
+.mb1 { margin-bottom: $space-1 }
+
+.ml1 { margin-left:   $space-1 }
+
+.mx1 { margin-left:   $space-1; margin-right:  $space-1 }
+
+.my1 { margin-top:    $space-1; margin-bottom: $space-1 }
+
+.m2  { margin:        $space-2 }
+
+.mt2 { margin-top:    $space-2 }
+
+.mr2 { margin-right:  $space-2 }
+
+.mb2 { margin-bottom: $space-2 }
+
+.ml2 { margin-left:   $space-2 }
+
+.mx2 { margin-left:   $space-2; margin-right:  $space-2 }
+
+.my2 { margin-top:    $space-2; margin-bottom: $space-2 }
+
+.m3  { margin:        $space-3 }
+
+.mt3 { margin-top:    $space-3 }
+
+.mr3 { margin-right:  $space-3 }
+
+.mb3 { margin-bottom: $space-3 }
+
+.ml3 { margin-left:   $space-3 }
+
+.mx3 { margin-left:   $space-3; margin-right:  $space-3 }
+
+.my3 { margin-top:    $space-3; margin-bottom: $space-3 }
+
+.m4  { margin:        $space-4 }
+
+.mt4 { margin-top:    $space-4 }
+
+.mr4 { margin-right:  $space-4 }
+
+.mb4 { margin-bottom: $space-4 }
+
+.ml4 { margin-left:   $space-4 }
+
+.mx4 { margin-left:   $space-4; margin-right:  $space-4 }
+
+.my4 { margin-top:    $space-4; margin-bottom: $space-4 }
+
+.mxn1 { margin-left: -$space-1; margin-right: -$space-1; }
+
+.mxn2 { margin-left: -$space-2; margin-right: -$space-2; }
+
+.mxn3 { margin-left: -$space-3; margin-right: -$space-3; }
+
+.mxn4 { margin-left: -$space-4; margin-right: -$space-4; }
+
+.ml-auto { margin-left: auto }
+
+.mr-auto { margin-right: auto }
+
+.mx-auto { margin-left: auto; margin-right: auto; }
+
+// Converted Variables
+
+$space-1: .5rem !default;
+$space-2: 1rem !default;
+$space-3: 2rem !default;
+$space-4: 4rem !default;
+
+// Custom Media Query Variables
+
+
+/* Basscss Padding */
+
+.p0  { padding: 0 }
+
+.pt0 { padding-top: 0 }
+
+.pr0 { padding-right: 0 }
+
+.pb0 { padding-bottom: 0 }
+
+.pl0 { padding-left: 0 }
+
+.px0 { padding-left: 0; padding-right:  0 }
+
+.py0 { padding-top: 0;  padding-bottom: 0 }
+
+.p1  { padding:        $space-1 }
+
+.pt1 { padding-top:    $space-1 }
+
+.pr1 { padding-right:  $space-1 }
+
+.pb1 { padding-bottom: $space-1 }
+
+.pl1 { padding-left:   $space-1 }
+
+.py1 { padding-top:    $space-1; padding-bottom: $space-1 }
+
+.px1 { padding-left:   $space-1; padding-right:  $space-1 }
+
+.p2  { padding:        $space-2 }
+
+.pt2 { padding-top:    $space-2 }
+
+.pr2 { padding-right:  $space-2 }
+
+.pb2 { padding-bottom: $space-2 }
+
+.pl2 { padding-left:   $space-2 }
+
+.py2 { padding-top:    $space-2; padding-bottom: $space-2 }
+
+.px2 { padding-left:   $space-2; padding-right:  $space-2 }
+
+.p3  { padding:        $space-3 }
+
+.pt3 { padding-top:    $space-3 }
+
+.pr3 { padding-right:  $space-3 }
+
+.pb3 { padding-bottom: $space-3 }
+
+.pl3 { padding-left:   $space-3 }
+
+.py3 { padding-top:    $space-3; padding-bottom: $space-3 }
+
+.px3 { padding-left:   $space-3; padding-right:  $space-3 }
+
+.p4  { padding:        $space-4 }
+
+.pt4 { padding-top:    $space-4 }
+
+.pr4 { padding-right:  $space-4 }
+
+.pb4 { padding-bottom: $space-4 }
+
+.pl4 { padding-left:   $space-4 }
+
+.py4 { padding-top:    $space-4; padding-bottom: $space-4 }
+
+.px4 { padding-left:   $space-4; padding-right:  $space-4 }
+
+// Converted Variables
+
+
+// Custom Media Query Variables
+
+$breakpoint-sm: '(min-width: 40em)' !default;
+$breakpoint-md: '(min-width: 52em)' !default;
+$breakpoint-lg: '(min-width: 64em)' !default;
+
+/* Basscss Grid */
+
+.col {
+  float: left;
+  box-sizing: border-box;
+}
+
+.col-right {
+  float: right;
+  box-sizing: border-box;
+}
+
+.col-1 {
+  width: (1/12 * 100%);
+}
+
+.col-2 {
+  width: (2/12 * 100%);
+}
+
+.col-3 {
+  width: (3/12 * 100%);
+}
+
+.col-4 {
+  width: (4/12 * 100%);
+}
+
+.col-5 {
+  width: (5/12 * 100%);
+}
+
+.col-6 {
+  width: (6/12 * 100%);
+}
+
+.col-7 {
+  width: (7/12 * 100%);
+}
+
+.col-8 {
+  width: (8/12 * 100%);
+}
+
+.col-9 {
+  width: (9/12 * 100%);
+}
+
+.col-10 {
+  width: (10/12 * 100%);
+}
+
+.col-11 {
+  width: (11/12 * 100%);
+}
+
+.col-12 {
+  width: 100%;
+}
+
+@media #{$breakpoint-sm} {
+
+  .sm-col {
+    float: left;
+    box-sizing: border-box;
+  }
+
+  .sm-col-right {
+    float: right;
+    box-sizing: border-box;
+  }
+
+  .sm-col-1 {
+    width: (1/12 * 100%);
+  }
+
+  .sm-col-2 {
+    width: (2/12 * 100%);
+  }
+
+  .sm-col-3 {
+    width: (3/12 * 100%);
+  }
+
+  .sm-col-4 {
+    width: (4/12 * 100%);
+  }
+
+  .sm-col-5 {
+    width: (5/12 * 100%);
+  }
+
+  .sm-col-6 {
+    width: (6/12 * 100%);
+  }
+
+  .sm-col-7 {
+    width: (7/12 * 100%);
+  }
+
+  .sm-col-8 {
+    width: (8/12 * 100%);
+  }
+
+  .sm-col-9 {
+    width: (9/12 * 100%);
+  }
+
+  .sm-col-10 {
+    width: (10/12 * 100%);
+  }
+
+  .sm-col-11 {
+    width: (11/12 * 100%);
+  }
+
+  .sm-col-12 {
+    width: 100%;
+  }
+
+}
+
+@media #{$breakpoint-md} {
+
+  .md-col {
+    float: left;
+    box-sizing: border-box;
+  }
+
+  .md-col-right {
+    float: right;
+    box-sizing: border-box;
+  }
+
+  .md-col-1 {
+    width: (1/12 * 100%);
+  }
+
+  .md-col-2 {
+    width: (2/12 * 100%);
+  }
+
+  .md-col-3 {
+    width: (3/12 * 100%);
+  }
+
+  .md-col-4 {
+    width: (4/12 * 100%);
+  }
+
+  .md-col-5 {
+    width: (5/12 * 100%);
+  }
+
+  .md-col-6 {
+    width: (6/12 * 100%);
+  }
+
+  .md-col-7 {
+    width: (7/12 * 100%);
+  }
+
+  .md-col-8 {
+    width: (8/12 * 100%);
+  }
+
+  .md-col-9 {
+    width: (9/12 * 100%);
+  }
+
+  .md-col-10 {
+    width: (10/12 * 100%);
+  }
+
+  .md-col-11 {
+    width: (11/12 * 100%);
+  }
+
+  .md-col-12 {
+    width: 100%;
+  }
+
+}
+
+@media #{$breakpoint-lg} {
+
+  .lg-col {
+    float: left;
+    box-sizing: border-box;
+  }
+
+  .lg-col-right {
+    float: right;
+    box-sizing: border-box;
+  }
+
+  .lg-col-1 {
+    width: (1/12 * 100%);
+  }
+
+  .lg-col-2 {
+    width: (2/12 * 100%);
+  }
+
+  .lg-col-3 {
+    width: (3/12 * 100%);
+  }
+
+  .lg-col-4 {
+    width: (4/12 * 100%);
+  }
+
+  .lg-col-5 {
+    width: (5/12 * 100%);
+  }
+
+  .lg-col-6 {
+    width: (6/12 * 100%);
+  }
+
+  .lg-col-7 {
+    width: (7/12 * 100%);
+  }
+
+  .lg-col-8 {
+    width: (8/12 * 100%);
+  }
+
+  .lg-col-9 {
+    width: (9/12 * 100%);
+  }
+
+  .lg-col-10 {
+    width: (10/12 * 100%);
+  }
+
+  .lg-col-11 {
+    width: (11/12 * 100%);
+  }
+
+  .lg-col-12 {
+    width: 100%;
+  }
+
+}
+
+// Converted Variables
+
+
+// Custom Media Query Variables
+
+$breakpoint-sm: '(min-width: 40em)' !default;
+$breakpoint-md: '(min-width: 52em)' !default;
+$breakpoint-lg: '(min-width: 64em)' !default;
+
+
+.flex { display: flex }
+
+@media #{$breakpoint-sm} {
+  .sm-flex { display: flex }
+}
+
+@media #{$breakpoint-md} {
+  .md-flex { display: flex }
+}
+
+@media #{$breakpoint-lg} {
+  .lg-flex { display: flex }
+}
+
+.flex-column  { flex-direction: column }
+
+.flex-wrap    { flex-wrap: wrap }
+
+.items-start    { align-items: flex-start }
+
+.items-end      { align-items: flex-end }
+
+.items-center   { align-items: center }
+
+.items-baseline { align-items: baseline }
+
+.items-stretch  { align-items: stretch }
+
+.self-start    { align-self: flex-start }
+
+.self-end      { align-self: flex-end }
+
+.self-center   { align-self: center }
+
+.self-baseline { align-self: baseline }
+
+.self-stretch  { align-self: stretch }
+
+.justify-start   { justify-content: flex-start }
+
+.justify-end     { justify-content: flex-end }
+
+.justify-center  { justify-content: center }
+
+.justify-between { justify-content: space-between }
+
+.justify-around  { justify-content: space-around }
+
+.content-start   { align-content: flex-start }
+
+.content-end     { align-content: flex-end }
+
+.content-center  { align-content: center }
+
+.content-between { align-content: space-between }
+
+.content-around  { align-content: space-around }
+
+.content-stretch { align-content: stretch }
+
+/* 1. Fix for Chrome 44 bug. https://code.google.com/p/chromium/issues/detail?id=506893 */
+
+.flex-auto {
+  flex: 1 1 auto;
+  min-width: 0; /* 1 */
+  min-height: 0; /* 1 */
+}
+
+.flex-none { flex: none }
+
+.order-0 { order: 0 }
+
+.order-1 { order: 1 }
+
+.order-2 { order: 2 }
+
+.order-3 { order: 3 }
+
+.order-last { order: 99999 }
+
+// Converted Variables
+
+$z1: 1 !default;
+$z2: 2 !default;
+$z3: 3 !default;
+$z4: 4 !default;
+
+// Custom Media Query Variables
+
+
+/* Basscss Position */
+
+.relative { position: relative }
+
+.absolute { position: absolute }
+
+.fixed    { position: fixed }
+
+.top-0    { top: 0 }
+
+.right-0  { right: 0 }
+
+.bottom-0 { bottom: 0 }
+
+.left-0   { left: 0 }
+
+.z1 { z-index: $z1 }
+
+.z2 { z-index: $z2 }
+
+.z3 { z-index: $z3 }
+
+.z4 { z-index: $z4 }
+
+// Converted Variables
+
+$border-width: 1px !default;
+$border-radius: 3px !default;
+
+// Custom Media Query Variables
+
+
+/* Basscss Border */
+
+.border {
+  border-style: solid;
+  border-width: $border-width;
+}
+
+.border-top {
+  border-top-style: solid;
+  border-top-width: $border-width;
+}
+
+.border-right {
+  border-right-style: solid;
+  border-right-width: $border-width;
+}
+
+.border-bottom {
+  border-bottom-style: solid;
+  border-bottom-width: $border-width;
+}
+
+.border-left {
+  border-left-style: solid;
+  border-left-width: $border-width;
+}
+
+.border-none { border: 0 }
+
+.rounded { border-radius: $border-radius }
+
+.circle  { border-radius: 50% }
+
+.rounded-top    { border-radius: $border-radius $border-radius 0 0 }
+
+.rounded-right  { border-radius: 0 $border-radius $border-radius 0 }
+
+.rounded-bottom { border-radius: 0 0 $border-radius $border-radius }
+
+.rounded-left   { border-radius: $border-radius 0 0 $border-radius }
+
+.not-rounded { border-radius: 0 }
+
+// Converted Variables
+
+
+// Custom Media Query Variables
+
+$breakpoint-xs: '(max-width: 40em)' !default;
+$breakpoint-sm-md: '(min-width: 40em) and (max-width: 52em)' !default;
+$breakpoint-md-lg: '(min-width: 52em) and (max-width: 64em)' !default;
+$breakpoint-lg: '(min-width: 64em)' !default;
+
+/* Basscss Hide */
+
+.hide {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+}
+
+@media #{$breakpoint-xs} {
+  .xs-hide { display: none !important }
+}
+
+@media #{$breakpoint-sm-md} {
+  .sm-hide { display: none !important }
+}
+
+@media #{$breakpoint-md-lg} {
+  .md-hide { display: none !important }
+}
+
+@media #{$breakpoint-lg} {
+  .lg-hide { display: none !important }
+}
+
+.display-none { display: none !important }
+@mixin sem-outline($grey-default) {
+  border: 1px solid $grey-default;
+}
 
 
 
+
+
+
+
+// Select
+.semui-form-select select{
+  display: inline-block;
+  margin-left: 10%;
+  width: 80%;
+  margin-right: 10%;
+  border: solid 1px rgb(216, 207, 207);
+  border-radius: 10px;
+  font-size: 1.8em;
+  color: rgb(216, 207, 207);
+  cursor: pointer;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input.sem-input {
+  width: calc(100%);
+  outline: none;
+  @include sem-rounded(10px 10px 0px);
+}
+input.block{
+ display: inline-block;
+ width: auto;
+}
+
+@mixin sem-input-theme($theme){
+  .sem-input-button{
+    @extend .sem-button, .sem-button--std;
+    width: calc(100%);
+    outline: none;
+  }
+}
+@mixin sem-input-typography($config) {
+  .sem-input {
+    padding: 0.3rem .5rem;
+    @extend .px1;
+    @include sem-typography-level-to-styles($config, input);
+    &--large{
+      @include sem-typography-level-to-styles($config, input_large);
+    }
+    &--medium{
+      @include sem-typography-level-to-styles($config, input_medium);
+    }
+    &--small{
+      @include sem-typography-level-to-styles($config, input_small);
+    }
+  }
+  .input-prefix {
+    width: 100%;
+    @extend .block, .relative;
+    .prefix {
+      height: 11px;
+      padding: 0.1rem 0.2rem;
+      @extend .absolute, .top-0, .left-0;
+      @include sem-typography-level-to-styles($config, input-fix);
+    }
+    input.sem-input {
+      padding-left: 1.2rem;
+    }
+  }
+  .input-sufix {
+    @extend .relative;
+    .sufix {
+      height: 11px;
+      padding: 0.1rem 0.2rem;
+      @extend .absolute, .top-0, .right-0;
+      @include sem-typography-level-to-styles($config, input-fix);
+    }
+    input.sem-input {
+      padding-right: 1.2rem;
+    }
+  }
+  .input-grp{
+    width: 100%;
+    display: block;
+    @extend .relative;
+    input.sem-input{
+      width: calc(100% - 2.7rem);
+      @extend .mr2;
+    }
+    button{
+      @extend .absolute, .top-0, .right-0;
+    }
+  }
+
+  .sem-input-button--primary{
+    @include sem-typography-level-to-styles($config, button);
+  }
+}
+
+
+
+
+
+// Converted Variables
+
+$h1: 2rem !default;
+$h2: 1.5rem !default;
+$h3: 1.25rem !default;
+$h4: 1rem !default;
+$h5: .875rem !default;
+$h6: .75rem !default;
+
+// Custom Media Query Variables
+
+
+/* Basscss Type Scale */
+
+.h1 { font-size: $h1 }
+
+.h2 { font-size: $h2 }
+
+.h3 { font-size: $h3 }
+
+.h4 { font-size: $h4 }
+
+.h5 { font-size: $h5 }
+
+.h6 { font-size: $h6 }
+
+// Converted Variables
+
+$line-height-1: 1 !default;
+$line-height-2: 1.125 !default;
+$line-height-3: 1.25 !default;
+$line-height-4: 1.5 !default;
+$letter-spacing: 1 !default;
+$caps-letter-spacing: .2em !default;
+$bold-font-weight: bold !default;
+
+// Custom Media Query Variables
+
+
+/* Basscss Typography */
+
+.font-family-inherit { font-family: inherit }
+
+.font-size-inherit { font-size: inherit }
+
+.text-decoration-none { text-decoration: none }
+
+.bold    { font-weight: $bold-font-weight /* Fallback value:  bold */ }
+
+.regular { font-weight: normal }
+
+.italic  { font-style: italic }
+
+.caps    { text-transform: uppercase; letter-spacing: $caps-letter-spacing; }
+
+.left-align   { text-align: left }
+
+.center       { text-align: center }
+
+.right-align  { text-align: right }
+
+.justify      { text-align: justify }
+
+.nowrap { white-space: nowrap }
+
+.break-word { word-wrap: break-word }
+
+.line-height-1 { line-height: $line-height-1 }
+
+.line-height-2 { line-height: $line-height-2 }
+
+.line-height-3 { line-height: $line-height-3 }
+
+.line-height-4 { line-height: $line-height-4 }
+
+.list-style-none { list-style: none }
+
+.underline { text-decoration: underline }
+
+.truncate {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.list-reset {
+  list-style: none;
+  padding-left: 0;
+}
+
+// Converted Variables
+
+$width-1: 24rem !default;
+$width-2: 32rem !default;
+$width-3: 48rem !default;
+$width-4: 64rem !default;
+
+// Custom Media Query Variables
+
+
+/* Basscss Layout */
+
+.inline       { display: inline }
+
+.block        { display: block }
+
+.inline-block { display: inline-block }
+
+.table        { display: table }
+
+.table-cell   { display: table-cell }
+
+.overflow-hidden { overflow: hidden }
+
+.overflow-scroll { overflow: scroll }
+
+.overflow-auto   { overflow: auto }
+
+.clearfix:before,
+.clearfix:after {
+  content: " ";
+  display: table
+}
+
+.clearfix:after { clear: both }
+
+.left  { float: left }
+
+.right { float: right }
+
+.fit { max-width: 100% }
+
+.max-width-1 { max-width: $width-1 }
+
+.max-width-2 { max-width: $width-2 }
+
+.max-width-3 { max-width: $width-3 }
+
+.max-width-4 { max-width: $width-4 }
+
+.border-box { box-sizing: border-box }
+
+// Converted Variables
+
+
+// Custom Media Query Variables
+
+
+/* Basscss Align */
+
+.align-baseline { vertical-align: baseline }
+
+.align-top      { vertical-align: top }
+
+.align-middle   { vertical-align: middle }
+
+.align-bottom   { vertical-align: bottom }
+
+// Converted Variables
+
+$space-1: .5rem !default;
+$space-2: 1rem !default;
+$space-3: 2rem !default;
+$space-4: 4rem !default;
+
+// Custom Media Query Variables
+
+
+/* Basscss Margin */
+
+.m0  { margin:        0 }
+
+.mt0 { margin-top:    0 }
+
+.mr0 { margin-right:  0 }
+
+.mb0 { margin-bottom: 0 }
+
+.ml0 { margin-left:   0 }
+
+.mx0 { margin-left:   0; margin-right:  0 }
+
+.my0 { margin-top:    0; margin-bottom: 0 }
+
+.m1  { margin:        $space-1 }
+
+.mt1 { margin-top:    $space-1 }
+
+.mr1 { margin-right:  $space-1 }
+
+.mb1 { margin-bottom: $space-1 }
+
+.ml1 { margin-left:   $space-1 }
+
+.mx1 { margin-left:   $space-1; margin-right:  $space-1 }
+
+.my1 { margin-top:    $space-1; margin-bottom: $space-1 }
+
+.m2  { margin:        $space-2 }
+
+.mt2 { margin-top:    $space-2 }
+
+.mr2 { margin-right:  $space-2 }
+
+.mb2 { margin-bottom: $space-2 }
+
+.ml2 { margin-left:   $space-2 }
+
+.mx2 { margin-left:   $space-2; margin-right:  $space-2 }
+
+.my2 { margin-top:    $space-2; margin-bottom: $space-2 }
+
+.m3  { margin:        $space-3 }
+
+.mt3 { margin-top:    $space-3 }
+
+.mr3 { margin-right:  $space-3 }
+
+.mb3 { margin-bottom: $space-3 }
+
+.ml3 { margin-left:   $space-3 }
+
+.mx3 { margin-left:   $space-3; margin-right:  $space-3 }
+
+.my3 { margin-top:    $space-3; margin-bottom: $space-3 }
+
+.m4  { margin:        $space-4 }
+
+.mt4 { margin-top:    $space-4 }
+
+.mr4 { margin-right:  $space-4 }
+
+.mb4 { margin-bottom: $space-4 }
+
+.ml4 { margin-left:   $space-4 }
+
+.mx4 { margin-left:   $space-4; margin-right:  $space-4 }
+
+.my4 { margin-top:    $space-4; margin-bottom: $space-4 }
+
+.mxn1 { margin-left: -$space-1; margin-right: -$space-1; }
+
+.mxn2 { margin-left: -$space-2; margin-right: -$space-2; }
+
+.mxn3 { margin-left: -$space-3; margin-right: -$space-3; }
+
+.mxn4 { margin-left: -$space-4; margin-right: -$space-4; }
+
+.ml-auto { margin-left: auto }
+
+.mr-auto { margin-right: auto }
+
+.mx-auto { margin-left: auto; margin-right: auto; }
+
+// Converted Variables
+
+$space-1: .5rem !default;
+$space-2: 1rem !default;
+$space-3: 2rem !default;
+$space-4: 4rem !default;
+
+// Custom Media Query Variables
+
+
+/* Basscss Padding */
+
+.p0  { padding: 0 }
+
+.pt0 { padding-top: 0 }
+
+.pr0 { padding-right: 0 }
+
+.pb0 { padding-bottom: 0 }
+
+.pl0 { padding-left: 0 }
+
+.px0 { padding-left: 0; padding-right:  0 }
+
+.py0 { padding-top: 0;  padding-bottom: 0 }
+
+.p1  { padding:        $space-1 }
+
+.pt1 { padding-top:    $space-1 }
+
+.pr1 { padding-right:  $space-1 }
+
+.pb1 { padding-bottom: $space-1 }
+
+.pl1 { padding-left:   $space-1 }
+
+.py1 { padding-top:    $space-1; padding-bottom: $space-1 }
+
+.px1 { padding-left:   $space-1; padding-right:  $space-1 }
+
+.p2  { padding:        $space-2 }
+
+.pt2 { padding-top:    $space-2 }
+
+.pr2 { padding-right:  $space-2 }
+
+.pb2 { padding-bottom: $space-2 }
+
+.pl2 { padding-left:   $space-2 }
+
+.py2 { padding-top:    $space-2; padding-bottom: $space-2 }
+
+.px2 { padding-left:   $space-2; padding-right:  $space-2 }
+
+.p3  { padding:        $space-3 }
+
+.pt3 { padding-top:    $space-3 }
+
+.pr3 { padding-right:  $space-3 }
+
+.pb3 { padding-bottom: $space-3 }
+
+.pl3 { padding-left:   $space-3 }
+
+.py3 { padding-top:    $space-3; padding-bottom: $space-3 }
+
+.px3 { padding-left:   $space-3; padding-right:  $space-3 }
+
+.p4  { padding:        $space-4 }
+
+.pt4 { padding-top:    $space-4 }
+
+.pr4 { padding-right:  $space-4 }
+
+.pb4 { padding-bottom: $space-4 }
+
+.pl4 { padding-left:   $space-4 }
+
+.py4 { padding-top:    $space-4; padding-bottom: $space-4 }
+
+.px4 { padding-left:   $space-4; padding-right:  $space-4 }
+
+// Converted Variables
+
+
+// Custom Media Query Variables
+
+$breakpoint-sm: '(min-width: 40em)' !default;
+$breakpoint-md: '(min-width: 52em)' !default;
+$breakpoint-lg: '(min-width: 64em)' !default;
+
+/* Basscss Grid */
+
+.col {
+  float: left;
+  box-sizing: border-box;
+}
+
+.col-right {
+  float: right;
+  box-sizing: border-box;
+}
+
+.col-1 {
+  width: (1/12 * 100%);
+}
+
+.col-2 {
+  width: (2/12 * 100%);
+}
+
+.col-3 {
+  width: (3/12 * 100%);
+}
+
+.col-4 {
+  width: (4/12 * 100%);
+}
+
+.col-5 {
+  width: (5/12 * 100%);
+}
+
+.col-6 {
+  width: (6/12 * 100%);
+}
+
+.col-7 {
+  width: (7/12 * 100%);
+}
+
+.col-8 {
+  width: (8/12 * 100%);
+}
+
+.col-9 {
+  width: (9/12 * 100%);
+}
+
+.col-10 {
+  width: (10/12 * 100%);
+}
+
+.col-11 {
+  width: (11/12 * 100%);
+}
+
+.col-12 {
+  width: 100%;
+}
+
+@media #{$breakpoint-sm} {
+
+  .sm-col {
+    float: left;
+    box-sizing: border-box;
+  }
+
+  .sm-col-right {
+    float: right;
+    box-sizing: border-box;
+  }
+
+  .sm-col-1 {
+    width: (1/12 * 100%);
+  }
+
+  .sm-col-2 {
+    width: (2/12 * 100%);
+  }
+
+  .sm-col-3 {
+    width: (3/12 * 100%);
+  }
+
+  .sm-col-4 {
+    width: (4/12 * 100%);
+  }
+
+  .sm-col-5 {
+    width: (5/12 * 100%);
+  }
+
+  .sm-col-6 {
+    width: (6/12 * 100%);
+  }
+
+  .sm-col-7 {
+    width: (7/12 * 100%);
+  }
+
+  .sm-col-8 {
+    width: (8/12 * 100%);
+  }
+
+  .sm-col-9 {
+    width: (9/12 * 100%);
+  }
+
+  .sm-col-10 {
+    width: (10/12 * 100%);
+  }
+
+  .sm-col-11 {
+    width: (11/12 * 100%);
+  }
+
+  .sm-col-12 {
+    width: 100%;
+  }
+
+}
+
+@media #{$breakpoint-md} {
+
+  .md-col {
+    float: left;
+    box-sizing: border-box;
+  }
+
+  .md-col-right {
+    float: right;
+    box-sizing: border-box;
+  }
+
+  .md-col-1 {
+    width: (1/12 * 100%);
+  }
+
+  .md-col-2 {
+    width: (2/12 * 100%);
+  }
+
+  .md-col-3 {
+    width: (3/12 * 100%);
+  }
+
+  .md-col-4 {
+    width: (4/12 * 100%);
+  }
+
+  .md-col-5 {
+    width: (5/12 * 100%);
+  }
+
+  .md-col-6 {
+    width: (6/12 * 100%);
+  }
+
+  .md-col-7 {
+    width: (7/12 * 100%);
+  }
+
+  .md-col-8 {
+    width: (8/12 * 100%);
+  }
+
+  .md-col-9 {
+    width: (9/12 * 100%);
+  }
+
+  .md-col-10 {
+    width: (10/12 * 100%);
+  }
+
+  .md-col-11 {
+    width: (11/12 * 100%);
+  }
+
+  .md-col-12 {
+    width: 100%;
+  }
+
+}
+
+@media #{$breakpoint-lg} {
+
+  .lg-col {
+    float: left;
+    box-sizing: border-box;
+  }
+
+  .lg-col-right {
+    float: right;
+    box-sizing: border-box;
+  }
+
+  .lg-col-1 {
+    width: (1/12 * 100%);
+  }
+
+  .lg-col-2 {
+    width: (2/12 * 100%);
+  }
+
+  .lg-col-3 {
+    width: (3/12 * 100%);
+  }
+
+  .lg-col-4 {
+    width: (4/12 * 100%);
+  }
+
+  .lg-col-5 {
+    width: (5/12 * 100%);
+  }
+
+  .lg-col-6 {
+    width: (6/12 * 100%);
+  }
+
+  .lg-col-7 {
+    width: (7/12 * 100%);
+  }
+
+  .lg-col-8 {
+    width: (8/12 * 100%);
+  }
+
+  .lg-col-9 {
+    width: (9/12 * 100%);
+  }
+
+  .lg-col-10 {
+    width: (10/12 * 100%);
+  }
+
+  .lg-col-11 {
+    width: (11/12 * 100%);
+  }
+
+  .lg-col-12 {
+    width: 100%;
+  }
+
+}
+
+// Converted Variables
+
+
+// Custom Media Query Variables
+
+$breakpoint-sm: '(min-width: 40em)' !default;
+$breakpoint-md: '(min-width: 52em)' !default;
+$breakpoint-lg: '(min-width: 64em)' !default;
+
+
+.flex { display: flex }
+
+@media #{$breakpoint-sm} {
+  .sm-flex { display: flex }
+}
+
+@media #{$breakpoint-md} {
+  .md-flex { display: flex }
+}
+
+@media #{$breakpoint-lg} {
+  .lg-flex { display: flex }
+}
+
+.flex-column  { flex-direction: column }
+
+.flex-wrap    { flex-wrap: wrap }
+
+.items-start    { align-items: flex-start }
+
+.items-end      { align-items: flex-end }
+
+.items-center   { align-items: center }
+
+.items-baseline { align-items: baseline }
+
+.items-stretch  { align-items: stretch }
+
+.self-start    { align-self: flex-start }
+
+.self-end      { align-self: flex-end }
+
+.self-center   { align-self: center }
+
+.self-baseline { align-self: baseline }
+
+.self-stretch  { align-self: stretch }
+
+.justify-start   { justify-content: flex-start }
+
+.justify-end     { justify-content: flex-end }
+
+.justify-center  { justify-content: center }
+
+.justify-between { justify-content: space-between }
+
+.justify-around  { justify-content: space-around }
+
+.content-start   { align-content: flex-start }
+
+.content-end     { align-content: flex-end }
+
+.content-center  { align-content: center }
+
+.content-between { align-content: space-between }
+
+.content-around  { align-content: space-around }
+
+.content-stretch { align-content: stretch }
+
+/* 1. Fix for Chrome 44 bug. https://code.google.com/p/chromium/issues/detail?id=506893 */
+
+.flex-auto {
+  flex: 1 1 auto;
+  min-width: 0; /* 1 */
+  min-height: 0; /* 1 */
+}
+
+.flex-none { flex: none }
+
+.order-0 { order: 0 }
+
+.order-1 { order: 1 }
+
+.order-2 { order: 2 }
+
+.order-3 { order: 3 }
+
+.order-last { order: 99999 }
+
+// Converted Variables
+
+$z1: 1 !default;
+$z2: 2 !default;
+$z3: 3 !default;
+$z4: 4 !default;
+
+// Custom Media Query Variables
+
+
+/* Basscss Position */
+
+.relative { position: relative }
+
+.absolute { position: absolute }
+
+.fixed    { position: fixed }
+
+.top-0    { top: 0 }
+
+.right-0  { right: 0 }
+
+.bottom-0 { bottom: 0 }
+
+.left-0   { left: 0 }
+
+.z1 { z-index: $z1 }
+
+.z2 { z-index: $z2 }
+
+.z3 { z-index: $z3 }
+
+.z4 { z-index: $z4 }
+
+// Converted Variables
+
+$border-width: 1px !default;
+$border-radius: 3px !default;
+
+// Custom Media Query Variables
+
+
+/* Basscss Border */
+
+.border {
+  border-style: solid;
+  border-width: $border-width;
+}
+
+.border-top {
+  border-top-style: solid;
+  border-top-width: $border-width;
+}
+
+.border-right {
+  border-right-style: solid;
+  border-right-width: $border-width;
+}
+
+.border-bottom {
+  border-bottom-style: solid;
+  border-bottom-width: $border-width;
+}
+
+.border-left {
+  border-left-style: solid;
+  border-left-width: $border-width;
+}
+
+.border-none { border: 0 }
+
+.rounded { border-radius: $border-radius }
+
+.circle  { border-radius: 50% }
+
+.rounded-top    { border-radius: $border-radius $border-radius 0 0 }
+
+.rounded-right  { border-radius: 0 $border-radius $border-radius 0 }
+
+.rounded-bottom { border-radius: 0 0 $border-radius $border-radius }
+
+.rounded-left   { border-radius: $border-radius 0 0 $border-radius }
+
+.not-rounded { border-radius: 0 }
+
+// Converted Variables
+
+
+// Custom Media Query Variables
+
+$breakpoint-xs: '(max-width: 40em)' !default;
+$breakpoint-sm-md: '(min-width: 40em) and (max-width: 52em)' !default;
+$breakpoint-md-lg: '(min-width: 52em) and (max-width: 64em)' !default;
+$breakpoint-lg: '(min-width: 64em)' !default;
+
+/* Basscss Hide */
+
+.hide {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+}
+
+@media #{$breakpoint-xs} {
+  .xs-hide { display: none !important }
+}
+
+@media #{$breakpoint-sm-md} {
+  .sm-hide { display: none !important }
+}
+
+@media #{$breakpoint-md-lg} {
+  .md-hide { display: none !important }
+}
+
+@media #{$breakpoint-lg} {
+  .lg-hide { display: none !important }
+}
+
+.display-none { display: none !important }
+
+
+@mixin sem-heading-typography($config) {
+  .sem-typo {
+    font-weight: 700;
+    &--h1, h1 {
+      margin: 0 0 8px;
+      @include sem-typography-level-to-styles($config, heading_one);
+      &--lead{
+        @include sem-typography-level-to-styles($config, lead);
+      }
+    }
+    &--h2, h2 {
+      @include sem-typography-level-to-styles($config, heading_two);
+    }
+
+    &--h3, h3 {
+      @include sem-typography-level-to-styles($config, heading_three);
+    }
+
+    &--h4, h4 {
+      @extend .m0;
+      @include sem-typography-level-to-styles($config, heading_four);
+    }
+    &--h5, h5 {
+      @extend .m0;
+      @include sem-typography-level-to-styles($config, heading_five);
+    }
+    &--center {
+      @extend .center;
+    }
+    &--lead{
+      @include sem-typography-level-to-styles($config, lead);
+    }
+    &--caption, .caption {
+      display: block;
+      margin: 0 0 16px;
+      &_primary {
+        @include sem-typography-level-to-styles($config, primary-caption);
+      }
+      &_sub {
+        @include sem-typography-level-to-styles($config, sub-caption);
+      }
+      &_fig {
+        @include sem-typography-level-to-styles($config, figcaption);
+      }
+    }
+    &--label {
+      @include sem-typography-level-to-styles($config, label);
+    }
+    &--body_base {
+      @include sem-typography-level-to-styles($config, body-base);
+    }
+    &--input {
+      @include sem-typography-level-to-styles($config, input);
+    }
+    &--p{
+      margin: 0 0 1em;
+      @include sem-typography-level-to-styles($config, body-base);
+    }
+
+
+
+
+    &--uppercase {
+      text-transform: uppercase;
+    }
+    &--hr {
+      @extend %sem-hr;
+    }
+    i, em {
+      @extend %sem-i;
+    }
+    b, strong {
+      @extend %sem-b;
+    }
+
+  }
+}
+
+@mixin sem-heading-theme($theme) {
+  $foreground: map-get($theme, foreground);
+  .sem-font {
+    color:  map-get($foreground, typography-base);
+    &--inverted {
+      color:  map-get($foreground, typography-base-inverted);
+    }
+
+  }
+}
+
+
+
+
+.sem-ul-icon-list {
+  > div {
+    .sem-li {
+      border-bottom: 1px solid #cccccc;
+    }
+    &:last-child {
+      .sem-li {
+        border-bottom: 0px solid #cccccc;
+      }
+    }
+  }
+}
+
+.no-padding-list{
+  .sem-ul-icon-list{
+    .sem-li {
+      padding-top: 0rem;
+      padding-bottom: 0rem;
+    }
+  }
+  .sem-ul{
+    .sem-li {
+      padding-top: 0rem;
+      padding-bottom: 0rem;
+    }
+  }
+}
+.sem-ul-icon-list{
+  .sem-li {
+    white-space: nowrap;
+    -webkit-font-smoothing: antialiased;
+    padding-top: .45rem;
+    padding-bottom: .45rem;
+    @extend .px2;
+    cursor: pointer;
+    &:not([disabled]) {
+      cursor: pointer;
+    }
+    &.no-padding{
+      @extend .py0;
+    }
+
+    &.active {
+      img.icon-default {
+        display: none;
+      }
+      img.icon-hover {
+        display: inline-block;
+      }
+    }
+
+    span {}
+    img {
+      display: inline-block;
+      vertical-align: middle;
+      margin-bottom: 4px;
+      &.icon-hover {
+        display: none;
+      }
+    }
+  }
+}
+
+
+
+// generic li
+.sem-ul{
+  list-style: none;
+  width: 100%;
+  margin: 0px auto;
+  padding: 0px;
+
+  .sem-li{
+    padding-top: .45rem;
+    padding-bottom: .45rem;
+    @extend .px2;
+    cursor: pointer;
+
+
+    &:not([disabled]) {
+      cursor: pointer;
+    }
+    &.active{
+      @include sem-rounded( 7px 0px 0px 7px);
+    }
+  }
+}
+
+
+@mixin sem-list-theme($theme){
+  .sem-list--caption {
+    color: map_get($theme, secondary);
+  }
+
+
+  // li dark
+  .sem-ul-light{
+    .sem-li{
+      color:  map_get($theme, tertiary);
+      &:hover{
+        @include interactive-bg(map_get($theme, quaternary));
+        &.active{
+          color:  map_get($theme, quaternary);
+          background-color: map_get($theme, tertiary);
+        }
+      }
+      &.active{
+        color:  map_get($theme, quaternary);
+        background-color: map_get($theme, tertiary);
+      }
+    }
+  }
+  //li light
+  .sem-ul-dark{
+    .sem-li{
+      color:  map_get($theme, quaternary);
+      &:hover{
+        @include interactive-bg(map_get($theme, tertiary));
+        &.active{
+          color:  map_get($theme, tertiary);
+          background-color: map_get($theme, quaternary);
+        }
+      }
+      &.active{
+        color:  map_get($theme, tertiary);
+        background-color: map_get($theme, quaternary);
+      }
+    }
+  }
+}
+@mixin sem-list-typography($config) {
+
+  //.sem-ul-list{
+  //  &_item{
+  //    text-overflow: ellipsis;
+  //    -webkit-line-clamp: 1;
+  //    overflow: hidden;
+  //    white-space: nowrap;
+  //    cursor: pointer;
+  //
+  //    @extend .py1;
+  //    @include sem-typography-level-to-styles($config, body-base);
+  //    //border-bottom: 1px solid #cccccc;
+  //    &:hover {
+  //      background: #fafafa;
+  //    }
+  //  }
+  //}
+  .sem-list{
+    @extend .pt1;
+    li{
+      @extend .px2;
+    }
+  }
+  .sem-list--caption{
+    @extend .py1, .px2;
+    @include sem-typography-level-to-styles($config, caption);
+  }
+  .sem-list--button{
+    @extend .py1, .px2;
+    @include sem-typography-level-to-styles($config, caption);
+  }
+}
+
+// UL set
+@mixin sem-ul-theme($theme) {
+}
+
+ul{
+  &.corner_all{
+    li:first-child{
+      @include sem-rounded( 6px 6px 0px 0px );
+    }
+    li:last-child{
+      @include sem-rounded( 0px 0px 11px 11px );
+    }
+  }
+}
 
 
 // Converted Variables
@@ -9210,27 +7480,7 @@ $breakpoint-lg: '(min-width: 64em)' !default;
 
 
 
-@mixin sem-nav_sections-theme($theme) {
-  $primary: map-get($theme, primary);
-  $accent: map-get($theme, accent);
-  $background: map-get($theme, background);
-  $foreground: map-get($theme, foreground);
-
-
-  h2{
-    color: map_get($background, text-sidebar);
-  }
-  .sections-list {
-    li{
-      color: map_get($background, text-sidebar);
-      &.active{
-        color: sem-color($foreground, link);
-      }
-    }
-  }
-
-
-}
+@mixin sem-nav_sections-theme($theme) {}
 
 .section-list {
   overflow: scroll;
@@ -9262,7 +7512,1054 @@ $breakpoint-lg: '(min-width: 64em)' !default;
 
 
 
+// Converted Variables
 
+$h1: 2rem !default;
+$h2: 1.5rem !default;
+$h3: 1.25rem !default;
+$h4: 1rem !default;
+$h5: .875rem !default;
+$h6: .75rem !default;
+
+// Custom Media Query Variables
+
+
+/* Basscss Type Scale */
+
+.h1 { font-size: $h1 }
+
+.h2 { font-size: $h2 }
+
+.h3 { font-size: $h3 }
+
+.h4 { font-size: $h4 }
+
+.h5 { font-size: $h5 }
+
+.h6 { font-size: $h6 }
+
+// Converted Variables
+
+$line-height-1: 1 !default;
+$line-height-2: 1.125 !default;
+$line-height-3: 1.25 !default;
+$line-height-4: 1.5 !default;
+$letter-spacing: 1 !default;
+$caps-letter-spacing: .2em !default;
+$bold-font-weight: bold !default;
+
+// Custom Media Query Variables
+
+
+/* Basscss Typography */
+
+.font-family-inherit { font-family: inherit }
+
+.font-size-inherit { font-size: inherit }
+
+.text-decoration-none { text-decoration: none }
+
+.bold    { font-weight: $bold-font-weight /* Fallback value:  bold */ }
+
+.regular { font-weight: normal }
+
+.italic  { font-style: italic }
+
+.caps    { text-transform: uppercase; letter-spacing: $caps-letter-spacing; }
+
+.left-align   { text-align: left }
+
+.center       { text-align: center }
+
+.right-align  { text-align: right }
+
+.justify      { text-align: justify }
+
+.nowrap { white-space: nowrap }
+
+.break-word { word-wrap: break-word }
+
+.line-height-1 { line-height: $line-height-1 }
+
+.line-height-2 { line-height: $line-height-2 }
+
+.line-height-3 { line-height: $line-height-3 }
+
+.line-height-4 { line-height: $line-height-4 }
+
+.list-style-none { list-style: none }
+
+.underline { text-decoration: underline }
+
+.truncate {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.list-reset {
+  list-style: none;
+  padding-left: 0;
+}
+
+// Converted Variables
+
+$width-1: 24rem !default;
+$width-2: 32rem !default;
+$width-3: 48rem !default;
+$width-4: 64rem !default;
+
+// Custom Media Query Variables
+
+
+/* Basscss Layout */
+
+.inline       { display: inline }
+
+.block        { display: block }
+
+.inline-block { display: inline-block }
+
+.table        { display: table }
+
+.table-cell   { display: table-cell }
+
+.overflow-hidden { overflow: hidden }
+
+.overflow-scroll { overflow: scroll }
+
+.overflow-auto   { overflow: auto }
+
+.clearfix:before,
+.clearfix:after {
+  content: " ";
+  display: table
+}
+
+.clearfix:after { clear: both }
+
+.left  { float: left }
+
+.right { float: right }
+
+.fit { max-width: 100% }
+
+.max-width-1 { max-width: $width-1 }
+
+.max-width-2 { max-width: $width-2 }
+
+.max-width-3 { max-width: $width-3 }
+
+.max-width-4 { max-width: $width-4 }
+
+.border-box { box-sizing: border-box }
+
+// Converted Variables
+
+
+// Custom Media Query Variables
+
+
+/* Basscss Align */
+
+.align-baseline { vertical-align: baseline }
+
+.align-top      { vertical-align: top }
+
+.align-middle   { vertical-align: middle }
+
+.align-bottom   { vertical-align: bottom }
+
+// Converted Variables
+
+$space-1: .5rem !default;
+$space-2: 1rem !default;
+$space-3: 2rem !default;
+$space-4: 4rem !default;
+
+// Custom Media Query Variables
+
+
+/* Basscss Margin */
+
+.m0  { margin:        0 }
+
+.mt0 { margin-top:    0 }
+
+.mr0 { margin-right:  0 }
+
+.mb0 { margin-bottom: 0 }
+
+.ml0 { margin-left:   0 }
+
+.mx0 { margin-left:   0; margin-right:  0 }
+
+.my0 { margin-top:    0; margin-bottom: 0 }
+
+.m1  { margin:        $space-1 }
+
+.mt1 { margin-top:    $space-1 }
+
+.mr1 { margin-right:  $space-1 }
+
+.mb1 { margin-bottom: $space-1 }
+
+.ml1 { margin-left:   $space-1 }
+
+.mx1 { margin-left:   $space-1; margin-right:  $space-1 }
+
+.my1 { margin-top:    $space-1; margin-bottom: $space-1 }
+
+.m2  { margin:        $space-2 }
+
+.mt2 { margin-top:    $space-2 }
+
+.mr2 { margin-right:  $space-2 }
+
+.mb2 { margin-bottom: $space-2 }
+
+.ml2 { margin-left:   $space-2 }
+
+.mx2 { margin-left:   $space-2; margin-right:  $space-2 }
+
+.my2 { margin-top:    $space-2; margin-bottom: $space-2 }
+
+.m3  { margin:        $space-3 }
+
+.mt3 { margin-top:    $space-3 }
+
+.mr3 { margin-right:  $space-3 }
+
+.mb3 { margin-bottom: $space-3 }
+
+.ml3 { margin-left:   $space-3 }
+
+.mx3 { margin-left:   $space-3; margin-right:  $space-3 }
+
+.my3 { margin-top:    $space-3; margin-bottom: $space-3 }
+
+.m4  { margin:        $space-4 }
+
+.mt4 { margin-top:    $space-4 }
+
+.mr4 { margin-right:  $space-4 }
+
+.mb4 { margin-bottom: $space-4 }
+
+.ml4 { margin-left:   $space-4 }
+
+.mx4 { margin-left:   $space-4; margin-right:  $space-4 }
+
+.my4 { margin-top:    $space-4; margin-bottom: $space-4 }
+
+.mxn1 { margin-left: -$space-1; margin-right: -$space-1; }
+
+.mxn2 { margin-left: -$space-2; margin-right: -$space-2; }
+
+.mxn3 { margin-left: -$space-3; margin-right: -$space-3; }
+
+.mxn4 { margin-left: -$space-4; margin-right: -$space-4; }
+
+.ml-auto { margin-left: auto }
+
+.mr-auto { margin-right: auto }
+
+.mx-auto { margin-left: auto; margin-right: auto; }
+
+// Converted Variables
+
+$space-1: .5rem !default;
+$space-2: 1rem !default;
+$space-3: 2rem !default;
+$space-4: 4rem !default;
+
+// Custom Media Query Variables
+
+
+/* Basscss Padding */
+
+.p0  { padding: 0 }
+
+.pt0 { padding-top: 0 }
+
+.pr0 { padding-right: 0 }
+
+.pb0 { padding-bottom: 0 }
+
+.pl0 { padding-left: 0 }
+
+.px0 { padding-left: 0; padding-right:  0 }
+
+.py0 { padding-top: 0;  padding-bottom: 0 }
+
+.p1  { padding:        $space-1 }
+
+.pt1 { padding-top:    $space-1 }
+
+.pr1 { padding-right:  $space-1 }
+
+.pb1 { padding-bottom: $space-1 }
+
+.pl1 { padding-left:   $space-1 }
+
+.py1 { padding-top:    $space-1; padding-bottom: $space-1 }
+
+.px1 { padding-left:   $space-1; padding-right:  $space-1 }
+
+.p2  { padding:        $space-2 }
+
+.pt2 { padding-top:    $space-2 }
+
+.pr2 { padding-right:  $space-2 }
+
+.pb2 { padding-bottom: $space-2 }
+
+.pl2 { padding-left:   $space-2 }
+
+.py2 { padding-top:    $space-2; padding-bottom: $space-2 }
+
+.px2 { padding-left:   $space-2; padding-right:  $space-2 }
+
+.p3  { padding:        $space-3 }
+
+.pt3 { padding-top:    $space-3 }
+
+.pr3 { padding-right:  $space-3 }
+
+.pb3 { padding-bottom: $space-3 }
+
+.pl3 { padding-left:   $space-3 }
+
+.py3 { padding-top:    $space-3; padding-bottom: $space-3 }
+
+.px3 { padding-left:   $space-3; padding-right:  $space-3 }
+
+.p4  { padding:        $space-4 }
+
+.pt4 { padding-top:    $space-4 }
+
+.pr4 { padding-right:  $space-4 }
+
+.pb4 { padding-bottom: $space-4 }
+
+.pl4 { padding-left:   $space-4 }
+
+.py4 { padding-top:    $space-4; padding-bottom: $space-4 }
+
+.px4 { padding-left:   $space-4; padding-right:  $space-4 }
+
+// Converted Variables
+
+
+// Custom Media Query Variables
+
+$breakpoint-sm: '(min-width: 40em)' !default;
+$breakpoint-md: '(min-width: 52em)' !default;
+$breakpoint-lg: '(min-width: 64em)' !default;
+
+/* Basscss Grid */
+
+.col {
+  float: left;
+  box-sizing: border-box;
+}
+
+.col-right {
+  float: right;
+  box-sizing: border-box;
+}
+
+.col-1 {
+  width: (1/12 * 100%);
+}
+
+.col-2 {
+  width: (2/12 * 100%);
+}
+
+.col-3 {
+  width: (3/12 * 100%);
+}
+
+.col-4 {
+  width: (4/12 * 100%);
+}
+
+.col-5 {
+  width: (5/12 * 100%);
+}
+
+.col-6 {
+  width: (6/12 * 100%);
+}
+
+.col-7 {
+  width: (7/12 * 100%);
+}
+
+.col-8 {
+  width: (8/12 * 100%);
+}
+
+.col-9 {
+  width: (9/12 * 100%);
+}
+
+.col-10 {
+  width: (10/12 * 100%);
+}
+
+.col-11 {
+  width: (11/12 * 100%);
+}
+
+.col-12 {
+  width: 100%;
+}
+
+@media #{$breakpoint-sm} {
+
+  .sm-col {
+    float: left;
+    box-sizing: border-box;
+  }
+
+  .sm-col-right {
+    float: right;
+    box-sizing: border-box;
+  }
+
+  .sm-col-1 {
+    width: (1/12 * 100%);
+  }
+
+  .sm-col-2 {
+    width: (2/12 * 100%);
+  }
+
+  .sm-col-3 {
+    width: (3/12 * 100%);
+  }
+
+  .sm-col-4 {
+    width: (4/12 * 100%);
+  }
+
+  .sm-col-5 {
+    width: (5/12 * 100%);
+  }
+
+  .sm-col-6 {
+    width: (6/12 * 100%);
+  }
+
+  .sm-col-7 {
+    width: (7/12 * 100%);
+  }
+
+  .sm-col-8 {
+    width: (8/12 * 100%);
+  }
+
+  .sm-col-9 {
+    width: (9/12 * 100%);
+  }
+
+  .sm-col-10 {
+    width: (10/12 * 100%);
+  }
+
+  .sm-col-11 {
+    width: (11/12 * 100%);
+  }
+
+  .sm-col-12 {
+    width: 100%;
+  }
+
+}
+
+@media #{$breakpoint-md} {
+
+  .md-col {
+    float: left;
+    box-sizing: border-box;
+  }
+
+  .md-col-right {
+    float: right;
+    box-sizing: border-box;
+  }
+
+  .md-col-1 {
+    width: (1/12 * 100%);
+  }
+
+  .md-col-2 {
+    width: (2/12 * 100%);
+  }
+
+  .md-col-3 {
+    width: (3/12 * 100%);
+  }
+
+  .md-col-4 {
+    width: (4/12 * 100%);
+  }
+
+  .md-col-5 {
+    width: (5/12 * 100%);
+  }
+
+  .md-col-6 {
+    width: (6/12 * 100%);
+  }
+
+  .md-col-7 {
+    width: (7/12 * 100%);
+  }
+
+  .md-col-8 {
+    width: (8/12 * 100%);
+  }
+
+  .md-col-9 {
+    width: (9/12 * 100%);
+  }
+
+  .md-col-10 {
+    width: (10/12 * 100%);
+  }
+
+  .md-col-11 {
+    width: (11/12 * 100%);
+  }
+
+  .md-col-12 {
+    width: 100%;
+  }
+
+}
+
+@media #{$breakpoint-lg} {
+
+  .lg-col {
+    float: left;
+    box-sizing: border-box;
+  }
+
+  .lg-col-right {
+    float: right;
+    box-sizing: border-box;
+  }
+
+  .lg-col-1 {
+    width: (1/12 * 100%);
+  }
+
+  .lg-col-2 {
+    width: (2/12 * 100%);
+  }
+
+  .lg-col-3 {
+    width: (3/12 * 100%);
+  }
+
+  .lg-col-4 {
+    width: (4/12 * 100%);
+  }
+
+  .lg-col-5 {
+    width: (5/12 * 100%);
+  }
+
+  .lg-col-6 {
+    width: (6/12 * 100%);
+  }
+
+  .lg-col-7 {
+    width: (7/12 * 100%);
+  }
+
+  .lg-col-8 {
+    width: (8/12 * 100%);
+  }
+
+  .lg-col-9 {
+    width: (9/12 * 100%);
+  }
+
+  .lg-col-10 {
+    width: (10/12 * 100%);
+  }
+
+  .lg-col-11 {
+    width: (11/12 * 100%);
+  }
+
+  .lg-col-12 {
+    width: 100%;
+  }
+
+}
+
+// Converted Variables
+
+
+// Custom Media Query Variables
+
+$breakpoint-sm: '(min-width: 40em)' !default;
+$breakpoint-md: '(min-width: 52em)' !default;
+$breakpoint-lg: '(min-width: 64em)' !default;
+
+
+.flex { display: flex }
+
+@media #{$breakpoint-sm} {
+  .sm-flex { display: flex }
+}
+
+@media #{$breakpoint-md} {
+  .md-flex { display: flex }
+}
+
+@media #{$breakpoint-lg} {
+  .lg-flex { display: flex }
+}
+
+.flex-column  { flex-direction: column }
+
+.flex-wrap    { flex-wrap: wrap }
+
+.items-start    { align-items: flex-start }
+
+.items-end      { align-items: flex-end }
+
+.items-center   { align-items: center }
+
+.items-baseline { align-items: baseline }
+
+.items-stretch  { align-items: stretch }
+
+.self-start    { align-self: flex-start }
+
+.self-end      { align-self: flex-end }
+
+.self-center   { align-self: center }
+
+.self-baseline { align-self: baseline }
+
+.self-stretch  { align-self: stretch }
+
+.justify-start   { justify-content: flex-start }
+
+.justify-end     { justify-content: flex-end }
+
+.justify-center  { justify-content: center }
+
+.justify-between { justify-content: space-between }
+
+.justify-around  { justify-content: space-around }
+
+.content-start   { align-content: flex-start }
+
+.content-end     { align-content: flex-end }
+
+.content-center  { align-content: center }
+
+.content-between { align-content: space-between }
+
+.content-around  { align-content: space-around }
+
+.content-stretch { align-content: stretch }
+
+/* 1. Fix for Chrome 44 bug. https://code.google.com/p/chromium/issues/detail?id=506893 */
+
+.flex-auto {
+  flex: 1 1 auto;
+  min-width: 0; /* 1 */
+  min-height: 0; /* 1 */
+}
+
+.flex-none { flex: none }
+
+.order-0 { order: 0 }
+
+.order-1 { order: 1 }
+
+.order-2 { order: 2 }
+
+.order-3 { order: 3 }
+
+.order-last { order: 99999 }
+
+// Converted Variables
+
+$z1: 1 !default;
+$z2: 2 !default;
+$z3: 3 !default;
+$z4: 4 !default;
+
+// Custom Media Query Variables
+
+
+/* Basscss Position */
+
+.relative { position: relative }
+
+.absolute { position: absolute }
+
+.fixed    { position: fixed }
+
+.top-0    { top: 0 }
+
+.right-0  { right: 0 }
+
+.bottom-0 { bottom: 0 }
+
+.left-0   { left: 0 }
+
+.z1 { z-index: $z1 }
+
+.z2 { z-index: $z2 }
+
+.z3 { z-index: $z3 }
+
+.z4 { z-index: $z4 }
+
+// Converted Variables
+
+$border-width: 1px !default;
+$border-radius: 3px !default;
+
+// Custom Media Query Variables
+
+
+/* Basscss Border */
+
+.border {
+  border-style: solid;
+  border-width: $border-width;
+}
+
+.border-top {
+  border-top-style: solid;
+  border-top-width: $border-width;
+}
+
+.border-right {
+  border-right-style: solid;
+  border-right-width: $border-width;
+}
+
+.border-bottom {
+  border-bottom-style: solid;
+  border-bottom-width: $border-width;
+}
+
+.border-left {
+  border-left-style: solid;
+  border-left-width: $border-width;
+}
+
+.border-none { border: 0 }
+
+.rounded { border-radius: $border-radius }
+
+.circle  { border-radius: 50% }
+
+.rounded-top    { border-radius: $border-radius $border-radius 0 0 }
+
+.rounded-right  { border-radius: 0 $border-radius $border-radius 0 }
+
+.rounded-bottom { border-radius: 0 0 $border-radius $border-radius }
+
+.rounded-left   { border-radius: $border-radius 0 0 $border-radius }
+
+.not-rounded { border-radius: 0 }
+
+// Converted Variables
+
+
+// Custom Media Query Variables
+
+$breakpoint-xs: '(max-width: 40em)' !default;
+$breakpoint-sm-md: '(min-width: 40em) and (max-width: 52em)' !default;
+$breakpoint-md-lg: '(min-width: 52em) and (max-width: 64em)' !default;
+$breakpoint-lg: '(min-width: 64em)' !default;
+
+/* Basscss Hide */
+
+.hide {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+}
+
+@media #{$breakpoint-xs} {
+  .xs-hide { display: none !important }
+}
+
+@media #{$breakpoint-sm-md} {
+  .sm-hide { display: none !important }
+}
+
+@media #{$breakpoint-md-lg} {
+  .md-hide { display: none !important }
+}
+
+@media #{$breakpoint-lg} {
+  .lg-hide { display: none !important }
+}
+
+.display-none { display: none !important }
+
+
+
+.sem-label-button{
+  text-align: center;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 1px #585858;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+  @include sem-rounded( 12px 12px 0px);
+  cursor: pointer;
+  border: none;
+  &:not([disabled]) {
+    cursor: pointer;
+  }
+  &_square{
+    height: 40px;
+    width: 40px;
+  }
+}
+
+@mixin sem-label-theme($theme) {
+  $foreground: map-get($theme, foreground);
+  .semui-label.dark{
+    color: map_get($foreground, sidebar-labels-inverted );
+  }
+  .semui-label.light{
+    color: map_get($foreground, sidebar-labels );
+  }
+
+
+
+}
+
+@mixin sem-label-typography($config) {
+  label {
+    @extend .fit, .block;
+    @include sem-typography-level-to-styles($config, label_medium);
+  }
+  .semui-label.large{
+    @include sem-typography-level-to-styles($config, label_large);
+  }
+  .semui-label.medium{
+    @include sem-typography-level-to-styles($config, label_medium);
+  }
+  .semui-label.small{
+    @include sem-typography-level-to-styles($config, label_small);
+  }
+  .semui-label.form-label{
+    @include sem-typography-level-to-styles($config, label_medium);
+  }
+
+}
+
+
+
+
+.sem-typo-grouped{
+  &--title{}
+  &--subtext{}
+}
+
+@mixin sem-button-typography($config) {
+  .sem-button--default {
+    @include sem-typography-level-to-styles($config, button);
+  }
+  .sem-button--primary {
+    @include sem-typography-level-to-styles($config, button);
+  }
+  .sem-button--secondary {
+    @include sem-typography-level-to-styles($config, button);
+  }
+  .sem-button--small {
+    @include sem-typography-level-to-styles($config, button_small);
+  }
+  .sem-button--large {
+    @include sem-typography-level-to-styles($config, button_large);
+  }
+  .sem-dnd-button{
+    @include sem-typography-level-to-styles($config, button_small);
+  }
+}
+
+
+
+
+/**
+ * Theming
+*/
+@mixin sem-btn-fab-theme($theme) {
+
+}
+@mixin sem-btn-fab-typography($config) {
+
+
+  // Sizes
+  .sem-btn-fab--small{
+    @include sem-typography-level-to-styles($config, button-fab_small);
+  }
+  .sem-btn-fab--default{
+    @include sem-typography-level-to-styles($config, button-fab);
+  }
+
+
+  .sem-btn-fab--default_small{
+    @include sem-typography-level-to-styles($config, button-fab_small);
+  }
+  .sem-btn-fab--secondary{
+    @include sem-typography-level-to-styles($config, button-fab);
+  }
+}
+
+
+/**
+ * Component
+*/
+
+
+
+
+.sem-btn-fab{
+  outline: none;
+  cursor: pointer;
+  display: inline-block;
+  border: none;
+  &:not([disabled]) {
+    cursor: pointer;
+  }
+
+  img{
+    width: map-get($sem-ui-dimensons, fab);
+    height: map-get($sem-ui-dimensons, fab);
+    display: block;
+    vertical-align: middle;
+  }
+}
+/** Importance */
+.sem-btn-fab {
+  &--medium {
+    @extend .p1;
+    > span {
+      display: block;
+      width: map-get($sem-ui-dimensons, fab);
+      height: map-get($sem-ui-dimensons, fab);
+    }
+  }
+  &--small{
+    padding: 0.2rem;
+    > span {
+      display: block;
+       margin: 1px;
+    }
+  }
+}
+
+
+
+.sem-btn-fab--default_small{
+
+  > span{
+    display: block;
+    width: map-get($sem-ui-dimensons, fab_small);
+    height: map-get($sem-ui-dimensons, fab_small);
+  }
+}
+
+.sem-btn-fab--primary{
+
+  > span{
+    display: block;
+    width: map-get($sem-ui-dimensons, fab);
+    height: map-get($sem-ui-dimensons, fab);
+  }
+}
+.sem-btn-fab--secondary{
+
+  > span{
+    display: block;
+    width: map-get($sem-ui-dimensons, fab);
+    height: map-get($sem-ui-dimensons, fab);
+  }
+}
+/** Type */
+.sem-btn-fab--corner{
+
+}
+
+
+
+
+
+
+@mixin sem-overlay-theme($theme) {
+  .dialog-container{
+    background-color: #FAFAFA;
+  }
+
+}
+@mixin sem-dialog-typography($config) {
+  .dialog-container {
+
+    &--header, &--footer{
+      @include sem-typography-level-to-styles($config, body-base);
+    }
+
+  }
+}
+
+
+
+
+
+@mixin sem-li-theme($theme) {
+  .sem-li--inverted, .sem-li--inverted a{
+    @include interactive-bg(map_get($theme, inverted));
+  }
+  .sem-li--default, .sem-li--default a{
+    @include interactive-bg(map_get($theme, default));
+  }
+  .sem-li--primary, .sem-li--primary a{
+    @include interactive-bg(map_get($theme, primary));
+  }
+  .sem-li--secondary, .sem-li--secondary a{
+    @include interactive-bg(map_get($theme, tertiary));
+  }
+  .sem-li--tertiary, .sem-li--tertiary a{
+    @include interactive-bg(map_get($theme, secondary));
+  }
+  .sem-li--danger, .sem-li--danger a{
+    color: map_get($theme, danger);
+    background: map_get($theme, quaternary);
+    &:hover{
+      background-color: darken(map_get($theme, quaternary), 20%);
+    }
+  }
+
+}
+@mixin sem-li-typography($config) {
+  .sem-li {
+    @include sem-typography-level-to-styles($config, body-base);
+  }
+}
 
 
 
@@ -9271,72 +8568,377 @@ $breakpoint-lg: '(min-width: 64em)' !default;
  * Theming
 */
 
+@mixin sem-tabs-theme($theme) {
+  /** Tabs on top */
+  ul.semui-tabs-list.tabs-vertical{
+    border-bottom: solid 1px #dedede;
+  }
+
+  li.active {
+    .tabs--button,
+    .tabs--button:focus,
+    .tabs--button:hover {
+      color: map_get($theme, tertiary);
+      border-width: 0;
+    }
+  }
+
+  .tabs--button {
+    color: map_get($theme, tertiary);
+    border: none;
+    background: transparent;
+    box-shadow: none;
+    &:not([disabled]) {
+      &:hover {
+        color: map_get($theme, tertiary);
+        background: transparent;
+        &::after {
+          background: map_get($theme, tertiary);
+          background: map_get($theme, tertiary) none repeat scroll 0 0;
+          color:  map_get($theme, tertiary);
+        }
+      }
+    }
+
+    &::after {
+      background: map_get($theme, tertiary);
+      background: map_get($theme, tertiary) none repeat scroll 0 0;
+      color:  map_get($theme, tertiary);
+    }
+  }
+}
+
+@mixin sem-tabs-typography($config) {
+  //@include sem-typography-level-to-styles($config, button);
+  .tabs--button{
+    @include sem-typography-level-to-styles($config, button);
+  }
+}
+
+/**
+ * Components
+*/
+
+.semui-tabs {
+  @extend .block;
+  .semui-tabs--navlist_horizontal {
+    @extend .my1, .pl1, .pr1;
+    border-bottom: solid 1px grey;
+    padding-bottom: 2px;
+    li {
+      @extend .inline-block;
+      &.active,
+      &:hover {
+        button:not([disabled])::after {
+          transform: scale(1);
+        }
+      }
+
+      .tabs--button {
+        @extend .m0, .inline-block;
+        border: none;
+        outline: none;
+        box-shadow: none;
+        padding: 0.35em 0.75em;
+        position: relative;
+        text-align: center;
+        user-select: none;
+        outline: none;
+        bottom: -1px;
+
+        &:not([disabled]) {
+          &:hover {
+            border: none;
+            opacity: 1;
+          }
+        }
+        &::after {
+          @extend .absolute, .left-0;
+          content: "";
+          height: 3px;
+          width: 100%;
+          bottom: -1px;
+          transition: all 250ms ease 0s;
+          transform: scale(0);
+        }
+      }
+    }
+  }
+
+  //.swipe li.semui-tab.tab-navigation{
+  //  position: relative;
+  //  display: block;
+  //}
+  //.swipe li.semui-tab{
+  //  display: none;
+  //  position: absolute;
+  //  top: 0;
+  //  height: 100%;
+  //  background: white;
+  //  width: 100%;
+  //}
+  //.swipe li.semui-tab.active{
+  //  display: block;
+  //}
+
+}
+
+//
+//section.tabs-horizontal{
+//  display: inline-flex;
+//  align-items: baseline;
+//  width: 100%;
+//  position: relative;
+//
+//  &.swipe{
+//    .semui-tab{
+//      width: 100%;
+//    }
+//    .semui-tab-content{
+//      width: 100%;
+//      height: 100%;
+//      background: white;
+//    }
+//  }
+//
+//  .semui-tabs-list{
+//    width: 100%;
+//    z-index: 1;
+//  }
+//  .semui-tab-content{
+//    position: absolute;
+//  }
+//
+//  .tab-nav{
+//    z-index: 2;
+//    width: 100%;
+//    ul{
+//      width: 100%;
+//    }
+//  }
+//
+//}
+
+section.tabs-horizontal.swipe{}
+/** Tabs on top */
+ul.semui-tabs-list.tabs-vertical{
+  margin: 0px;
+}
+
+
+
+
+
+
+
+
+
+
+// Includes all of the typographic styles.
+@mixin sem-typography($config: null) {
+  @if $config == null {
+    $config: sem-typography-config();
+  }
+  @include sem-label-typography($config);
+  @include sem-figure-typography($config);
+  @include sem-typoCombo-typography($config);
+  @include sem-base-typography($config);
+  @include sem-button-typography($config);
+  @include sem-btn-fab-typography($config);
+  @include sem-input-typography($config);
+  @include sem-li-typography($config);
+  @include sem-dialog-typography($config);
+  @include sem-dialog-vertical-typography($config);
+  @include sem-list-typography($config);
+  @include sem-tabs-typography($config);
+  @include sem-heading-typography($config);
+
+}
+
+
+// Mixin that renders all of the core styles that are not theme-dependent.
+@mixin sem-core-theme($theme) {}
+@mixin sem-core($typography-config: null) {
+  @include sem-typography($typography-config);
+}
+
+// Mixin that renders all of the core styles that depend on the theme.
+
+
+
+
+/**
+ * Theming
+*/
 @mixin sem-theming-theme($theme) {
   $foreground: map-get($theme, foreground);
-
   // Colors
-  .default, %default{
+  .sem-default, %sem-default{
     color:  map-get($theme, default);
+    &_active{
+      color:  map-get($theme, primary);
+    }
+    &--interactive{
+      @include interactive-bg(map_get($theme, default));
+      &_active{
+        color:  map-get($theme, primary);
+      }
+    }
   }
-  .inverted, %inverted{
+  .sem-inverted, %sem-inverted{
     color:  map-get($theme, inverted);
+    &--interactive{
+      @include interactive-bg(map_get($theme, inverted));
+      &_active{
+        color:  map-get($theme, inverted);
+      }
+    }
   }
-  .primary, %primary{
+  .sem-primary, %sem-primary{
     color:  map-get($theme, primary);
+    &--interactive{
+      @include interactive-bg(map_get($theme, primary));
+      &_active{
+        color:  map-get($theme, primary);
+      }
+    }
   }
-  .secondary, %secondary{
+  .sem-secondary, %sem-secondary{
     color:  map-get($theme, secondary);
   }
-  .tertiary, %tertiary{
+  .sem-tertiary, %sem-tertiary{
     color:  map-get($theme, tertiary);
   }
-  .quaternary, %quaternary{
+  .sem-quaternary, %sem-quaternary{
     color:  map-get($theme, quaternary);
   }
-  .accent, %accent{
+  .sem-accent, %sem-accent{
     color:  map-get($theme, accent);
   }
-  .warn, %warn{
+  .sem-warn, %sem-warn{
     color:  map-get($theme, warn);
   }
-  .success, %success{
+  .sem-success, %sem-success{
     color:  map-get($theme, success);
   }
-  .danger, %danger{
+  .sem-danger, %sem-danger{
     color:  map-get($theme, danger);
   }
   // BgColors
-  .bg-default, %bg-default{
+  .sem-outline_bg{
+    border: 1px solid   map-get($theme, outline-default);
+    &--interactive{
+      border: 1px solid   map-get($theme, outline-default);
+      &:hover {
+        border: 1px solid map-get($theme, primary);
+      }
+      &_active, &:focus, &:active {
+        border: 1px solid map-get($theme, primary);
+      }
+    }
+  }
+  .sem-default_bg, %sem-default_bg{
     background-color:  map-get($theme, inverted);
+    &--interactive{
+      @include interactive-bg(map-get($theme, inverted));
+      &_active{
+        background-color: darken(map_get($theme, inverted), 6%);
+      }
+    }
   }
-  .bg-inverted, %bg-inverted{
+  .sem-inverted_bg, %sem-inverted_bg{
     background-color:  map-get($theme, default);
+    &--interactive{
+      @include interactive-bg(map-get($theme, default));
+      &_active{
+        background-color:  darken(map_get($theme, default), 20%);
+      }
+    }
   }
-  .bg-primary, %primary{
+  .sem-transparent_bg{
+    background: transparent;
+    border-color:  map-get($theme, primary);
+    &--interactive{
+      @include interactive-bg(#dedede);
+      &_active{
+        color:  map-get($theme, primary);
+      }
+    }
+  }
+  .sem-primary_bg, %sem-primary_bg{
     background-color:  map-get($theme, primary);
+    &--interactive{
+      @include interactive-bg(map_get($theme, primary));
+      &_active{
+        background-color: darken(map_get($theme, primary), 20%);
+      }
+    }
   }
-  .bg-secondary, %bg-secondary{
+  .sem-secondary_bg, %sem-secondary_bg{
     background-color:  map-get($theme, secondary);
+    &--interactive{
+      @include interactive-bg(map_get($theme, secondary));
+      &_active{
+        background-color: darken(map_get($theme, secondary), 20%);
+      }
+    }
   }
-  .bg-tertiary, %bg-tertiary{
+  .sem-tertiary_bg, %sem-tertiary_bg{
     background-color:  map-get($theme, tertiary);
+    &--interactive{
+      @include interactive-bg(map_get($theme, tertiary));
+      &_active{
+        background-color: darken(map_get($theme, tertiary), 20%);
+      }
+    }
   }
-  .bg-quaternary, %bg-quaternary{
+  .sem-quaternary_bg, %sem-quaternary_bg{
     background-color:  map-get($theme, quaternary);
+    &--interactive{
+      @include interactive-bg(map_get($theme, quaternary));
+      &_active{
+        background-color: darken(map_get($theme, quaternary), 20%);
+      }
+    }
   }
-  .bg-accent, %bg-accent{
+  .sem-accent_bg, %sem-accent_bg{
     background-color:  map-get($theme, accent);
+    &--interactive{
+      @include interactive-bg(map_get($theme, accent));
+      &_active{
+        background-color: darken(map_get($theme, accent), 20%);
+      }
+    }
   }
-  .bg-warn, %bg-warn{
+  .sem-warn_bg, %sem-warn_bg{
     background-color:  map-get($theme, warn);
+    &--interactive{
+      @include interactive-bg(map_get($theme, warn));
+      &_active{
+        background-color: darken(map_get($theme, warn), 20%);
+      }
+    }
   }
-  .bg-success, %bg-success{
+  .sem-success_bg, %sem-success_bg{
     background-color:  map-get($theme, success);
+    &--interactive{
+      @include interactive-bg(map_get($theme, success));
+      &_active{
+        background-color: darken(map_get($theme, success), 20%);
+      }
+    }
   }
-  .bg-danger, %bg-danger{
+  .sem-danger_bg, %sem-danger_bg{
     background-color:  map-get($theme, danger);
+    &--interactive{
+      @include interactive-bg(map_get($theme, danger));
+      &_active{
+        background-color: darken(map_get($theme, danger), 20%);
+      }
+    }
   }
 }
+
 
 
 
@@ -9348,112 +8950,355 @@ $breakpoint-lg: '(min-width: 64em)' !default;
 
 @mixin sem-button-theme($theme) {
   $foreground: map-get($theme, foreground);
-
-  .sem-dnd-button{
-    cursor: pointer;
-    display: inline-block;
-    border: none;
-    @include sem-rounded( 12px 12px 0px);
-    &:not([disabled]) {
-      cursor: pointer;
-    }
-    color: map_get($foreground, typography-base );
-    background-color: transparent;
-    @include sem-outline(darkgrey);
-    @include sem-rounded( 12px 12px 0px);
-
-    .sem-icon-label{
-      margin-left: 5px;
-    }
-    > span {
-      &:first-child{
-        padding-left: 10px;
-        @include sem-rounded( 12px  0px 0px 12px );
-      }
-      &:last-child{
-        padding-left: 10px;
-        @include sem-rounded( 0px 12px  0px 0px );
-      }
-      @extend .py1;
-      padding-left: 7px;
-      padding-right: 7px;
-      &:hover{
-        color: white;
-        span:before {
-          color: white;
-        }
-        background-color: map_get($theme, primary);
-      }
-    }
-
-    &--top{
-      @include sem-rounded( 0px 0px 12px 12px);
-      > span {
-        &:first-child {
-          padding-left: 10px;
-          @include sem-rounded( 0px   0px  0px 12px  );
-        }
-        &:last-child {
-          padding-left: 10px;
-          @include sem-rounded( 0px 0px 12px 0px  );
-        }
-      }
-    }
+  .sem-button {
+    font: 300 11px/15px Roboto, "Helvetica Neue", sans-serif;
   }
-
-
-
-
-
-  .sem-button--primary{
-    @include interactive-bg(map_get($theme, primary));
-    font-weight: bold;
-    text-transform: uppercase;
-    text-shadow: 1px 1px 1px #585858;
+  .sem-button {
+    //color: map_get($foreground, typography-base );
     -webkit-backface-visibility: hidden;
     -moz-backface-visibility: hidden;
     backface-visibility: hidden;
+    cursor: pointer;
 
-    &[disabled] {
-      opacity: 0.5;
+    @include sem-rounded(12px 12px 0px);
+    display: inline-block;
+    vertical-align: top;
+    &:not([disabled]) {
+      cursor: pointer;
     }
-    &.sem-button--disabled{
-      opacity: 0.5;
+    &--std {
+      border-width: thin;
+      border-style: solid;
+      text-transform: uppercase;
+      padding: 8px 13px;
+    }
+    &--dnd {
+      border-width: thin;
+      border-style: solid;
+      padding: 8px 13px;
       &:hover{
-        background-color: map_get($theme, primary);
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.9), 0 10px 10px rgba(0, 0, 0, 0.19);
+      }
+      &[disabled] {
+        opacity: 0.5;
+      }
+      &_small{
+        height: 30px;
+        width: 30px;
+      }
+      &_xsmall{
+        height: 21px;
+        width: 21px;
+        padding: 2px;
+      }
+      &_medium{
+        height: 50px;
+        width: 50px;
+      }
+      &_large{
+        height: 60px;
+        width: 60px;
+      }
+    }
+    &--link{
+      margin: 0px 2px;
+      border: solid 0px;
+      text-shadow: none;
+    //  color: map_get($theme, primary);
+      background-color: transparent;
+      &--inverted {
+        color:map_get($theme, inverted);
+      }
+      &--default {
+        color:map_get($theme, default);
+      }
+      &--primary {
+        color: #424141;
+        color: map_get($theme, primary);
+        &:hover {
+          color: darken(map_get($theme, primary), 7%);
+        }
+        &:active, &:focus {
+          color: darken(map_get($theme, primary), 20%);
+        }
+      }
+      &--secondary {
+        color:map_get($theme, secondary);
+      }
+      &--tertiary {
+        color:map_get($theme, tertiary);
+      }
+      &--quaternary {
+        color:map_get($theme, quaternary);
+      }
+      &--accent {
+        color:map_get($theme, accent);
+      }
+      &--warn {
+        color:map_get($theme, warn);
+      }
+      &--success {
+        color:map_get($theme, success);
+      }
+      &--danger {
+        color:map_get($theme, danger);
+      }
+    }
+    &--fab{
+      padding: 0px;
+      text-align: center;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.7), 0 1px 2px rgba(0,0,0,0.24);
+      &:hover{
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.9), 0 10px 10px rgba(0, 0, 0, 0.19);
+      }
+      &[disabled] {
+        opacity: 0.5;
+      }
+      &_xsmall{
+        height: 16px;
+        width: 16px;
+        padding: 0px;
+      }
+      &_small{
+        height: 24px;
+        width: 24px;
+      }
+      &_medium{
+        height: 23px;
+        width: 23px;
+      }
+      &_large{
+        height: 40px;
+        width: 40px;
+      }
+      &_circle{
+        @include sem-rounded( 50%);
+      }
+      &_right{
+        @include sem-rounded( 50% 0% 0% 50% );
+      }
+      &_left{
+        @include sem-rounded( 0% 50% 50%  0%);
+      }
+      &_top-left{
+        @include sem-rounded( 0% 50% 50% 50%);
+      }
+      &_top-right{
+        @include sem-rounded( 50% 0% 50% 50%);
+      }
+      &_bottom-right{
+        @include sem-rounded( 50% 50% 0% 50%);
+      }
+      &_bottom-left{
+        @include sem-rounded( 50% 50% 50% 0%);
+      }
+      &_top-middle{
+        @include sem-rounded( 50% 0% 50% 50%);
+        position: relative;
+        display: inline-block;
+        margin: 4px 6px 8px;
+        -ms-transform: rotate(-45deg);
+        -webkit-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+        > button{
+          top: 8px;
+          right: -16px;
+          span{
+            font-size: 8px;
+            -ms-transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+            display: block;
+
+          }
+        }
+        > span{
+          -ms-transform: rotate(40deg);
+          -webkit-transform: rotate(40deg);
+          transform: rotate(40deg);
+          display: block;
+
+        }
+        box-shadow: -1px 1px 2px rgba(0, 0, 0, 0.7), 0 1px 2px rgba(0, 0, 0, 0.24);
+        &:hover{
+          box-shadow: -2px 2px 5px 0px rgba(0, 0, 0, 0.7), 0 1px 2px rgba(0, 0, 0, 0.24);
+        }
+
+      }
+    }
+    &--drop{
+
+    }
+
+
+
+
+
+    //.sem-btn-fab--default{
+    //  @include interactive-bg(#ffffff);
+    //  &[disabled] {
+    //    opacity: 0.5;
+    //  }
+    //}
+    //.sem-btn-fab--default_small{
+    //  @include interactive-bg(#ffffff);
+    //  &[disabled] {
+    //    opacity: 0.5;
+    //  }
+    //}
+
+
+
+
+    .sem-btn-fab--primary{
+      @include interactive-bg(map_get($theme, primary));
+      &[disabled] {
+        opacity: 0.5;
+      }
+    }
+    .sem-btn-fab--secondary{
+      @include interactive-bg(map_get($theme, tertiary));
+      &[disabled] {
+        opacity: 0.5;
+      }
+    }
+
+    &--std, &--dnd, &--fab  {
+      &_default {
+        @extend .py1, .px3;
+      }
+      &_small {
+        padding-top: 0px;
+        padding-bottom: 0px;
+        padding-left: 0px;
+        padding-right: 0px;
+      }
+      &_large {
+        padding: 10px;
+      }
+      &_full {
+        width: 100%;
+      }
+      &_block {
+        display: block;
+      }
+      &--transparent {
+        color: map_get($theme, primary);
+        text-shadow: none;
+        background-color: transparent;
+        border-color: map_get($theme, primary);
+      }
+      &--inverted {
+        color: map_get($theme, inverted);
+        @include interactive-bg(map_get($theme, inverted));
+        text-shadow: 1px 1px 3px darken(map_get($theme, inverted), 14%);
+        border-color: map_get($theme, inverted);
+      }
+      &--default {
+        @include interactive-bg(map_get($theme, default));
+        text-shadow: 1px 1px 3px darken(map_get($theme, default), 14%);
+        border-color: map_get($theme, default);
+      }
+      &--primary {
+        color: #424141;
+        background: map_get($theme, primary);
+        &:hover {
+          background-color: darken(map_get($theme, primary), 7%);
+        }
+        &:active, &:focus {
+          background-color: darken(map_get($theme, primary), 20%);
+        }
+        //@include interactive-bg(map_get($theme, primary));
+        //text-shadow: none;
+        //text-shadow: 1px 1px 3px #323333;
+        //text-shadow: 1px 1px 3px darken(map_get($theme, primary), 34%);
+        border-color: map_get($theme, primary);
+      }
+      &--secondary {
+        @include interactive-bg(map_get($theme, secondary));
+        text-shadow: 1px 1px 3px darken(map_get($theme, secondary), 14%);
+        border-color: map_get($theme, secondary);
+      }
+      &--tertiary {
+        @include interactive-bg(map_get($theme, tertiary));
+        text-shadow: 1px 1px 3px darken(map_get($theme, tertiary), 14%);
+        border-color: map_get($theme, tertiary);
+      }
+      &--quaternary {
+        @include interactive-bg(map_get($theme, quaternary));
+        text-shadow: 1px 1px 3px darken(map_get($theme, quaternary), 14%);
+        border-color: map_get($theme, quaternary);
+      }
+      &--accent {
+        @include interactive-bg(map_get($theme, accent));
+        text-shadow: 1px 1px 3px darken(map_get($theme, accent), 14%);
+        border-color: map_get($theme, accent);
+      }
+      &--warn {
+        @include interactive-bg(map_get($theme, warn));
+        text-shadow: 1px 1px 3px darken(map_get($theme, warn), 14%);
+        border-color: map_get($theme, warn);
+      }
+      &--success {
+        @include interactive-bg(map_get($theme, success));
+        text-shadow: 1px 1px 3px darken(map_get($theme, success), 14%);
+        border-color: map_get($theme, success);
+      }
+      &--danger {
+        @include interactive-bg(map_get($theme, danger));
+        text-shadow: 1px 1px 3px darken(map_get($theme, danger), 14%);
+        border-color: map_get($theme, danger);
+      }
+    }
+
+  }
+
+
+  .sem-button--dnd-group{
+    display: inline-block;
+    &_top{
+      @include sem-rounded( 12px 0px 0px  12px);
+      .sem-button {
+        &--std, &--dnd  {
+          span:nth-child(2){
+            margin-left: 2px;
+          }
+          @include sem-rounded( 0px 0px 0px  0px);
+          &:first-child{
+            padding-left: 10px;
+            @include sem-rounded( 0px 0px 0px 12px );
+          }
+          &:last-child{
+            padding-left: 10px;
+            @include sem-rounded( 0px 0px  12px 0px );
+          }
+        }
+      }
+    }
+    &_bottom{
+      @include sem-rounded( 12px 12px 12px 0px);
+      .sem-button {
+        &--std, &--dnd  {
+          span:nth-child(2){
+            margin-left: 2px;
+          }
+          @include sem-rounded( 0px 0px 0px  0px);
+          &:first-child{
+            padding-left: 10px;
+            @include sem-rounded( 12px 0px 0px 0px );
+          }
+          &:last-child{
+            padding-left: 10px;
+            @include sem-rounded( 0px 12px 0px 0px);
+          }
+        }
       }
     }
   }
-  .sem-button--secondary{
-    color: map_get($foreground, typography-base );
-    background-color: transparent;
-    &:hover{
-      background-color: darken(#ffffff, 7%);
-    }
-    &[disabled] {
-      opacity: 0.5;
-    }
-    &.sem-button--disabled{
 
-    }
-  }
-  .sem-button--link{
-    color: map_get($theme, primary);
-    background-color: transparent;
-    &:hover{
-      color: darken(map_get($theme, primary), 7%);
-    }
-  }
-  .sem-button--link_primary{
-    color: map_get($theme, primary);
-    background-color: transparent;
-    &:hover{
-      color: darken(map_get($theme, primary), 7%);
-    }
-  }
+
+
 }
-
-
 
 
 
@@ -9574,22 +9419,22 @@ figure.semui-thumbnail{
 
 
 
-
 @mixin sem-temp-sidebar-theme($theme) {
-  $background: map-get($theme, background);
-  $foreground: map-get($theme, foreground);
+  //$background: map-get($theme, background);
+  //$foreground: map-get($theme, foreground);
 
   .sem-sidebar {
-    background-color: map_get($theme, tertiary);
+    background-color: map-get($sembler-theme, tertiary);
+    //background-color: map_get($theme, tertiary);
     color: map_get($theme, quaternary);
 
-    &:hover:not([disabled]) {
-      background-color: map_get($background, button-hover);
-    }
+    //&:hover:not([disabled]) {
+    //  background-color: map_get($sembler-theme, button-hover);
+    //}
 
-    &[disabled] {
-      opacity: 0.5;
-    }
+    //&[disabled] {
+    //  opacity: 0.5;
+    //}
   }
 }
 
@@ -9604,7 +9449,6 @@ figure.semui-thumbnail{
   @include sem-core-theme($theme);
   @include sem-button-theme($theme);
   @include sem-btn-fab-theme($theme);
-  @include sem-button-dnd-theme($theme);
   @include sem-overlay-theme($theme);
   @include sem-overlay-vertical-theme($theme);
   @include sem-sections-theme($theme);
@@ -9615,7 +9459,6 @@ figure.semui-thumbnail{
   @include sem-list-theme($theme);
   @include sem-tabs-theme($theme);
   @include sem-thumbnail-theme($theme);
-  @include sem-pagination-theme($theme);
   @include sem-heading-theme($theme);
   @include sem-sidebar-theme($theme);
   @include sem-label-theme($theme);
@@ -9624,6 +9467,5 @@ figure.semui-thumbnail{
   @include sem-seperators-theme($theme);
   @include sem-colorlist-theme($theme);
   @include sem-browser-theme($theme);
-  @include sem-link-theme($theme);
   @include sem-color-switch-theme($theme);
 }

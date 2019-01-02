@@ -33,5 +33,4 @@ export declare class ButtonComponent implements OnInit {
     ngOnInit(): void;
     getClasses(): any[];
     addClasses(classes: string[]): void;
-    private styleElementTheme(theme);
 }

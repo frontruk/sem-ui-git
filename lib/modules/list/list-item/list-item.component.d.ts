@@ -6,9 +6,9 @@ import { ListItemType } from '../../../models/list-type';
 export declare type ThemeImportanceLevel = 'light' | 'dark' | undefined;
 export declare class ListItemComponent implements OnInit {
     item: ListItemType;
-    semuiTheme: ThemeImportanceLevel;
     semImportance: string;
     classes: string;
+    semuiTheme: ThemeImportanceLevel;
     /**
      * Bind to the host "light" CSS class.
      */
@@ -17,9 +17,7 @@ export declare class ListItemComponent implements OnInit {
      * Bind to the host "dark" CSS class.
      */
     styleAsDarkTheme: boolean;
-    constructor();
     ngOnInit(): void;
     addClasses(classes: string[]): void;
     getClasses(): any[];
-    private styleElementTheme(theme);
 }

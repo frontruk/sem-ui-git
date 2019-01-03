@@ -82,14 +82,10 @@ $sem-light-theme-foreground: (
   $input_small:         sem-typography-level(13px, 13px, 400),
   $input-fix:           sem-typography-level(14px, 25px, 400),
   $button:              sem-typography-level(14px, 16px, 300),
+  $button_xsmall:       sem-typography-level(9px, 12px, 300),
   $button_small:        sem-typography-level(11px, 12px, 300),
-  $button_large:        sem-typography-level(16px, 17px, 300),
-  $button-dnd_small:    sem-typography-level(16px, 17px, 300),
-  $button-dnd_medium:   sem-typography-level(28px, 28px, 300),
-  $button-dnd_large:    sem-typography-level(43px, 43px, 300),
-  $button-fab:          sem-typography-level(14px, 16px, 300),
-  $button-fab_small:    sem-typography-level(11px, 12px, 300),
-  $button-fab_large:    sem-typography-level(16px, 17px, 300),
+  $button_medium:       sem-typography-level(16px, 12px, 300),
+  $button_large:        sem-typography-level(28px, 17px, 300),
   $heading_one:         sem-typography-level(22px, 28px, 300),
   $heading_two:         sem-typography-level(18px, 22px, 300),
   $heading_three:       sem-typography-level(16px, 20px, 300),
@@ -118,14 +114,10 @@ $sem-light-theme-foreground: (
     input_small:         $input_small,
     input-fix:           $input-fix,
     button:              $button,
+    button_xsmall:       $button_xsmall,
     button_small:        $button_small,
+    button_medium:       $button_medium,
     button_large:        $button_large,
-    button-dnd_small:    $button-dnd_small,
-    button-dnd_medium:   $button-dnd_medium,
-    button-dnd_large:    $button-dnd_large,
-    button-fab:          $button-fab,
-    button-fab_small:    $button-fab_small,
-    button-fab_large:    $button-fab_large,
     heading_one:        $heading_one,
     heading_two:        $heading_two,
     heading_three:      $heading_three,
@@ -214,10 +206,17 @@ h1,h2,h3,h4,h5{
 
 //Generic
 html {
+  height:100%;
   box-sizing: border-box;
 }
 *, *:before, *:after {
   box-sizing: inherit;
+}
+body{
+  height:100%;
+}
+[class^="sem-icon-"], [class*=" sem-icon-"]{
+  vertical-align: middle;
 }
 
 
@@ -799,10 +798,6 @@ $breakpoint-lg: '(min-width: 64em)' !default;
 
 %sem-relative{
   position: relative;
-}
-
-@mixin sem-base-typography($config, $selector: '.sem-font') {
-
 }
 
 
@@ -2643,11 +2638,7 @@ $breakpoint-lg: '(min-width: 64em)' !default;
   background-clip: padding-box;
 }
 
-.sem--corner{
-  ._top{
-    @include sem-rounded( 50% 0% 50% 50%);
-  }
-}
+
 
 
 
@@ -6323,7 +6314,7 @@ $breakpoint-lg: '(min-width: 64em)' !default;
     &--hr {
       @extend %sem-hr;
     }
-    i, em {
+    em {
       @extend %sem-i;
     }
     b, strong {
@@ -6340,7 +6331,6 @@ $breakpoint-lg: '(min-width: 64em)' !default;
     &--inverted {
       color:  map-get($foreground, typography-base-inverted);
     }
-
   }
 }
 
@@ -7429,10 +7419,10 @@ $breakpoint-lg: '(min-width: 64em)' !default;
 }
 
 
-
-
-
-@mixin sem-nav_sections-theme($theme) {}
+//
+//
+//
+//@mixin sem-nav_sections-theme($theme) {}
 
 .section-list {
   overflow: scroll;
@@ -8326,138 +8316,20 @@ $breakpoint-lg: '(min-width: 64em)' !default;
 
 
 
-
-.sem-typo-grouped{
-  &--title{}
-  &--subtext{}
-}
-
 @mixin sem-button-typography($config) {
-  .sem-button--default {
-    @include sem-typography-level-to-styles($config, button);
+  .sem-button_xsmall {
+    @include sem-typography-level-to-styles($config, button_xsmall);
   }
-  .sem-button--primary {
-    @include sem-typography-level-to-styles($config, button);
-  }
-  .sem-button--secondary {
-    @include sem-typography-level-to-styles($config, button);
-  }
-  .sem-button--small {
+  .sem-button_small {
     @include sem-typography-level-to-styles($config, button_small);
   }
-  .sem-button--large {
+  .sem-button_medium {
+    @include sem-typography-level-to-styles($config, button_medium);
+  }
+  .sem-button_large {
     @include sem-typography-level-to-styles($config, button_large);
   }
-  .sem-dnd-button{
-    @include sem-typography-level-to-styles($config, button_small);
-  }
 }
-
-
-
-
-/**
- * Theming
-*/
-@mixin sem-btn-fab-theme($theme) {
-
-}
-@mixin sem-btn-fab-typography($config) {
-
-
-  // Sizes
-  .sem-btn-fab--small{
-    @include sem-typography-level-to-styles($config, button-fab_small);
-  }
-  .sem-btn-fab--default{
-    @include sem-typography-level-to-styles($config, button-fab);
-  }
-
-
-  .sem-btn-fab--default_small{
-    @include sem-typography-level-to-styles($config, button-fab_small);
-  }
-  .sem-btn-fab--secondary{
-    @include sem-typography-level-to-styles($config, button-fab);
-  }
-}
-
-
-/**
- * Component
-*/
-
-
-
-
-.sem-btn-fab{
-  outline: none;
-  cursor: pointer;
-  display: inline-block;
-  border: none;
-  &:not([disabled]) {
-    cursor: pointer;
-  }
-
-  img{
-    width: map-get($sem-ui-dimensons, fab);
-    height: map-get($sem-ui-dimensons, fab);
-    display: block;
-    vertical-align: middle;
-  }
-}
-/** Importance */
-.sem-btn-fab {
-  &--medium {
-    @extend .p1;
-    > span {
-      display: block;
-      width: map-get($sem-ui-dimensons, fab);
-      height: map-get($sem-ui-dimensons, fab);
-    }
-  }
-  &--small{
-    padding: 0.2rem;
-    > span {
-      display: block;
-       margin: 1px;
-    }
-  }
-}
-
-
-
-.sem-btn-fab--default_small{
-
-  > span{
-    display: block;
-    width: map-get($sem-ui-dimensons, fab_small);
-    height: map-get($sem-ui-dimensons, fab_small);
-  }
-}
-
-.sem-btn-fab--primary{
-
-  > span{
-    display: block;
-    width: map-get($sem-ui-dimensons, fab);
-    height: map-get($sem-ui-dimensons, fab);
-  }
-}
-.sem-btn-fab--secondary{
-
-  > span{
-    display: block;
-    width: map-get($sem-ui-dimensons, fab);
-    height: map-get($sem-ui-dimensons, fab);
-  }
-}
-/** Type */
-.sem-btn-fab--corner{
-
-}
-
-
 
 
 
@@ -8685,7 +8557,6 @@ ul.semui-tabs-list.tabs-vertical{
 
 
 
-
 // Includes all of the typographic styles.
 @mixin sem-typography($config: null) {
   @if $config == null {
@@ -8694,9 +8565,7 @@ ul.semui-tabs-list.tabs-vertical{
   @include sem-label-typography($config);
   @include sem-figure-typography($config);
   @include sem-typoCombo-typography($config);
-  @include sem-base-typography($config);
   @include sem-button-typography($config);
-  @include sem-btn-fab-typography($config);
   @include sem-input-typography($config);
   @include sem-li-typography($config);
   @include sem-dialog-typography($config);
@@ -8713,8 +8582,6 @@ ul.semui-tabs-list.tabs-vertical{
 @mixin sem-core($typography-config: null) {
   @include sem-typography($typography-config);
 }
-
-// Mixin that renders all of the core styles that depend on the theme.
 
 
 
@@ -8945,10 +8812,6 @@ ul.semui-tabs-list.tabs-vertical{
 @mixin sem-button-theme($theme) {
   $foreground: map-get($theme, foreground);
   .sem-button {
-    font: 300 11px/15px Roboto, "Helvetica Neue", sans-serif;
-  }
-  .sem-button {
-    //color: map_get($foreground, typography-base );
     -webkit-backface-visibility: hidden;
     -moz-backface-visibility: hidden;
     backface-visibility: hidden;
@@ -9124,26 +8987,6 @@ ul.semui-tabs-list.tabs-vertical{
 
     }
 
-
-
-
-
-    //.sem-btn-fab--default{
-    //  @include interactive-bg(#ffffff);
-    //  &[disabled] {
-    //    opacity: 0.5;
-    //  }
-    //}
-    //.sem-btn-fab--default_small{
-    //  @include interactive-bg(#ffffff);
-    //  &[disabled] {
-    //    opacity: 0.5;
-    //  }
-    //}
-
-
-
-
     .sem-btn-fab--primary{
       @include interactive-bg(map_get($theme, primary));
       &[disabled] {
@@ -9300,7 +9143,6 @@ ul.semui-tabs-list.tabs-vertical{
 
 
 
-
 /**
  * Theming
 */
@@ -9411,24 +9253,11 @@ figure.semui-thumbnail{
 
 
 
-
-
 @mixin sem-temp-sidebar-theme($theme) {
-  //$background: map-get($theme, background);
-  //$foreground: map-get($theme, foreground);
-
   .sem-sidebar {
     background-color: map-get($sembler-theme, tertiary);
     //background-color: map_get($theme, tertiary);
     color: map_get($theme, quaternary);
-
-    //&:hover:not([disabled]) {
-    //  background-color: map_get($sembler-theme, button-hover);
-    //}
-
-    //&[disabled] {
-    //  opacity: 0.5;
-    //}
   }
 }
 
@@ -9439,10 +9268,8 @@ figure.semui-thumbnail{
 @mixin sem-theme($theme) {
   @include sem-theming-theme($theme);
   @include sem-temp-sidebar-theme($theme);
-  @include sem-nav_sections-theme($theme);
   @include sem-core-theme($theme);
   @include sem-button-theme($theme);
-  @include sem-btn-fab-theme($theme);
   @include sem-overlay-theme($theme);
   @include sem-overlay-vertical-theme($theme);
   @include sem-sections-theme($theme);

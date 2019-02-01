@@ -2656,6 +2656,48 @@ $breakpoint-lg: '(min-width: 64em)' !default;
   }
 }
 
+.demo-sidebar{
+  position: fixed;
+  overflow-y: scroll;
+  height: 100%;
+  width: 160px;
+  background: $tertiary;
+  @extend .col;
+
+  figcaption{
+    color:  #9BC1BC;
+  }
+  li, a{
+    text-decoration: none;
+    &:hover{
+      color: #000022;
+    }
+    &.active{
+      background-color: $primary;
+    }
+  }
+  &::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, .5);
+    -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+  }
+}
+.demo-content{
+  display: block;
+  min-height: 100%;
+  @extend .col;
+  @extend .col-12;
+  @extend .pl1;
+  padding-left: 200px;
+  background-color: #f1f1f1;
+}
+
+
+
 
 // Converted Variables
 

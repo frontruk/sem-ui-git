@@ -2656,7 +2656,7 @@ $breakpoint-lg: '(min-width: 64em)' !default;
   }
 }
 
-.demo-sidebar{
+.sem-demo-sidebar{
   position: fixed;
   overflow-y: scroll;
   height: 100%;
@@ -2686,13 +2686,12 @@ $breakpoint-lg: '(min-width: 64em)' !default;
     -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, .5);
   }
 }
-.demo-content{
+.sem-demo-content{
   display: block;
   min-height: 100%;
   @extend .col;
   @extend .col-12;
-  @extend .pl1;
-  padding-left: 200px;
+  padding-left: 160px;
   background-color: #f1f1f1;
 }
 

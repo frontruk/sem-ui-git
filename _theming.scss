@@ -8852,327 +8852,387 @@ ul.semui-tabs-list.tabs-vertical{
 
 @mixin sem-button-theme($theme) {
   $foreground: map-get($theme, foreground);
-  .sem-button {
-    -webkit-backface-visibility: hidden;
-    -moz-backface-visibility: hidden;
-    backface-visibility: hidden;
-    cursor: pointer;
 
-    @include sem-rounded(12px 12px 0px);
-    display: inline-block;
-    vertical-align: top;
-    &:not([disabled]) {
+    .sem-button-group-set {
+      display: inline-block;
+      border-radius: 5px;
+      background-color: white;
+      vertical-align: middle;
+      border: 1px solid #ddd;
+      margin-bottom: 3px;
+    }
+    .sem-button {
+      -webkit-backface-visibility: hidden;
+      -moz-backface-visibility: hidden;
+      backface-visibility: hidden;
       cursor: pointer;
-    }
-    &--std {
-      border-width: thin;
-      border-style: solid;
-      text-transform: uppercase;
-      padding: 8px 13px;
-    }
-    &--dnd {
-      border-width: thin;
-      border-style: solid;
-      padding: 8px 13px;
-      &:hover{
-        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.9), 0 10px 10px rgba(0, 0, 0, 0.19);
+
+      @include sem-rounded(12px 12px 0px);
+      display: inline-block;
+      vertical-align: top;
+      &:not([disabled]) {
+        cursor: pointer;
       }
-      &[disabled] {
-        opacity: 0.5;
+      &--std {
+        border-width: thin;
+        border-style: solid;
+        text-transform: uppercase;
+        padding: 8px 13px;
       }
-      &_small{
-        height: 30px;
-        width: 30px;
-      }
-      &_xsmall{
-        height: 21px;
-        width: 21px;
-        padding: 2px;
-      }
-      &_medium{
-        height: 50px;
-        width: 50px;
-      }
-      &_large{
-        height: 60px;
-        width: 60px;
-      }
-    }
-    &--link{
-      margin: 0px 2px;
-      border: solid 0px;
-      text-shadow: none;
-    //  color: map_get($theme, primary);
-      background-color: transparent;
-      &--inverted {
-        color:map_get($theme, inverted);
-      }
-      &--default {
-        color:map_get($theme, default);
-      }
-      &--primary {
-        color: #424141;
-        color: map_get($theme, primary);
-        &:hover {
-          color: darken(map_get($theme, primary), 7%);
+      &--dnd {
+        border-width: thin;
+        border-style: solid;
+        padding: 8px 13px;
+        &:hover{
+          box-shadow: 0 1px 1px rgba(0, 0, 0, 0.9), 0 10px 10px rgba(0, 0, 0, 0.19);
         }
-        &:active, &:focus {
-          color: darken(map_get($theme, primary), 20%);
+        &[disabled] {
+          opacity: 0.5;
+        }
+        &_small{
+          height: 30px;
+          width: 30px;
+        }
+        &_xsmall{
+          height: 21px;
+          width: 21px;
+          padding: 2px;
+        }
+        &_medium{
+          height: 50px;
+          width: 50px;
+        }
+        &_large{
+          height: 60px;
+          width: 60px;
         }
       }
-      &--secondary {
-        color:map_get($theme, secondary);
+      &--link{
+        margin: 0px 2px;
+        border: solid 0px;
+        text-shadow: none;
+      //  color: map_get($theme, primary);
+        background-color: transparent;
+        &--inverted {
+          color:map_get($theme, inverted);
+        }
+        &--default {
+          color:map_get($theme, default);
+        }
+        &--primary {
+          color: #424141;
+          color: map_get($theme, primary);
+          &:hover {
+            color: darken(map_get($theme, primary), 7%);
+          }
+          &:active, &:focus {
+            color: darken(map_get($theme, primary), 20%);
+          }
+        }
+        &--secondary {
+          color:map_get($theme, secondary);
+        }
+        &--tertiary {
+          color:map_get($theme, tertiary);
+        }
+        &--quaternary {
+          color:map_get($theme, quaternary);
+        }
+        &--accent {
+          color:map_get($theme, accent);
+        }
+        &--warn {
+          color:map_get($theme, warn);
+        }
+        &--success {
+          color:map_get($theme, success);
+        }
+        &--danger {
+          color:map_get($theme, danger);
+        }
       }
-      &--tertiary {
-        color:map_get($theme, tertiary);
-      }
-      &--quaternary {
-        color:map_get($theme, quaternary);
-      }
-      &--accent {
-        color:map_get($theme, accent);
-      }
-      &--warn {
-        color:map_get($theme, warn);
-      }
-      &--success {
-        color:map_get($theme, success);
-      }
-      &--danger {
-        color:map_get($theme, danger);
-      }
-    }
-    &--fab{
-      padding: 0px;
-      text-align: center;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.7), 0 1px 2px rgba(0,0,0,0.24);
-      &:hover{
-        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.9), 0 10px 10px rgba(0, 0, 0, 0.19);
-      }
-      &[disabled] {
-        opacity: 0.5;
-      }
-      &_xsmall{
-        height: 16px;
-        width: 16px;
+      &--fab{
         padding: 0px;
-      }
-      &_small{
-        height: 24px;
-        width: 24px;
-      }
-      &_medium{
-        height: 23px;
-        width: 23px;
-      }
-      &_large{
-        height: 40px;
-        width: 40px;
-      }
-      &_circle{
-        @include sem-rounded( 50%);
-      }
-      &_right{
-        @include sem-rounded( 50% 0% 0% 50% );
-      }
-      &_left{
-        @include sem-rounded( 0% 50% 50%  0%);
-      }
-      &_top-left{
-        @include sem-rounded( 0% 50% 50% 50%);
-      }
-      &_top-right{
-        @include sem-rounded( 50% 0% 50% 50%);
-      }
-      &_bottom-right{
-        @include sem-rounded( 50% 50% 0% 50%);
-      }
-      &_bottom-left{
-        @include sem-rounded( 50% 50% 50% 0%);
-      }
-      &_top-middle{
-        @include sem-rounded( 50% 0% 50% 50%);
-        position: relative;
-        display: inline-block;
-        margin: 4px 6px 8px;
-        -ms-transform: rotate(-45deg);
-        -webkit-transform: rotate(-45deg);
-        transform: rotate(-45deg);
-        > button{
-          top: 8px;
-          right: -16px;
-          span{
-            font-size: 8px;
-            -ms-transform: rotate(45deg);
-            -webkit-transform: rotate(45deg);
-            transform: rotate(45deg);
+        text-align: center;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.7), 0 1px 2px rgba(0,0,0,0.24);
+        &:hover{
+          box-shadow: 0 1px 2px rgba(0, 0, 0, 0.9), 0 10px 10px rgba(0, 0, 0, 0.19);
+        }
+        &[disabled] {
+          opacity: 0.5;
+        }
+        &_xsmall{
+          height: 16px;
+          width: 16px;
+          padding: 0px;
+        }
+        &_small{
+          height: 24px;
+          width: 24px;
+        }
+        &_medium{
+          height: 23px;
+          width: 23px;
+        }
+        &_large{
+          height: 40px;
+          width: 40px;
+        }
+        &_circle{
+          @include sem-rounded( 50%);
+        }
+        &_right{
+          @include sem-rounded( 50% 0% 0% 50% );
+        }
+        &_left{
+          @include sem-rounded( 0% 50% 50%  0%);
+        }
+        &_top-left{
+          @include sem-rounded( 0% 50% 50% 50%);
+        }
+        &_top-right{
+          @include sem-rounded( 50% 0% 50% 50%);
+        }
+        &_bottom-right{
+          @include sem-rounded( 50% 50% 0% 50%);
+        }
+        &_bottom-left{
+          @include sem-rounded( 50% 50% 50% 0%);
+        }
+        &_top-middle{
+          @include sem-rounded( 50% 0% 50% 50%);
+          position: relative;
+          display: inline-block;
+          margin: 4px 6px 8px;
+          -ms-transform: rotate(-45deg);
+          -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+          > button{
+            top: 8px;
+            right: -16px;
+            span{
+              font-size: 8px;
+              -ms-transform: rotate(45deg);
+              -webkit-transform: rotate(45deg);
+              transform: rotate(45deg);
+              display: block;
+
+            }
+          }
+          > span{
+            -ms-transform: rotate(40deg);
+            -webkit-transform: rotate(40deg);
+            transform: rotate(40deg);
             display: block;
 
           }
-        }
-        > span{
-          -ms-transform: rotate(40deg);
-          -webkit-transform: rotate(40deg);
-          transform: rotate(40deg);
-          display: block;
+          box-shadow: -1px 1px 2px rgba(0, 0, 0, 0.7), 0 1px 2px rgba(0, 0, 0, 0.24);
+          &:hover{
+            box-shadow: -2px 2px 5px 0px rgba(0, 0, 0, 0.7), 0 1px 2px rgba(0, 0, 0, 0.24);
+          }
 
         }
-        box-shadow: -1px 1px 2px rgba(0, 0, 0, 0.7), 0 1px 2px rgba(0, 0, 0, 0.24);
-        &:hover{
-          box-shadow: -2px 2px 5px 0px rgba(0, 0, 0, 0.7), 0 1px 2px rgba(0, 0, 0, 0.24);
+      }
+      &--drop{
+
+      }
+      &--grouped{
+        padding: 0.4rem;
+        min-width: 2.0rem;
+        float: left;
+        border: 0 solid #ddd;
+        &:first-child {
+          border-radius: 5px 0 0 5px;
         }
-
-      }
-    }
-    &--drop{
-
-    }
-
-    .sem-btn-fab--primary{
-      @include interactive-bg(map_get($theme, primary));
-      &[disabled] {
-        opacity: 0.5;
-      }
-    }
-    .sem-btn-fab--secondary{
-      @include interactive-bg(map_get($theme, tertiary));
-      &[disabled] {
-        opacity: 0.5;
-      }
-    }
-
-    &--std, &--dnd, &--fab  {
-      &_default {
-        @extend .py1, .px3;
-      }
-      &_small {
-        padding-top: 0px;
-        padding-bottom: 0px;
-        padding-left: 0px;
-        padding-right: 0px;
-      }
-      &_large {
-        padding: 10px;
-      }
-      &_full {
-        width: 100%;
-      }
-      &_block {
-        display: block;
-      }
-      &--transparent {
-        color: map_get($theme, primary);
-        text-shadow: none;
-        background-color: transparent;
-        border-color: map_get($theme, primary);
-      }
-      &--inverted {
-        color: map_get($theme, inverted);
-        @include interactive-bg(map_get($theme, inverted));
-        text-shadow: 1px 1px 3px darken(map_get($theme, inverted), 14%);
-        border-color: map_get($theme, inverted);
-      }
-      &--default {
-        @include interactive-bg(map_get($theme, default));
-        text-shadow: 1px 1px 3px darken(map_get($theme, default), 14%);
-        border-color: map_get($theme, default);
-      }
-      &--primary {
-        color: #424141;
-        background: map_get($theme, primary);
-        &:hover {
-          background-color: darken(map_get($theme, primary), 7%);
+        &:last-child {
+          border-radius: 0 5px 5px 0;
         }
-        &:active, &:focus {
-          background-color: darken(map_get($theme, primary), 20%);
+        &:first-child:last-child {
+          border-radius: 5px;
         }
-        //@include interactive-bg(map_get($theme, primary));
-        //text-shadow: none;
-        //text-shadow: 1px 1px 3px #323333;
-        //text-shadow: 1px 1px 3px darken(map_get($theme, primary), 34%);
-        border-color: map_get($theme, primary);
       }
-      &--secondary {
-        @include interactive-bg(map_get($theme, secondary));
-        text-shadow: 1px 1px 3px darken(map_get($theme, secondary), 14%);
-        border-color: map_get($theme, secondary);
+      .sem-btn-fab--primary{
+        @include interactive-bg(map_get($theme, primary));
+        &[disabled] {
+          opacity: 0.5;
+        }
       }
-      &--tertiary {
+      .sem-btn-fab--secondary{
         @include interactive-bg(map_get($theme, tertiary));
-        text-shadow: 1px 1px 3px darken(map_get($theme, tertiary), 14%);
-        border-color: map_get($theme, tertiary);
+        &[disabled] {
+          opacity: 0.5;
+        }
       }
-      &--quaternary {
-        @include interactive-bg(map_get($theme, quaternary));
-        text-shadow: 1px 1px 3px darken(map_get($theme, quaternary), 14%);
-        border-color: map_get($theme, quaternary);
+
+      &--std, &--dnd, &--fab,  &--grouped  {
+        &_default {
+          @extend .py1, .px3;
+        }
+        &_small {
+          padding-top: 0px;
+          padding-bottom: 0px;
+          padding-left: 0px;
+          padding-right: 0px;
+        }
+        &_large {
+          padding: 10px;
+        }
+        &_full {
+          width: 100%;
+        }
+        &_block {
+          display: block;
+        }
+        &--transparent {
+          color: map_get($theme, primary);
+          text-shadow: none;
+          background-color: transparent;
+          border-color: map_get($theme, primary);
+          &_active {
+            background: #fff5b9;
+            &:hover {
+              background-color: #fffa98;
+            }
+          }
+        }
+        &--inverted {
+          color: map_get($theme, inverted);
+          @include interactive-bg(map_get($theme, inverted));
+          text-shadow: 1px 1px 3px darken(map_get($theme, inverted), 14%);
+          border-color: map_get($theme, inverted);
+          &:hover {
+            cursor: pointer;
+            background-color: #f1f1f1;
+            transition: 0.2s ease;
+          }
+          &:focus,
+          &.focus {
+            outline: 0;
+          }
+          &:disabled {
+            background-color: #f5f5f5;
+            pointer-events: none;
+            cursor: not-allowed;
+            > .color-label {
+              pointer-events: none;
+              cursor: not-allowed;
+              &.foreground {
+                :after {
+                  background: #555555;
+                }
+              }
+              &.background {
+                background: #555555;
+              }
+            }
+          }
+          &_active {
+            color: white;
+            background-color: map_get($theme, primary);
+            &:hover {
+              background-color: darken(map_get($theme, primary), 14%);
+            }
+          }
+        }
+        &--default {
+          @include interactive-bg(map_get($theme, default));
+          text-shadow: 1px 1px 3px darken(map_get($theme, default), 14%);
+          border-color: map_get($theme, default);
+        }
+        &--primary {
+          color: #424141;
+          background: map_get($theme, primary);
+          &:hover {
+            background-color: darken(map_get($theme, primary), 7%);
+          }
+          &:active, &:focus {
+            background-color: darken(map_get($theme, primary), 20%);
+          }
+          //@include interactive-bg(map_get($theme, primary));
+          //text-shadow: none;
+          //text-shadow: 1px 1px 3px #323333;
+          //text-shadow: 1px 1px 3px darken(map_get($theme, primary), 34%);
+          border-color: map_get($theme, primary);
+        }
+        &--secondary {
+          @include interactive-bg(map_get($theme, secondary));
+          text-shadow: 1px 1px 3px darken(map_get($theme, secondary), 14%);
+          border-color: map_get($theme, secondary);
+        }
+        &--tertiary {
+          @include interactive-bg(map_get($theme, tertiary));
+          text-shadow: 1px 1px 3px darken(map_get($theme, tertiary), 14%);
+          border-color: map_get($theme, tertiary);
+        }
+        &--quaternary {
+          @include interactive-bg(map_get($theme, quaternary));
+          text-shadow: 1px 1px 3px darken(map_get($theme, quaternary), 14%);
+          border-color: map_get($theme, quaternary);
+        }
+        &--accent {
+          @include interactive-bg(map_get($theme, accent));
+          text-shadow: 1px 1px 3px darken(map_get($theme, accent), 14%);
+          border-color: map_get($theme, accent);
+        }
+        &--warn {
+          @include interactive-bg(map_get($theme, warn));
+          text-shadow: 1px 1px 3px darken(map_get($theme, warn), 14%);
+          border-color: map_get($theme, warn);
+        }
+        &--success {
+          @include interactive-bg(map_get($theme, success));
+          text-shadow: 1px 1px 3px darken(map_get($theme, success), 14%);
+          border-color: map_get($theme, success);
+        }
+        &--danger {
+          @include interactive-bg(map_get($theme, danger));
+          text-shadow: 1px 1px 3px darken(map_get($theme, danger), 14%);
+          border-color: map_get($theme, danger);
+        }
       }
-      &--accent {
-        @include interactive-bg(map_get($theme, accent));
-        text-shadow: 1px 1px 3px darken(map_get($theme, accent), 14%);
-        border-color: map_get($theme, accent);
-      }
-      &--warn {
-        @include interactive-bg(map_get($theme, warn));
-        text-shadow: 1px 1px 3px darken(map_get($theme, warn), 14%);
-        border-color: map_get($theme, warn);
-      }
-      &--success {
-        @include interactive-bg(map_get($theme, success));
-        text-shadow: 1px 1px 3px darken(map_get($theme, success), 14%);
-        border-color: map_get($theme, success);
-      }
-      &--danger {
-        @include interactive-bg(map_get($theme, danger));
-        text-shadow: 1px 1px 3px darken(map_get($theme, danger), 14%);
-        border-color: map_get($theme, danger);
-      }
+
     }
-
-  }
-
-
-  .sem-button--dnd-group{
-    display: inline-block;
-    &_top{
-      @include sem-rounded( 12px 0px 0px  12px);
-      .sem-button {
-        &--std, &--dnd  {
-          span:nth-child(2){
-            margin-left: 2px;
+    .sem-button--dnd-group{
+      display: inline-block;
+      &_top{
+        @include sem-rounded( 12px 0px 0px  12px);
+        .sem-button {
+          &--std, &--dnd  {
+            span:nth-child(2){
+              margin-left: 2px;
+            }
+            @include sem-rounded( 0px 0px 0px  0px);
+            &:first-child{
+              padding-left: 10px;
+              @include sem-rounded( 0px 0px 0px 12px );
+            }
+            &:last-child{
+              padding-left: 10px;
+              @include sem-rounded( 0px 0px  12px 0px );
+            }
           }
-          @include sem-rounded( 0px 0px 0px  0px);
-          &:first-child{
-            padding-left: 10px;
-            @include sem-rounded( 0px 0px 0px 12px );
-          }
-          &:last-child{
-            padding-left: 10px;
-            @include sem-rounded( 0px 0px  12px 0px );
+        }
+      }
+      &_bottom{
+        @include sem-rounded( 12px 12px 12px 0px);
+        .sem-button {
+          &--std, &--dnd  {
+            span:nth-child(2){
+              margin-left: 2px;
+            }
+            @include sem-rounded( 0px 0px 0px  0px);
+            &:first-child{
+              padding-left: 10px;
+              @include sem-rounded( 12px 0px 0px 0px );
+            }
+            &:last-child{
+              padding-left: 10px;
+              @include sem-rounded( 0px 12px 0px 0px);
+            }
           }
         }
       }
     }
-    &_bottom{
-      @include sem-rounded( 12px 12px 12px 0px);
-      .sem-button {
-        &--std, &--dnd  {
-          span:nth-child(2){
-            margin-left: 2px;
-          }
-          @include sem-rounded( 0px 0px 0px  0px);
-          &:first-child{
-            padding-left: 10px;
-            @include sem-rounded( 12px 0px 0px 0px );
-          }
-          &:last-child{
-            padding-left: 10px;
-            @include sem-rounded( 0px 12px 0px 0px);
-          }
-        }
-      }
-    }
-  }
 
 
 

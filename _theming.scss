@@ -8853,19 +8853,13 @@ ul.semui-tabs-list.tabs-vertical{
 @mixin sem-button-theme($theme) {
   $foreground: map-get($theme, foreground);
 
-    .sem-button-group-set {
-      display: inline-block;
-      border-radius: 5px;
-      background-color: white;
-      vertical-align: middle;
-      border: 1px solid #ddd;
-      margin-bottom: 3px;
-    }
+
     .sem-button {
       -webkit-backface-visibility: hidden;
       -moz-backface-visibility: hidden;
       backface-visibility: hidden;
       cursor: pointer;
+      vertical-align: middle;
 
       @include sem-rounded(12px 12px 0px);
       display: inline-block;
@@ -9051,6 +9045,61 @@ ul.semui-tabs-list.tabs-vertical{
           border-radius: 5px;
         }
       }
+      &--expand{
+        padding: 0px;
+        text-align: center;
+        border: none;
+        display: inline-block;
+        padding: 0px 0px 0px 3px;
+
+        &[disabled] {
+          opacity: 0.5;
+        }
+
+        &_xsmall{
+          height: 16px;
+          width: 16px;
+          padding: 0px;
+        }
+        &_small{
+          height: 24px;
+          width: 24px;
+        }
+        &_medium{
+          height: 23px;
+          width: 23px;
+        }
+        &_large{
+          height: 40px;
+          width: 40px;
+        }
+
+
+
+
+        &_circle{
+          @include sem-rounded( 50%);
+        }
+        &_right{
+          @include sem-rounded( 50% 0% 0% 50% );
+        }
+        &_left{
+          @include sem-rounded( 0% 50% 50%  0%);
+        }
+        &_top-left{
+          @include sem-rounded( 0% 50% 50% 50%);
+        }
+        &_top-right{
+          @include sem-rounded( 50% 0% 50% 50%);
+        }
+        &_bottom-right{
+          @include sem-rounded( 50% 50% 0% 50%);
+        }
+        &_bottom-left{
+          @include sem-rounded( 50% 50% 50% 0%);
+        }
+      }
+
       .sem-btn-fab--primary{
         @include interactive-bg(map_get($theme, primary));
         &[disabled] {
@@ -9233,7 +9282,84 @@ ul.semui-tabs-list.tabs-vertical{
         }
       }
     }
+    // Wrappers, that need overwrite .sem-button because it's grouped.
+    .sem-button-group-set {
+      display: inline-block;
+      border-radius: 5px;
+      background-color: white;
+      vertical-align: middle;
+      border: 1px solid #ddd;
+      margin-bottom: 3px;
+    }
+    .sem-button--expand-wrap{
+      background: map_get($theme, inverted);
+      display: inline-block;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.7), 0 1px 2px rgba(0,0,0,0.24);
+      transition: 0.2s ease;
+      &_xsmall{
+        height: 16px;
+        width: 16px;
+        padding: 0px;
+      }
+      &_small{
+        height: 24px;
+        width: 24px;
+      }
+      &_medium{
+        height: 23px;
+        width: 23px;
+      }
+      &_large{
+        height: 40px;
+        width: 40px;
+      }
+      &_circle{
+        @include sem-rounded( 50%);
+      }
+      &_right{
+        @include sem-rounded( 50% 0% 0% 50% );
+      }
+      &_left{
+        @include sem-rounded( 0% 50% 50%  0%);
+      }
+      &_top-left{
+        @include sem-rounded( 0% 50% 50% 50%);
+      }
+      &_top-right{
+        @include sem-rounded( 50% 0% 50% 50%);
+      }
+      &_bottom-right{
+        @include sem-rounded( 50% 50% 0% 50%);
+      }
+      &_bottom-left{
+        @include sem-rounded( 50% 50% 50% 0%);
+      }
+      &:hover{
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.9), 0 10px 10px rgba(0, 0, 0, 0.19);
+      }
+      &_active{
+        transition: 0.2s ease;
+        padding: 5.5px;
+        .sem-button{
+          &:focus{
+            outline: none;
+          }
+        }
+        &.sem-button--expand-wrap{
+          &_xsmall,
+          &_small,
+          &_medium,
+          &_large{
+            height: auto;
+            width: auto;
+          }
+          &_top-left{
+            border-radius: 0px 17px 17px 17px;
+          }
+        }
+      }
 
+    }
 
 
 }

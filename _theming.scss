@@ -504,6 +504,10 @@ $breakpoint-lg: '(min-width: 64em)' !default;
 
 
 
+[class^="sem-icon-"]:before, [class*=" sem-icon-"]:before {
+  color: inherit;
+}
+
 [class^="sem-icon-"], [class*=" sem-icon-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'sembler-ico' !important;

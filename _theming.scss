@@ -1,14 +1,15 @@
 // Base kit based on IT SCSS
+
 //Settings
 // Sembler color pallete
 $default-typography: #2a2a2a;
 $default-typography_inverted: #FAFAFA;
-$default:           #2a2a2a;
+$default:           #141414;
 $inverted:          #ffffff;
 $brand-color:       #05DCB6;
 $primary:           #05DCB6;
 $secondary:         #9BC1BC;
-$tertiary:          #444D63;
+$tertiary:          #292E3D;
 $quaternary:        #057860;
 $accent:            #05DCB6;
 $outline-default:   #2a2a2a;
@@ -17,8 +18,8 @@ $outline-default:   #2a2a2a;
 //// Background palette for light themes.
 $sem-light-theme-background: (
   background:           #fff,
-  sidebar-background:   #444D63,
-  background-shadow:    #444D63,
+  sidebar-background:   #292E3D,
+  background-shadow:    #292E3D,
   overlay:              #fff,
   content:              #fff,
   input:                #fff,
@@ -27,8 +28,8 @@ $sem-light-theme-background: (
 $sem-light-theme-system: (
   browserFontColor: #7b7b7f,
   browserHeaderBg: #acadae,
-  browserCloseBtn: #fdb0ad,
-  browserMinimiseBtn: #fdb0ad,
+  browserCloseBtn: #FBB6C3,
+  browserMinimiseBtn: #FBB6C3,
   browserExpandBtn: #d7edb4
 );
 
@@ -59,13 +60,13 @@ $sem-light-theme-foreground: (
     font-family: $font-family
   );
 }
-
 // Represents a collection of typography levels.
 @function sem-typography-config(
-  $font-family:         'Roboto, "Helvetica Neue", sans-serif',
+  $font-family:         'Noto Sans SC',
+  $navigation:          sem-typography-level(15px, 16px, 100),
   $body-base:           sem-typography-level(15px, 18px, 300),
   $caption:             sem-typography-level(11px, 15px, 300),
-  $lead:                sem-typography-level(41px, 48px, 100),
+  $lead:                sem-typography-level(33px, 25px, 400),
   $primary-caption:     sem-typography-level(17px, 22px, 300),
   $sub-caption:         sem-typography-level(11px, 13px, 300),
   $pagination:          sem-typography-level(11px, 16px, 300),
@@ -81,8 +82,8 @@ $sem-light-theme-foreground: (
   $input_medium:        sem-typography-level(14px, 16px, 400),
   $input_small:         sem-typography-level(13px, 13px, 400),
   $input-fix:           sem-typography-level(14px, 25px, 400),
-  $button:              sem-typography-level(14px, 16px, 300),
-  $button_xsmall:       sem-typography-level(9px, 12px, 300),
+  $button:              sem-typography-level(15px, 16px, 300),
+  $button_xsmall:       sem-typography-level(10px, 12px, 300),
   $button_small:        sem-typography-level(11px, 12px, 300),
   $button_medium:       sem-typography-level(16px, 12px, 300),
   $button_large:        sem-typography-level(28px, 17px, 300),
@@ -95,6 +96,7 @@ $sem-light-theme-foreground: (
 ) {
   // Declare an initial map with all of the levels.
   $config: (
+    navigation:          $navigation,
     body-base:           $body-base,
     caption:             $caption,
     lead:                $lead,
@@ -217,6 +219,9 @@ body{
 }
 [class^="sem-icon-"], [class*=" sem-icon-"]{
   vertical-align: middle;
+}
+.h100 {
+  height: 100%;
 }
 
 
@@ -499,6 +504,18 @@ $breakpoint-lg: '(min-width: 64em)' !default;
   %sem-hr {
     border: 0;
     border-top: 1px solid map-get($foreground, tertiary);
+  }
+
+  .sem-hr{
+    &--grey{
+      border-bottom: 0.01rem solid #ccc;
+    }
+  }
+  .ml06{
+    margin-left: 0.6rem;
+  }
+  .mr06{
+    margin-left: 0.6rem;
   }
 }
 
@@ -855,6 +872,19 @@ $border-radius: 3px !default;
 
 
 //Components
+.sem-brand-title{
+  font: 400 26px/20px  "Noto Sans SC", sans-serif;
+  vertical-align: middle;
+  figure, figure img {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  figure img{
+    max-height: 45px;
+    margin-bottom: 6px;
+  }
+}
+
 .sem-button-circle{
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
@@ -1706,7 +1736,8 @@ $breakpoint-lg: '(min-width: 64em)' !default;
     accent:   $accent,
     warn:     #e6c692,
     success:  #b6d891,
-    danger: #d8092c,
+    danger_inverted: #FBA7B5,
+    danger: #B00723,
     is-dark: false,
     foreground: $sem-light-theme-foreground,
     background: $sem-light-theme-background,
@@ -6381,28 +6412,8 @@ $breakpoint-lg: '(min-width: 64em)' !default;
 
 
 
-
-.sem-ul-icon-list {
-  > div {
-    .sem-li {
-      border-bottom: 1px solid #cccccc;
-    }
-    &:last-child {
-      .sem-li {
-        border-bottom: 0px solid #cccccc;
-      }
-    }
-  }
-}
-
 .no-padding-list{
-  .sem-ul-icon-list{
-    .sem-li {
-      padding-top: 0rem;
-      padding-bottom: 0rem;
-    }
-  }
-  .sem-ul{
+  .sem-ul-icon-list, .sem-ul{
     .sem-li {
       padding-top: 0rem;
       padding-bottom: 0rem;
@@ -6415,7 +6426,8 @@ $breakpoint-lg: '(min-width: 64em)' !default;
     -webkit-font-smoothing: antialiased;
     padding-top: .45rem;
     padding-bottom: .45rem;
-    @extend .px2;
+    padding-top: 0.4rem;
+    padding-bottom: 0.4rem;
     cursor: pointer;
     &:not([disabled]) {
       cursor: pointer;
@@ -6432,8 +6444,6 @@ $breakpoint-lg: '(min-width: 64em)' !default;
         display: inline-block;
       }
     }
-
-    span {}
     img {
       display: inline-block;
       vertical-align: middle;
@@ -6497,39 +6507,24 @@ $breakpoint-lg: '(min-width: 64em)' !default;
   //li light
   .sem-ul-dark{
     .sem-li{
-      color:  map_get($theme, quaternary);
       &:hover{
         @include interactive-bg(map_get($theme, tertiary));
         &.active{
-          color:  map_get($theme, tertiary);
-          background-color: map_get($theme, quaternary);
+          color:  map_get($theme, default);
+          background-color: map_get($theme, inverted);
         }
       }
       &.active{
-        color:  map_get($theme, tertiary);
-        background-color: map_get($theme, quaternary);
+        color:  map_get($theme, default);
+        background-color: map_get($theme, inverted);
+        .sem-button--link--primary{
+          color:  map_get($theme, default);
+        }
       }
     }
   }
 }
 @mixin sem-list-typography($config) {
-
-  //.sem-ul-list{
-  //  &_item{
-  //    text-overflow: ellipsis;
-  //    -webkit-line-clamp: 1;
-  //    overflow: hidden;
-  //    white-space: nowrap;
-  //    cursor: pointer;
-  //
-  //    @extend .py1;
-  //    @include sem-typography-level-to-styles($config, body-base);
-  //    //border-bottom: 1px solid #cccccc;
-  //    &:hover {
-  //      background: #fafafa;
-  //    }
-  //  }
-  //}
   .sem-list{
     @extend .pt1;
     li{
@@ -7463,6 +7458,21 @@ $breakpoint-lg: '(min-width: 64em)' !default;
   }
 }
 
+div.sem-container{
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @extend .mx-auto;
+
+  @media (min-width: 40em) {
+    max-width: 980px;
+  }
+  @media (min-width: 52em) {
+    max-width: 1024px;
+  }
+}
+
 
 //
 //
@@ -7489,6 +7499,7 @@ $breakpoint-lg: '(min-width: 64em)' !default;
   top: 0;
   height: 100%;
 }
+
 
 
 
@@ -8317,6 +8328,9 @@ $breakpoint-lg: '(min-width: 64em)' !default;
   @include sem-rounded( 12px 12px 0px);
   cursor: pointer;
   border: none;
+  &:hover{
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.9), 0 10px 10px rgba(0, 0, 0, 0.09);
+  }
   &:not([disabled]) {
     cursor: pointer;
   }
@@ -8362,6 +8376,10 @@ $breakpoint-lg: '(min-width: 64em)' !default;
 
 
 @mixin sem-button-typography($config) {
+  .sem-button {
+    font-family: Noto Sans SC;
+    @include sem-typography-level-to-styles($config, button);
+  }
   .sem-button_xsmall {
     @include sem-typography-level-to-styles($config, button_xsmall);
   }
@@ -8400,33 +8418,11 @@ $breakpoint-lg: '(min-width: 64em)' !default;
 
 
 @mixin sem-li-theme($theme) {
-  .sem-li--inverted, .sem-li--inverted a{
-    @include interactive-bg(map_get($theme, inverted));
-  }
-  .sem-li--default, .sem-li--default a{
-    @include interactive-bg(map_get($theme, default));
-  }
-  .sem-li--primary, .sem-li--primary a{
-    @include interactive-bg(map_get($theme, primary));
-  }
-  .sem-li--secondary, .sem-li--secondary a{
-    @include interactive-bg(map_get($theme, tertiary));
-  }
-  .sem-li--tertiary, .sem-li--tertiary a{
-    @include interactive-bg(map_get($theme, secondary));
-  }
-  .sem-li--danger, .sem-li--danger a{
-    color: map_get($theme, danger);
-    background: map_get($theme, quaternary);
-    &:hover{
-      background-color: darken(map_get($theme, quaternary), 20%);
-    }
-  }
 
 }
 @mixin sem-li-typography($config) {
   .sem-li {
-    @include sem-typography-level-to-styles($config, body-base);
+    @include sem-typography-level-to-styles($config, navigation);
   }
 }
 
@@ -8730,6 +8726,16 @@ ul.semui-tabs-list.tabs-vertical{
       }
     }
   }
+  .sem-danger_inverted, %sem-danger_inverted, a.sem-danger_inverted{
+    color:  map-get($theme, danger_inverted);
+    &--interactive{
+      @include interactive-bg(map_get($theme, danger_inverted));
+      &_active{
+        color:  map-get($theme, danger_inverted);
+      }
+    }
+  }
+
   // BgColors
   .sem-outline_bg{
     border: 1px solid   map-get($theme, outline-default);
@@ -8825,6 +8831,15 @@ ul.semui-tabs-list.tabs-vertical{
       }
     }
   }
+  .sem-danger_inverted_bg, %sem-danger_inverted_bg{
+    background-color:  map-get($theme, danger_inverted);
+    &--interactive{
+      @include interactive-bg(map_get($theme, danger_inverted));
+      &_active{
+        background-color: darken(map_get($theme, danger_inverted), 20%);
+      }
+    }
+  }
   .sem-success_bg, %sem-success_bg{
     background-color:  map-get($theme, success);
     &--interactive{
@@ -8874,8 +8889,23 @@ ul.semui-tabs-list.tabs-vertical{
       &--std {
         border-width: thin;
         border-style: solid;
-        text-transform: uppercase;
+        //text-transform: uppercase;
         padding: 8px 13px;
+        &:hover{
+          box-shadow: 0 1px 2px rgba(0, 0, 0, 0.9), 0 10px 10px rgba(0, 0, 0, 0.09);
+        }
+        &_small{
+          line-height: 25px;
+          padding: 8px 13px;
+        }
+        &_medium{
+          line-height: 31px;
+          padding: 0px 12px;
+        }
+        &_large{
+          line-height: 27px;
+          padding: 8px 13px;
+        }
       }
       &--dnd {
         border-width: thin;
@@ -8888,8 +8918,8 @@ ul.semui-tabs-list.tabs-vertical{
           opacity: 0.5;
         }
         &_small{
-          height: 30px;
-          width: 30px;
+          height: 25px;
+          width: 25px;
         }
         &_xsmall{
           height: 21px;
@@ -8897,12 +8927,12 @@ ul.semui-tabs-list.tabs-vertical{
           padding: 2px;
         }
         &_medium{
-          height: 50px;
-          width: 50px;
+          height: 31px;
+          width: 31px;
         }
         &_large{
-          height: 60px;
-          width: 60px;
+          height: 50px;
+          width: 50px;
         }
       }
       &--link{
@@ -8913,13 +8943,15 @@ ul.semui-tabs-list.tabs-vertical{
         background-color: transparent;
         &--inverted {
           color:map_get($theme, inverted);
+          &:hover{
+            color:map_get($theme, default);
+          }
         }
         &--default {
           color:map_get($theme, default);
         }
         &--primary {
-          color: #424141;
-          color: map_get($theme, primary);
+          color: map_get($theme, default);
           &:hover {
             color: darken(map_get($theme, primary), 7%);
           }
@@ -8950,9 +8982,9 @@ ul.semui-tabs-list.tabs-vertical{
         }
       }
       &--fab{
-        padding: 0px;
+        border: solid 0px;
         text-align: center;
-        box-shadow: 0 1px 2px rgba(0,0,0,0.7), 0 1px 2px rgba(0,0,0,0.24);
+        box-shadow: 0 0px 0px rgba(0,0,0,0.7), 0 0px 0px rgba(0,0,0,0.24);
         &:hover{
           box-shadow: 0 1px 2px rgba(0, 0, 0, 0.9), 0 10px 10px rgba(0, 0, 0, 0.19);
         }
@@ -8969,8 +9001,9 @@ ul.semui-tabs-list.tabs-vertical{
           width: 24px;
         }
         &_medium{
-          height: 23px;
-          width: 23px;
+          height: 31px;
+          width: 31px;
+          padding: 0px;
         }
         &_large{
           height: 40px;
@@ -9116,7 +9149,12 @@ ul.semui-tabs-list.tabs-vertical{
           opacity: 0.5;
         }
       }
-
+      &--dnd, &--fab,  &--grouped {
+        &_small {
+          padding-left: 0px;
+          padding-right: 0px;
+        }
+      }
       &--std, &--dnd, &--fab,  &--grouped  {
         &_default {
           @extend .py1, .px3;
@@ -9124,8 +9162,6 @@ ul.semui-tabs-list.tabs-vertical{
         &_small {
           padding-top: 0px;
           padding-bottom: 0px;
-          padding-left: 0px;
-          padding-right: 0px;
         }
         &_large {
           padding: 10px;
@@ -9193,7 +9229,7 @@ ul.semui-tabs-list.tabs-vertical{
           border-color: map_get($theme, default);
         }
         &--primary {
-          color: #424141;
+          color: map_get($theme, default);
           background: map_get($theme, primary);
           &:hover {
             background-color: darken(map_get($theme, primary), 7%);
@@ -9223,7 +9259,8 @@ ul.semui-tabs-list.tabs-vertical{
           border-color: map_get($theme, quaternary);
         }
         &--accent {
-          @include interactive-bg(map_get($theme, accent));
+          color: map_get($theme, default);
+          background-color:  map_get($theme, accent);
           text-shadow: 1px 1px 3px darken(map_get($theme, accent), 14%);
           border-color: map_get($theme, accent);
         }

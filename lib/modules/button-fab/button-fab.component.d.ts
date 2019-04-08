@@ -24,5 +24,5 @@ export declare class ButtonFabComponent implements OnInit {
     ngOnInit(): void;
     getClasses(): any[];
     addClasses(classes: string[]): void;
-    private styleElementTheme(theme);
+    private styleElementTheme;
 }

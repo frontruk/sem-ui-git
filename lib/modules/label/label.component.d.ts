@@ -45,10 +45,10 @@ export declare class LabelComponent implements OnInit {
     /**
      * Set component to be on dark or light.
      */
-    private setTheme(type);
+    private setTheme;
     /**
      * Set component's properties bound to
      * the host element CSS classes.
      */
-    private styleElementByImportanceLevel(labelType);
+    private styleElementByImportanceLevel;
 }

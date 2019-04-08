@@ -17,5 +17,5 @@ export declare class SemUiFontSizesItemComponent implements OnInit {
     selectedItem: any;
     toggle(): void;
     readonly parentList: any;
-    private getItemAtIndex();
+    private getItemAtIndex;
 }

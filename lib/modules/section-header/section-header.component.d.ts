@@ -22,5 +22,5 @@ export declare class SectionHeaderComponent implements OnInit {
     /**
      * Set component to be on dark or light.
      */
-    private styleElementByImportanceLevel(labelType);
+    private styleElementByImportanceLevel;
 }

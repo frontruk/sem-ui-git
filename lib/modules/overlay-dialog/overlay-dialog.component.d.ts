@@ -15,6 +15,6 @@ export declare class OverlayDialogComponent implements OnDestroy, OnInit {
     ngOnInit(): void;
     connectedOverlayDetach(): void;
     ngOnDestroy(): void;
-    private changeState(isOpened);
-    private isClickedOutside(overlayOriginEl, dialog, event);
+    private changeState;
+    private isClickedOutside;
 }

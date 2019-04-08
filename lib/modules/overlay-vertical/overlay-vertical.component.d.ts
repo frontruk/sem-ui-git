@@ -23,6 +23,6 @@ export declare class OverlayVerticalComponent implements OnDestroy, OnInit, OnCh
     ngOnDestroy(): void;
     ngOnChanges(changes: SimpleChanges): void;
     rePosition(item: any): void;
-    private changeState(isOpened);
-    private isClickedOutside(overlayOriginEl, dialog, event);
+    private changeState;
+    private isClickedOutside;
 }

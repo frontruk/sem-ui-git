@@ -6432,6 +6432,14 @@ $breakpoint-lg: '(min-width: 64em)' !default;
     &:not([disabled]) {
       cursor: pointer;
     }
+    //&:hover{
+    //  img.icon-default {
+    //    display: none;
+    //  }
+    //  img.icon-hover {
+    //    display: inline-block;
+    //  }
+    //}
     &.no-padding{
       @extend .py0;
     }
@@ -6448,6 +6456,7 @@ $breakpoint-lg: '(min-width: 64em)' !default;
       display: inline-block;
       vertical-align: middle;
       margin-bottom: 4px;
+      margin-right: 5px;
       &.icon-hover {
         display: none;
       }
@@ -6487,39 +6496,43 @@ $breakpoint-lg: '(min-width: 64em)' !default;
   }
 
 
-  // li dark
-  .sem-ul-light{
-    .sem-li{
-      color:  map_get($theme, tertiary);
-      &:hover{
-        @include interactive-bg(map_get($theme, quaternary));
-        &.active{
-          color:  map_get($theme, quaternary);
-          background-color: map_get($theme, tertiary);
-        }
-      }
-      &.active{
-        color:  map_get($theme, quaternary);
-        background-color: map_get($theme, tertiary);
-      }
-    }
-  }
+  //// li dark
+  //.sem-ul-light{
+  //  .sem-li{
+  //    color:  map_get($theme, tertiary);
+  //    &:hover{
+  //      @include interactive-bg(map_get($theme, quaternary));
+  //      &.active{
+  //        color:  map_get($theme, quaternary);
+  //        background-color: map_get($theme, tertiary);
+  //      }
+  //    }
+  //    &.active{
+  //      color:  map_get($theme, quaternary);
+  //      background-color: map_get($theme, tertiary);
+  //    }
+  //  }
+  //}
   //li light
   .sem-ul-dark{
     .sem-li{
+      //&.sem-button--link--inverted{
+      //  &:hover{
+      //    color:  map_get($theme, inverted);
+      //  }
+      //}
       &:hover{
-        @include interactive-bg(map_get($theme, tertiary));
+        //text-decoration: underline;
+        //background: map_get($theme, inverted);;
         &.active{
           color:  map_get($theme, default);
           background-color: map_get($theme, inverted);
         }
       }
       &.active{
-        color:  map_get($theme, default);
-        background-color: map_get($theme, inverted);
-        .sem-button--link--primary{
-          color:  map_get($theme, default);
-        }
+        //.sem-button--link--primary{
+        //  color:  map_get($theme, default);
+        //}
       }
     }
   }
@@ -7470,6 +7483,12 @@ div.sem-container{
   }
   @media (min-width: 52em) {
     max-width: 1024px;
+  }
+  .sem-container--block-center{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 
@@ -8635,6 +8654,9 @@ ul.semui-tabs-list.tabs-vertical{
   // Colors
   .sem-default, %sem-default, a.sem-default{
     color:  map-get($theme, default);
+    &:before, &:after{
+      color:  map-get($theme, primary);
+    }
     &_active{
       color:  map-get($theme, primary);
     }
@@ -8647,6 +8669,9 @@ ul.semui-tabs-list.tabs-vertical{
   }
   .sem-inverted, %sem-inverted, a.sem-inverted{
     color:  map-get($theme, inverted);
+    &:before, &:after{
+      color:  map-get($theme, inverted);
+    }
     &--interactive{
       @include interactive-bg(map_get($theme, inverted));
       &_active{
@@ -8656,6 +8681,9 @@ ul.semui-tabs-list.tabs-vertical{
   }
   .sem-primary, %sem-primary, a.sem-primary{
     color:  map-get($theme, primary);
+    &:before, &:after{
+      color:  map-get($theme, primary);
+    }
     &--interactive{
       @include interactive-bg(map_get($theme, primary));
       &_active{
@@ -8665,6 +8693,9 @@ ul.semui-tabs-list.tabs-vertical{
   }
   .sem-secondary, %sem-secondary, a.sem-secondary{
     color:  map-get($theme, secondary);
+    &:before, &:after{
+      color:  map-get($theme, secondary);
+    }
     &--interactive{
       @include interactive-bg(map_get($theme, secondary));
       &_active{
@@ -8674,6 +8705,9 @@ ul.semui-tabs-list.tabs-vertical{
   }
   .sem-tertiary, %sem-tertiary, a.sem-tertiary{
     color:  map-get($theme, tertiary);
+    &:before, &:after{
+      color:  map-get($theme, tertiary);
+    }
     &--interactive{
       @include interactive-bg(map_get($theme, tertiary));
       &_active{
@@ -8683,6 +8717,9 @@ ul.semui-tabs-list.tabs-vertical{
   }
   .sem-quaternary, %sem-quaternary, a.sem-quaternary{
     color:  map-get($theme, quaternary);
+    &:before, &:after{
+      color:  map-get($theme, quaternary);
+    }
     &--interactive{
       @include interactive-bg(map_get($theme, quaternary));
       &_active{
@@ -8692,6 +8729,9 @@ ul.semui-tabs-list.tabs-vertical{
   }
   .sem-accent, %sem-accent, a.sem-accent{
     color:  map-get($theme, accent);
+    &:before, &:after{
+      color:  map-get($theme, accent);
+    }
     &--interactive{
       @include interactive-bg(map_get($theme, accent));
       &_active{
@@ -8701,6 +8741,9 @@ ul.semui-tabs-list.tabs-vertical{
   }
   .sem-warn, %sem-warn, a.sem-warn{
     color:  map-get($theme, warn);
+    &:before, &:after{
+      color:  map-get($theme, warn);
+    }
     &--interactive{
       @include interactive-bg(map_get($theme, warn));
       &_active{
@@ -8710,6 +8753,9 @@ ul.semui-tabs-list.tabs-vertical{
   }
   .sem-success, %sem-success, a.sem-success{
     color:  map-get($theme, success);
+    &:before, &:after{
+      color:  map-get($theme, success);
+    }
     &--interactive{
       @include interactive-bg(map_get($theme, success));
       &_active{
@@ -8719,6 +8765,9 @@ ul.semui-tabs-list.tabs-vertical{
   }
   .sem-danger, %sem-danger, a.sem-danger{
     color:  map-get($theme, danger);
+    &:before, &:after{
+      color:  map-get($theme, danger);
+    }
     &--interactive{
       @include interactive-bg(map_get($theme, danger));
       &_active{
@@ -8728,6 +8777,9 @@ ul.semui-tabs-list.tabs-vertical{
   }
   .sem-danger_inverted, %sem-danger_inverted, a.sem-danger_inverted{
     color:  map-get($theme, danger_inverted);
+    &:before, &:after{
+      color:  map-get($theme, danger_inverted);
+    }
     &--interactive{
       @include interactive-bg(map_get($theme, danger_inverted));
       &_active{
@@ -8944,7 +8996,8 @@ ul.semui-tabs-list.tabs-vertical{
         &--inverted {
           color:map_get($theme, inverted);
           &:hover{
-            color:map_get($theme, default);
+            text-decoration: underline;
+            color:map_get($theme, inverted);
           }
         }
         &--default {

@@ -20,5 +20,5 @@ export declare class InputComponent implements OnInit {
      * Set component's properties bound to
      * the host element CSS classes.
      */
-    private styleElementByType();
+    private styleElementByType;
 }

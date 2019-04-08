@@ -15,5 +15,5 @@ export declare class ListComponent implements OnInit {
     ngOnInit(): void;
     addClasses(classes: string[]): void;
     getClasses(): any[];
-    private styleElementTheme(theme);
+    private styleElementTheme;
 }

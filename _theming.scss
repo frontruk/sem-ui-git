@@ -4553,9 +4553,6 @@ $breakpoint-lg: '(min-width: 64em)' !default;
   .sem-colorlist--list--inner{
     color: map_get($foreground, typography-base );
   }
-  .sem-icon-drag:before{
-    color: map_get($foreground, typography-base );
-  }
 }
 
 .browser-container{
